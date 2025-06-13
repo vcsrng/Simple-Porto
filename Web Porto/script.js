@@ -1,18 +1,21 @@
-// --- INITIAL SETUP ---
 AOS.init({ duration: 800, easing: 'ease-in-out', once: true });
 
 const data = {
     hero: {
-        name: "Vincent",
-        specialities: "iOS Developer | Tech Innovator | Problem Solver"
+        name: "Vincent Saranang",
+        specialities: [
+            "iOS Developer",
+            "Software Engineer",
+            "T-Shaped Developer"
+        ]
     },
     about: {
         textabout: "Ambitious and adaptable iOS developer with a strong foundation in technical skills and innovative problem-solving. Experienced in developing iOS applications from scratch and applying Apple Human Interface Guidelines to enhance user experience. Known for a quick learning ability and a commitment to delivering high-quality results."
     },
     experience: [
         {
-            role: "Junior iOS Developer, Internship",
-            company: "Apple Developer Academy",
+            role: "Junior iOS Developer",
+            company: "Apple Developer Academy @BINUS",
             period: "Mar 2024 - Dec 2024",
             description: "Built and optimized multiple iOS, iPadOS and WatchOS applications from scratch, enhancing app performance and user experience by applying Apple Human Interface Guidelines."
         },
@@ -29,7 +32,7 @@ const data = {
             university: "BINUS University",
             period: "2021 - Present",
             details: [
-                "Current GPA: 3.82/4.00",
+                "Current GPA: 3.85/4.00",
                 "Contestant: The 2022 ICPC Asia Jakarta National Contest"
             ]
         },
@@ -134,7 +137,6 @@ const data = {
     ]
 };
 
-// --- FEATURE FUNCTIONS ---
 function createHeroCodeBackground() {
     const bg = document.getElementById('hero-code-bg');
     if (!bg) return;
@@ -183,6 +185,48 @@ function setupNavbarScrollEffect() {
             navbar.classList.remove('navbar-scrolled');
         }
     });
+}
+
+function typeAndDeleteLoop() {
+    const specialitiesElement = document.getElementById("hero-specialities");
+    const specialities = data.hero.specialities;
+    if (!specialitiesElement || !specialities.length) return;
+
+    let specialityIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    const typingSpeed = 150;
+    const deletingSpeed = 100;
+    const pauseDuration = 2000;
+
+    function loop() {
+        const currentSpeciality = specialities[specialityIndex];
+        let displayText;
+
+        if (isDeleting) {
+            displayText = currentSpeciality.substring(0, charIndex - 1);
+            charIndex--;
+        } else {
+            displayText = currentSpeciality.substring(0, charIndex + 1);
+            charIndex++;
+        }
+
+        specialitiesElement.innerHTML = `${displayText}<span class="cursor">|</span>`;
+
+        let time = isDeleting ? deletingSpeed : typingSpeed;
+
+        if (!isDeleting && charIndex === currentSpeciality.length) {
+            time = pauseDuration;
+            isDeleting = true;
+        } else if (isDeleting && charIndex === 0) {
+            isDeleting = false;
+            specialityIndex = (specialityIndex + 1) % specialities.length;
+        }
+
+        setTimeout(loop, time);
+    }
+
+    loop();
 }
 
 // --- CORE PORTFOLIO LOGIC ---
@@ -244,7 +288,6 @@ function typeText() {
     }
 }
 
-// Replace your existing renderProjects function with this one
 function renderProjects(page) {
     const featuredProjectContainer = document.getElementById("featured-project-container");
     const projectGrid = document.getElementById("project-grid");
@@ -252,7 +295,6 @@ function renderProjects(page) {
     
     const featuredProject = data.projects.find(p => p.featured);
 
-    // Render the featured project with a new, simpler internal structure
     if (featuredProject) {
         featuredProjectContainer.innerHTML = `
             <div class="featured-project-card" data-aos="fade-up">
@@ -274,7 +316,6 @@ function renderProjects(page) {
         `;
     }
 
-    // --- The rest of the function remains the same ---
     const regularProjects = filteredProjects.filter(p => !p.featured);
     projectGrid.innerHTML = "";
     const start = (page - 1) * itemsPerPage;
@@ -373,7 +414,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (heroName) heroName.textContent = data.hero.name;
     const aboutText = document.getElementById("about-text");
     if (aboutText) aboutText.textContent = data.about.textabout;
-    typeText();
+    typeAndDeleteLoop();
     renderFilterOptions();
     renderProjects(1);
     populateSkills();
