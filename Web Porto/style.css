@@ -1,286 +1,374 @@
+/* --- 1. CSS VARIABLES FOR THEME SWITCHING --- */
+:root, [data-bs-theme="light"] {
+  --bs-body-bg: #fff;
+  --bs-body-color: #212529;
+  --section-bg-color: #f8f9fa;
+  --card-bg-color: #fff;
+  --card-border-color: #e9ecef;
+  --heading-color: #212529;
+  --text-muted-color: #6c757d;
+  --link-color: #0d6efd;
+  --link-hover-color: #0a58ca;
+  --bs-primary: #0d6efd;
+  --bs-dark: #212529;
+  --bs-light: #f8f9fa;
+  --bs-body-bg-rgb: 255, 255, 255; /* RGB version for rgba() */
+
+  --social-btn-bg: #212529;         /* A "light" grey that works on a dark background */
+  --social-btn-color: #f8f9fa;      /* Light text for contrast on the grey button */
+  --social-btn-hover-bg: #495057;   /* A darker grey for hover */
+}
+
+[data-bs-theme="dark"] {
+  --bs-body-bg: #121212;
+  --bs-body-color: #e0e0e0;
+  --section-bg-color: #1e1e1e;
+  --card-bg-color: #2a2a2a;
+  --card-border-color: #404040;
+  --heading-color: #ffffff;
+  --text-muted-color: #a0a0a0;
+  --link-color: #4dabf7;
+  --link-hover-color: #74c0fc;
+  --bs-primary: #377dff;
+  --bs-dark: #e9ecef;
+  --bs-light: #212529;
+
+  /* Re-theme bootstrap components */
+  --bs-body-bg-rgb: 18, 18, 18;
+  --bs-tertiary-bg: #2a2a2a;
+  --bs-border-color: #404040;
+
+  
+  --social-btn-bg: #e0e0e0;         /* Standard light grey */
+  --social-btn-color: #1e1e1e;      /* Standard dark text */
+  --social-btn-hover-bg: #b0b0b0 ;   /* Slightly darker grey for hover */
+}
+
+.navbar .navbar-brand,
+.navbar .nav-link {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+}
+
+/* --- Base Styles --- */
 html {
   scroll-behavior: smooth;
 }
 
 body {
-    font-family: 'Inter', sans-serif;
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bs-body-bg);
+  color: var(--bs-body-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 section {
   padding: 100px 0;
 }
 
-/* Hero Section */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--heading-color);
+}
+
+/* --- 2. THEME SWITCH STYLES --- */
+.theme-switch-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.theme-switch-wrapper .form-check-input {
+  width: 3.5em;
+  height: 1.75em;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='rgba%280,0,0,0.25%29'/%3e%3c/svg%3e");
+}
+.theme-switch-wrapper .form-check-input:focus {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%2386b7fe'/%3e%3c/svg%3e");
+}
+.theme-switch-wrapper .form-check-input:checked {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e");
+}
+
+.theme-icon {
+  font-size: 1.25rem;
+  transition: color 0.3s ease;
+}
+#theme-icon-sun {
+  color: #f39c12;
+}
+#theme-icon-moon {
+  color: #6c757d;
+}
+[data-bs-theme="dark"] #theme-icon-sun {
+  color: #6c757d;
+}
+[data-bs-theme="dark"] #theme-icon-moon {
+  color: #4dabf7;
+}
+
+/* --- 3. HERO SECTION & INTERACTIVE BACKGROUND --- */
 .hero {
   height: 100vh;
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
   text-align: center;
-  background: #f8f9fa;
-  padding: 2rem 1rem;
+  overflow: hidden;
+  padding: 1rem;
 }
-
-.hero h1 {
-  font-size: 3rem;
-  font-weight: bold;
+#hero-code-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background-color: var(--bs-body-bg);
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 14px;
 }
-
+.code-line {
+  position: absolute;
+  color: var(--text-muted-color);
+  opacity: 0.2;
+  animation: floatUp 20s linear infinite;
+  white-space: nowrap;
+}
+@keyframes floatUp {
+  from {
+    transform: translateY(100vh);
+  }
+  to {
+    transform: translateY(-100px);
+  }
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  background: rgba(var(--bs-body-bg-rgb), 0.7);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  padding: 2rem;
+  border-radius: 1rem;
+}
 .hero p {
   font-size: 1.25rem;
   margin-bottom: 2rem;
-  min-height: 2rem; /* Reserve space for typing effect to prevent layout shift */
+  min-height: 2rem;
 }
 
-#cv-download {
-  margin-right: .5rem;
-}
+
 
 .btn-custom {
   margin: 0.5rem;
 }
 
-/* Project Cards */
+/* --- Social Media Buttons --- */
+.btn-social {
+    background-color: var(--social-btn-bg);
+    color: var(--social-btn-color);
+    border: 1px solid transparent;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.btn-social .bi {
+    color: var(--social-btn-color); /* Ensure icon color matches text */
+}
+
+.btn-social:hover {
+    background-color: var(--social-btn-hover-bg);
+    color: var(--social-btn-color);
+}
+
+/* --- Download CV Button Icon & Dark Mode Fix --- */
+#cv-download .bi {
+    transition: color 0.2s ease-in-out;
+    color: inherit; /* Icon color will follow button text color */
+}
+
+/* This rule targets the #cv-download button ONLY when dark mode is active */
+[data-bs-theme="dark"] #cv-download {
+    color: var(--bs-body-color); /* Uses the main light text color from your dark theme */
+    border-color: var(--bs-body-color); /* Makes the border the same bright color */
+}
+
+/* This ensures the hover effect is also high-contrast in dark mode */
+[data-bs-theme="dark"] #cv-download:hover {
+    color: var(--bs-body-bg); /* Text becomes the dark background color (e.g., black) */
+    background-color: var(--bs-body-color); /* Button fill becomes the light text color */
+    border-color: var(--bs-body-color); /* Border remains the light text color */
+}
+
+
+/* --- Project Cards --- */
 .project-card {
   position: relative;
   border-radius: 12px;
   overflow: hidden;
-  background-color: #fff;
+  background-color: var(--card-bg-color);
   transition: transform 0.3s, box-shadow 0.3s;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
   height: 100%;
+  border: 1px solid var(--card-border-color);
 }
-
-/* This is the new rule that fixes the flicker */
 #project-grid {
-  min-height: 666px;
+  min-height: 650px;
 }
-
 .project-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
-
 .project-image-wrapper {
   width: 100%;
   height: 250px;
-  background-color: #e9ecef;
+  background-color: var(--section-bg-color);
 }
-
 .project-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: opacity 0.3s ease;
 }
-
 .project-title {
   padding: 1rem;
   font-weight: 600;
   font-size: 1.1rem;
-  background-color: #fff;
+  background-color: var(--card-bg-color);
 }
-
 .project-overlay {
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
-  background-color: white;
+  background-color: var(--card-bg-color);
   padding: 1rem;
   transform: translateY(100%);
-  transition: transform 0.3s ease;
-  border-top: 1px solid #eee;
-}
-
-.project-overlay {
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  border-top: 1px solid var(--card-border-color);
   opacity: 0;
-  transform: translateY(20%);
 }
-
 .project-card:hover .project-overlay {
   opacity: 1;
   transform: translateY(0%);
 }
-
-.project-overlay h5 {
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-}
-
-.project-overlay p {
-  font-size: 0.9rem;
-  color: #444;
-  margin: 0.5rem 0;
-}
-
-.project-overlay .tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-
+.project-overlay h5 { font-weight: 600; margin-bottom: 0.5rem; }
+.project-overlay p { font-size: 0.9rem; color: var(--text-muted-color); margin: 0.5rem 0; }
+.project-overlay .tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
 .project-overlay .tags span {
   display: inline-block;
   padding: 0.3rem 0.75rem;
-  background-color: #f1f1f1;
+  background-color: var(--section-bg-color);
   border-radius: 20px;
   font-size: 0.75rem;
 }
 
-/* Pagination Styles */
+/* Pagination & Off-canvas Styles */
 .pagination .page-item .page-link {
-  color: #6c757d;
+  color: var(--text-muted-color);
   background-color: transparent;
   border: none;
 }
-
 .pagination .page-item.active .page-link {
-  color: #000;
+  color: var(--heading-color);
   font-weight: bold;
 }
-
-/* Off-canvas Filter Styles */
-.offcanvas-body .form-check {
-  padding-left: 0; /* Reset padding for custom layout */
+.offcanvas {
+    background-color: var(--bs-body-bg);
+    color: var(--bs-body-color);
 }
 
-.offcanvas-body .form-check-label {
-  width: 100%;
-  padding: 0.75rem 1rem;
-  border-radius: 0.375rem; /* Bootstrap's default border-radius */
-  border: 1px solid #dee2e6;
-  cursor: pointer;
-  transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out, color 0.2s ease-in-out;
-}
 
-.offcanvas-body .form-check-input {
-  display: none; /* Hide the default checkbox */
-}
-
-/* Style for when the filter is selected */
-.offcanvas-body .form-check-input:checked + .form-check-label {
-  background-color: #212529; /* Bootstrap's dark color */
-  border-color: #212529;
-  color: #fff;
-}
-
-.offcanvas-body .form-check-label:hover {
-  background-color: #f8f9fa; /* A light hover effect */
-}
-
-.offcanvas-body .form-check-input:checked + .form-check-label:hover {
-  background-color: #343a40; /* A slightly lighter dark on hover */
-}
-
-/* Skills Grid */
-#skills .badge {
-  padding: 0.6rem 1.2rem;
-  font-size: 1rem;
-  font-weight: 500;
-  border-radius: 1.5rem;
-  background-color: #e9ecef !important;
-  color: #212529 !important;
-}
-
+/* --- Section BG Wrapper --- */
 .section-bg-wrapper {
-  background-color: #fff;
+  background-color: var(--section-bg-color);
   padding: 100px 0;
+  transition: background-color 0.3s ease;
+}
+
+/* This centers the entire block of badges */
+.skills-grid {
+    text-align: center;
+}
+
+/* This styles the badges and adds margin for spacing */
+#skills .badge {
+    background-color: var(--card-border-color) !important;
+    color: var(--bs-body-color) !important;
+    padding: 0.6rem 1.2rem;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 1.5rem;
+    margin: 0.25rem;
+    display: inline-block;
 }
 
 /* --- Achievement Card Styles --- */
-#achievements {
-  background-color: #f8f9fa; /* A light background to separate the section */
-}
-
 .achievement-card {
-  background-color: #fff;
-  border: 1px solid #e9ecef;
+  background-color: var(--card-bg-color);
+  border: 1px solid var(--card-border-color);
   border-radius: 12px;
   padding: 1.5rem;
   transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
   text-align: left;
 }
-
 .achievement-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
-  border-color: #0d6efd; /* Highlight with primary color on hover */
+  border-color: var(--bs-primary);
 }
-
 .achievement-card-header {
   display: flex;
   align-items: center;
   margin-bottom: 1rem;
 }
-
 .achievement-card-header .bi {
-  font-size: 1.75rem; /* Large, prominent icon */
-  color: #0d6efd; /* Bootstrap primary color */
+  font-size: 1.75rem;
+  color: var(--bs-primary);
   margin-right: 0.75rem;
 }
-
 .achievement-card-header .issuer {
   font-weight: 600;
-  color: #6c757d; /* Muted color for the issuer */
+  color: var(--text-muted-color);
 }
-
-.achievement-card-body .title {
-  font-weight: 700;
-  font-size: 1.25rem;
-  margin-bottom: 0.25rem;
-}
-
-.achievement-card-body .date {
-  font-size: 0.9rem;
-  margin-bottom: 1rem;
-}
-
-.achievement-card-body .description {
-  font-size: 0.95rem;
-  color: #495057;
-  line-height: 1.5;
-}
-
+.achievement-card-body .title { font-weight: 700; font-size: 1.25rem; margin-bottom: 0.25rem; }
+.achievement-card-body .date { font-size: 0.9rem; margin-bottom: 1rem; }
+.achievement-card-body .description { font-size: 0.95rem; color: var(--bs-body-color); line-height: 1.5; }
 .achievement-card-footer {
   padding-top: 1rem;
-  border-top: 1px solid #e9ecef;
+  border-top: 1px solid var(--card-border-color);
 }
 
-/* Footer */
+/* --- Contact Section Styles --- */
+.contact-email-btn {
+    padding: 0.8rem 2rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+/* --- Footer --- */
 footer {
-  background-color: #212529;
-  color: white;
+  background-color: #1e1e1e;
+  color: #e0e0e0;
   text-align: center;
-  padding: 2rem 0;
+  padding: 3rem 0; /* Increased padding from 2rem to 3rem */
 }
-
 footer a {
-  color: white;
-  margin: 0 0.5rem;
-  font-size: 1.5rem;
+  color: #e0e0e0;
+  margin: 0 0.5rem; /* Slightly increased margin */
+  font-size: 1.5rem;  /* Increased icon size from 1.5rem */
   transition: color 0.2s;
 }
-
 footer a:hover {
-  color: #adb5bd;
+  color: #4dabf7;
 }
 
-/* Responsive Media Queries */
+/* --- Responsive Media Queries --- */
 @media (max-width: 576px) {
-  .hero h1 {
-    font-size: 2.5rem;
-  }
-  .hero p {
-    font-size: 1.1rem;
-  }
+  .hero h1 { font-size: 2.5rem; }
+  .hero p { font-size: 1.1rem; }
   .btn-custom {
     display: block;
     width: 80%;
     margin: 0.5rem auto;
-  }
-  #cv-download {
-    margin-right: auto;
   }
 }
