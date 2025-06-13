@@ -1,0 +1,286 @@
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+section {
+  padding: 100px 0;
+}
+
+/* Hero Section */
+.hero {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  background: #f8f9fa;
+  padding: 2rem 1rem;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.hero p {
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
+  min-height: 2rem; /* Reserve space for typing effect to prevent layout shift */
+}
+
+#cv-download {
+  margin-right: .5rem;
+}
+
+.btn-custom {
+  margin: 0.5rem;
+}
+
+/* Project Cards */
+.project-card {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: #fff;
+  transition: transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  height: 100%;
+}
+
+/* This is the new rule that fixes the flicker */
+#project-grid {
+  min-height: 666px;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.project-image-wrapper {
+  width: 100%;
+  height: 250px;
+  background-color: #e9ecef;
+}
+
+.project-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.3s ease;
+}
+
+.project-title {
+  padding: 1rem;
+  font-weight: 600;
+  font-size: 1.1rem;
+  background-color: #fff;
+}
+
+.project-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: white;
+  padding: 1rem;
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+  border-top: 1px solid #eee;
+}
+
+.project-overlay {
+  opacity: 0;
+  transform: translateY(20%);
+}
+
+.project-card:hover .project-overlay {
+  opacity: 1;
+  transform: translateY(0%);
+}
+
+.project-overlay h5 {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.project-overlay p {
+  font-size: 0.9rem;
+  color: #444;
+  margin: 0.5rem 0;
+}
+
+.project-overlay .tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.project-overlay .tags span {
+  display: inline-block;
+  padding: 0.3rem 0.75rem;
+  background-color: #f1f1f1;
+  border-radius: 20px;
+  font-size: 0.75rem;
+}
+
+/* Pagination Styles */
+.pagination .page-item .page-link {
+  color: #6c757d;
+  background-color: transparent;
+  border: none;
+}
+
+.pagination .page-item.active .page-link {
+  color: #000;
+  font-weight: bold;
+}
+
+/* Off-canvas Filter Styles */
+.offcanvas-body .form-check {
+  padding-left: 0; /* Reset padding for custom layout */
+}
+
+.offcanvas-body .form-check-label {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: 0.375rem; /* Bootstrap's default border-radius */
+  border: 1px solid #dee2e6;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.offcanvas-body .form-check-input {
+  display: none; /* Hide the default checkbox */
+}
+
+/* Style for when the filter is selected */
+.offcanvas-body .form-check-input:checked + .form-check-label {
+  background-color: #212529; /* Bootstrap's dark color */
+  border-color: #212529;
+  color: #fff;
+}
+
+.offcanvas-body .form-check-label:hover {
+  background-color: #f8f9fa; /* A light hover effect */
+}
+
+.offcanvas-body .form-check-input:checked + .form-check-label:hover {
+  background-color: #343a40; /* A slightly lighter dark on hover */
+}
+
+/* Skills Grid */
+#skills .badge {
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 1.5rem;
+  background-color: #e9ecef !important;
+  color: #212529 !important;
+}
+
+.section-bg-wrapper {
+  background-color: #fff;
+  padding: 100px 0;
+}
+
+/* --- Achievement Card Styles --- */
+#achievements {
+  background-color: #f8f9fa; /* A light background to separate the section */
+}
+
+.achievement-card {
+  background-color: #fff;
+  border: 1px solid #e9ecef;
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  text-align: left;
+}
+
+.achievement-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+  border-color: #0d6efd; /* Highlight with primary color on hover */
+}
+
+.achievement-card-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.achievement-card-header .bi {
+  font-size: 1.75rem; /* Large, prominent icon */
+  color: #0d6efd; /* Bootstrap primary color */
+  margin-right: 0.75rem;
+}
+
+.achievement-card-header .issuer {
+  font-weight: 600;
+  color: #6c757d; /* Muted color for the issuer */
+}
+
+.achievement-card-body .title {
+  font-weight: 700;
+  font-size: 1.25rem;
+  margin-bottom: 0.25rem;
+}
+
+.achievement-card-body .date {
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.achievement-card-body .description {
+  font-size: 0.95rem;
+  color: #495057;
+  line-height: 1.5;
+}
+
+.achievement-card-footer {
+  padding-top: 1rem;
+  border-top: 1px solid #e9ecef;
+}
+
+/* Footer */
+footer {
+  background-color: #212529;
+  color: white;
+  text-align: center;
+  padding: 2rem 0;
+}
+
+footer a {
+  color: white;
+  margin: 0 0.5rem;
+  font-size: 1.5rem;
+  transition: color 0.2s;
+}
+
+footer a:hover {
+  color: #adb5bd;
+}
+
+/* Responsive Media Queries */
+@media (max-width: 576px) {
+  .hero h1 {
+    font-size: 2.5rem;
+  }
+  .hero p {
+    font-size: 1.1rem;
+  }
+  .btn-custom {
+    display: block;
+    width: 80%;
+    margin: 0.5rem auto;
+  }
+  #cv-download {
+    margin-right: auto;
+  }
+}
