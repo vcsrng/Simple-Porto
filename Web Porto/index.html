@@ -10,8 +10,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="70" tabindex="0">
-
-    <nav class="navbar navbar-expand-lg navbar-light bg-body-primary fixed-top shadow-sm">
+    <nav class="navbar navbar-expand-lg fixed-top shadow-sm bg-body-secondary bg-opacity-25 navbar-backdrop">
         <div class="container">
             <a class="navbar-brand fw-bold" href="#">Vincent</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -20,6 +19,7 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav align-items-center">
                     <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
                     <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
                     <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
                     <li class="nav-item"><a class="nav-link" href="#achievements">Achievements</a></li>
@@ -53,8 +53,46 @@
 
     <section id="about" data-aos="fade-up">
         <div class="container">
-            <h2>About Me</h2>
-            <p id="about-text"></p>
+            <div class="row align-items-center justify-content-center">
+                <div class="col-lg-4 col-md-8 mb-5 mb-lg-0 text-center">
+                    <img src="profile-photo.jpg" class="img-fluid rounded-circle shadow-lg profile-picture" alt="A photo of Vincent Saranang">
+                </div>
+                <div class="col-lg-8">
+                    <h2 class="about-me-title">About Me</h2>
+                    <p id="about-text"></p>
+                    <div class="row mt-4">
+                        <div class="col-md-6">
+                            <ul class="list-unstyled">
+                                <li class="mb-2"><i class="bi bi-chevron-right text-primary"></i> Based in Jakarta, Indonesia</li>
+                                <li class="mb-2"><i class="bi bi-chevron-right text-primary"></i> Passionate about clean code</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <ul class="list-unstyled">
+                            <li class="mb-2"><i class="bi bi-chevron-right text-primary"></i> Creator of Hetice App</li>
+                            <li class="mb-2"><i class="bi bi-chevron-right text-primary"></i> Ready for new challenges</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" data-aos="fade-up">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <h2 class="section-title mb-5">Experience</h2>
+                    <div id="experience-timeline">
+                        </div>
+                </div>
+                <div class="col-lg-6">
+                    <h2 class="section-title mb-5">Education</h2>
+                    <div id="education-timeline">
+                        </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -67,6 +105,9 @@
                         <i class="bi bi-filter"></i> Filter
                     </button>
                 </div>
+
+                <div id="featured-project-container" class="mb-5"></div>
+
                 <div id="project-grid" class="row g-4 justify-content-center align-items-start"></div>
                 <nav class="mt-4 d-flex justify-content-center">
                     <ul class="pagination" id="project-pagination"></ul>
