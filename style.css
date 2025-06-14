@@ -65,25 +65,9 @@ nav.navbar {
     transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
-/* --- Mobile First Styles (Default) --- */
 nav.navbar {
     background-color: var(--bs-body-bg) !important;
     box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
-}
-
-/* --- Desktop Styles (Overrides mobile) --- */
-@media (min-width: 992px) {
-    /* On desktop, make it transparent initially */
-    nav.navbar {
-        background-color: transparent !important;
-        box-shadow: none;
-    }
-
-    /* On desktop, when scrolled, make it solid again */
-    nav.navbar.navbar-scrolled {
-        background-color: var(--bs-body-bg) !important;
-        box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
-    }
 }
 
 .navbar .navbar-brand,
@@ -167,15 +151,6 @@ nav.navbar {
     50% { opacity: 0; }
 }
 
-.btn-social {
-    background-color: var(--social-btn-bg); color: var(--social-btn-color); border: 1px solid transparent; transition: background-color 0.2s ease-in-out;
-}
-.btn-social .bi {
-    color: var(--social-btn-color);
-}
-.btn-social:hover {
-    background-color: var(--social-btn-hover-bg); color: var(--social-btn-color);
-}
 #cv-download .bi { transition: color 0.2s ease-in-out; color: inherit; }
 [data-bs-theme="dark"] #cv-download { color: var(--bs-body-color); border-color: var(--bs-body-color); }
 [data-bs-theme="dark"] #cv-download:hover { color: var(--bs-body-bg); background-color: var(--bs-body-color); border-color: var(--bs-body-color); }
@@ -186,7 +161,6 @@ nav.navbar {
 .about-me-title {
     margin-bottom: 1rem;
 }
-@media (max-width: 991.98px) { .about-me-title { text-align: center; margin-top: 2rem; } }
 
 .highlight-item {
     padding: 1.5rem 1rem;
@@ -398,6 +372,139 @@ nav.navbar {
   font-weight: 500;
 }
 
+/* --- MODAL STYLES --- */
+#projectModal .modal-content {
+    background-color: var(--bs-body-bg);
+    border: 1px solid var(--card-border-color);
+    border-radius: 1rem;
+}
+#projectModal .modal-header {
+    border-bottom: 1px solid var(--card-border-color);
+}
+#projectModal .modal-footer {
+    border-top: 1px solid var(--card-border-color);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+#projectModal h3 {
+    font-weight: 700;
+}
+#projectModal .tech-stack span {
+  display: inline-block;
+  padding: 0.3rem 0.75rem;
+  background-color: var(--section-bg-color);
+  color: var(--text-muted-color);
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+.modal-top-section {
+    align-items: flex-start;
+}
+.modal-image-container {
+    width: 100% !important;
+    background-color: var(--section-bg-color);
+    padding: 1rem;
+    border-radius: .75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    
+    transition: width 0.35s ease-in-out, height 0.35s ease-in-out; 
+
+    max-width: 100%; 
+    
+    height: 100%;
+    min-height: 250px;
+}
+.modal-image-container img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+.modal-summary-text {
+    flex-grow: 1;
+}
+.responsibilities-list {
+    padding-left: 1.25rem;
+    font-size: 0.95rem;
+}
+.responsibilities-list li {
+    margin-bottom: 0.75rem;
+    line-height: 1.6;
+}
+
+/* --- CAROUSEL --- */
+#projectImageCarousel,
+.carousel-inner,
+.carousel-item {
+    height: 100%;
+}
+.carousel-image-wrapper {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.carousel-image-wrapper img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    display: block;
+}
+.carousel.single-image .carousel-control-prev,
+.carousel.single-image .carousel-control-next,
+.carousel.single-image .carousel-indicators {
+    display: none;
+}
+.carousel-control-prev, .carousel-control-next {
+    width: 8%;
+    opacity: 0.7;
+    transition: opacity 0.2s ease-in-out;
+}
+.carousel-control-prev:hover, .carousel-control-next:hover {
+    opacity: 1;
+}
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 50%;
+    padding: 1.2rem;
+    background-size: 50% 50%;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+[data-bs-theme="dark"] .carousel-control-prev-icon,
+[data-bs-theme="dark"] .carousel-control-next-icon {
+    background-color: rgba(30, 30, 30, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.carousel-indicators {
+    position: absolute;
+    margin-bottom: 0;
+}
+.carousel-indicators [data-bs-target] {
+    background-color: var(--bs-dark);
+    width: 10px;
+    height: 10px;
+    border-radius: 100%;
+    opacity: 0.5;
+    border: none;
+    margin: 0 5px;
+    transition: opacity 0.2s ease-in-out;
+}
+.carousel-indicators .active {
+    opacity: 1;
+}
+[data-bs-theme="dark"] .carousel-indicators [data-bs-target] {
+    background-color: #ffffff !important;
+}
+
 .pagination .page-item .page-link {
     color: var(--text-muted-color);
     background-color: transparent;
@@ -476,13 +583,13 @@ nav.navbar {
     border-radius: 0 0 0.5rem 0.5rem;
     box-shadow: 0 4px 10px rgba(255, 152, 0, 0.4); }
 
+#contact {
+    padding-bottom: 150px;
+}
 .contact-email-btn {
     padding: 0.8rem 2rem;
     font-size: 1.1rem;
     font-weight: 600;
-}
-#contact {
-    padding-bottom: 150px;
 }
 
 footer {
@@ -501,141 +608,16 @@ footer a:hover {
     color: var(--text-muted-color);
 }
 
-@media (max-width: 767.98px) {
-    .modal-top-section {
-        flex-direction: column;
-    }
+.btn-social {
+    background-color: var(--social-btn-bg); color: var(--social-btn-color); border: 1px solid transparent; transition: background-color 0.2s ease-in-out;
 }
-@media (max-width: 576px) {
-  .hero h1 { font-size: 2.5rem; }
-  .hero p { font-size: 1.1rem; }
-  .btn-custom { display: block; width: 80%; margin: 0.5rem auto; }
+.btn-social .bi {
+    color: var(--social-btn-color);
 }
-
-/* --- MODAL STYLES --- */
-#projectModal .modal-content {
-    background-color: var(--bs-body-bg);
-    border: 1px solid var(--card-border-color);
-    border-radius: 1rem;
-}
-#projectModal .modal-header {
-    border-bottom: 1px solid var(--card-border-color);
-}
-#projectModal .modal-footer {
-    border-top: 1px solid var(--card-border-color);
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-}
-#projectModal h3 {
-    font-weight: 700;
-}
-#projectModal .tech-stack span {
-  display: inline-block;
-  padding: 0.3rem 0.75rem;
-  background-color: var(--section-bg-color);
-  color: var(--text-muted-color);
-  border-radius: 20px;
-  font-size: 0.75rem;
-  font-weight: 500;
-  margin-right: 0.5rem;
-  margin-bottom: 0.5rem;
-}
-.responsibilities-list {
-    padding-left: 1.25rem;
-    font-size: 0.95rem;
-}
-.responsibilities-list li {
-    margin-bottom: 0.75rem;
-    line-height: 1.6;
+.btn-social:hover {
+    background-color: var(--social-btn-hover-bg); color: var(--social-btn-color);
 }
 
-/* --- New Modal Layout Styles --- */
-.modal-top-section {
-    display: flex;
-    gap: 1.5rem;
-    align-items: flex-start;
-}
-.modal-image-container {
-    background-color: var(--section-bg-color);
-    padding: 1rem;
-    border-radius: .75rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    transition: width 0.35s ease-in-out, height 0.35s ease-in-out;
-}
-.modal-summary-text {
-    flex-grow: 1;
-}
-
-/* --- Carousel Enhancements --- */
-#projectImageCarousel,
-.carousel-inner,
-.carousel-item {
-    height: 100%;
-}
-.carousel-image-wrapper {
-    height: 100%;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.carousel-image-wrapper img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
-}
-.carousel.single-image .carousel-control-prev,
-.carousel.single-image .carousel-control-next,
-.carousel.single-image .carousel-indicators {
-    display: none;
-}
-.carousel-control-prev, .carousel-control-next {
-    width: 8%;
-    opacity: 0.7;
-    transition: opacity 0.2s ease-in-out;
-}
-.carousel-control-prev:hover, .carousel-control-next:hover {
-    opacity: 1;
-}
-.carousel-control-prev-icon,
-.carousel-control-next-icon {
-    background-color: rgba(0, 0, 0, 0.3);
-    border-radius: 50%;
-    padding: 1.2rem;
-    background-size: 50% 50%;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-[data-bs-theme="dark"] .carousel-control-prev-icon,
-[data-bs-theme="dark"] .carousel-control-next-icon {
-    background-color: rgba(30, 30, 30, 0.5);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-}
-.carousel-indicators {
-    position: absolute;
-    margin-bottom: 0;
-}
-.carousel-indicators [data-bs-target] {
-    background-color: var(--bs-dark);
-    width: 10px;
-    height: 10px;
-    border-radius: 100%;
-    opacity: 0.5;
-    border: none;
-    margin: 0 5px;
-    transition: opacity 0.2s ease-in-out;
-}
-.carousel-indicators .active {
-    opacity: 1;
-}
-[data-bs-theme="dark"] .carousel-indicators [data-bs-target] {
-    background-color: #ffffff !important;
-}
-
-/* --- Helper button styles --- */
 .btn-modal-close {
     color: var(--bs-body-color);
     border-color: var(--bs-body-color);
@@ -647,6 +629,7 @@ footer a:hover {
     background-color: var(--bs-body-color);
     border-color: var(--bs-body-color);
 }
+
 .btn-wwdc {
     background-color: #413599;
     color: #fff;
@@ -657,6 +640,7 @@ footer a:hover {
     color: #fff;
     border-color: #372d82;
 }
+
 .btn-outline-themed {
     --bs-btn-color: var(--bs-body-color);
     --bs-btn-border-color: var(--bs-body-color);
@@ -666,4 +650,32 @@ footer a:hover {
     --bs-btn-active-color: var(--bs-body-bg);
     --bs-btn-active-bg: var(--bs-body-color);
     --bs-btn-active-border-color: var(--bs-body-color);
+}
+
+@media (min-width: 992px) {
+    nav.navbar {
+        background-color: transparent !important;
+        box-shadow: none;
+    }
+    nav.navbar.navbar-scrolled {
+        background-color: var(--bs-body-bg) !important;
+        box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    }
+
+    .about-me-title { text-align: center; margin-top: 2rem; } 
+}
+
+@media (max-width: 767.98px) {
+    .modal-top-section {
+        flex-direction: column;
+    }
+    .modal-image-container {
+        margin-bottom: 1.5rem;
+    }
+}
+
+@media (max-width: 576px) {
+  .hero h1 { font-size: 2.5rem; }
+  .hero p { font-size: 1.1rem; }
+  .btn-custom { display: block; width: 80%; margin: 0.5rem auto; }
 }

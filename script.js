@@ -1,17 +1,5 @@
-/**
- * ------------------------------------------------------------------------
- * Initializes the AOS (Animate On Scroll) library for scroll animations.
- * ------------------------------------------------------------------------
- */
 AOS.init({ duration: 800, easing: 'ease-in-out', once: true });
 
-/**
- * ------------------------------------------------------------------------
- * DATA OBJECT
- * This object contains all the personal content for the portfolio.
- * To update your portfolio, you only need to edit this section.
- * ------------------------------------------------------------------------
- */
 const data = {
     hero: {
         name: "Vincent Saranang",
@@ -91,7 +79,7 @@ const data = {
             name: "DariData",
             image: [
                 "assets/projects/Daridata.jpg",
-                "assets/projects/Daridata.jpg" // Placeholder
+                "assets/projects/Daridata_.jpg"
             ],
             description: "Empowers retail SMEs by transforming raw sales data into actionable insights using data analytics and machine learning.",
             tech_stack: ["SwiftUI", "UIKit", "Charts", "Firebase", "Python", "Flask", "GCP", "TensorFlow", "Pandas", "OpenAI", "Alamofire", "Keras", "Scikit Learn"],
@@ -166,7 +154,10 @@ const data = {
         },
         {
             name: "Find then Guess",
-            image: ["assets/projects/FTG.svg"],
+            image: [
+                "assets/projects/FTG.svg",
+                "assets/projects/FTG2.svg"
+            ],
             description: "An AR game blending real-world exploration and virtual guessing, encouraging physical movement and observational skill enhancement.",
             tech_stack: ["SwiftUI", "UIKit", "ARKit", "RealityKit", "AVFoundation", "Lottie"],
             role: "iOS Developer, Designer & Project Manager",
@@ -270,28 +261,20 @@ const data = {
     ]
 };
 
-/**
- * ------------------------------------------------------------------------
- * Main application logic executes when the DOM is fully loaded.
- * ------------------------------------------------------------------------
- */
 document.addEventListener('DOMContentLoaded', () => {
-
-    // Populate static content first
     const heroName = document.getElementById("hero-name");
     if (heroName) heroName.textContent = data.hero.name;
 
     const aboutText = document.getElementById("about-text");
     if (aboutText) aboutText.textContent = data.about.textabout;
     
-    // --- SETUP FUNCTIONS ---
     createHeroCodeBackground();
     setupThemeSwitcher();
     setupNavbarScrollEffect();
     typeAndDeleteLoop();
     setupLoopingNavbarLogoAnimation();
     renderFilterOptions();
-    renderProjects(1); // Initial render of projects
+    renderProjects(1);
     populateSkills();
     populateAchievements();
     populateExperience();
@@ -302,7 +285,6 @@ document.addEventListener('DOMContentLoaded', () => {
     
     window.addEventListener('resize', setupDynamicScrollspy);
 
-    // --- MODAL LOGIC ---
     const projectModal = document.getElementById('projectModal');
     let projectCarousel = null;
 
@@ -313,7 +295,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const projectData = data.projects.find(p => p.name === projectName);
             if (!projectData) return;
 
-            // --- Step 1: Populate all text-based content ---
             projectModal.querySelector('#modal-project-title').textContent = projectData.name;
             projectModal.querySelector('#modal-project-description').textContent = projectData.description;
             projectModal.querySelector('#modal-project-tech-stack').innerHTML = (projectData.tech_stack || []).map(tech => `<span>${tech}</span>`).join('');
@@ -331,7 +312,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             modalLinks.insertAdjacentHTML('beforeend', `<button type="button" class="btn btn-modal-close ms-auto" data-bs-dismiss="modal">Close</button>`);
 
-            // --- Step 2: Calculate Frame Size & Populate Carousel ---
             const carouselInner = document.getElementById('modal-carousel-inner');
             const carouselIndicators = document.getElementById('modal-carousel-indicators');
             const carouselContainer = document.getElementById('projectImageCarousel');
@@ -413,13 +393,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
-
-
-/**
- * ------------------------------------------------------------------------
- * UI & DYNAMIC CONTENT FUNCTIONS
- * ------------------------------------------------------------------------
- */
 
 function createHeroCodeBackground() {
     const bg = document.getElementById('hero-code-bg');
@@ -548,12 +521,6 @@ function setupLoopingNavbarLogoAnimation() {
     loop();
 }
 
-
-/**
- * ------------------------------------------------------------------------
- * PROJECTS SECTION LOGIC (FILTERING, RENDERING, PAGINATION)
- * ------------------------------------------------------------------------
- */
 let filteredProjects = [...data.projects];
 let activeTags = [];
 let selectedTags = [];
@@ -594,7 +561,7 @@ function renderFilterOptions() {
                     activeTags.every(tag => project.tech_stack && project.tech_stack.includes(tag))
                 );
             }
-            renderProjects(1); // Go back to page 1 after filtering
+            renderProjects(1);
             if(offcanvas) offcanvas.hide();
         });
     }
@@ -604,7 +571,7 @@ function renderFilterOptions() {
             selectedTags = [];
             activeTags = [];
             filteredProjects = [...data.projects];
-            renderFilterOptions(); // Re-render filters to uncheck boxes
+            renderFilterOptions();
             renderProjects(1);
             if(offcanvas) offcanvas.hide();
         });
@@ -618,7 +585,6 @@ function renderProjects(page) {
     
     const featuredProject = data.projects.find(p => p.featured);
 
-    // Render Featured Project
     if (featuredProject) {
         featuredProjectContainer.innerHTML = `
             <div class="featured-project-card" data-aos="fade-up">
@@ -648,7 +614,6 @@ function renderProjects(page) {
         `;
     }
 
-    // Render Regular Projects
     const regularProjects = filteredProjects.filter(p => !p.featured);
     projectGrid.innerHTML = "";
     const itemsPerPage = 6;
@@ -705,13 +670,6 @@ function renderPagination(currentPage, projectsToPaginate, itemsPerPage) {
         pagination.appendChild(li);
     }
 }
-
-
-/**
- * ------------------------------------------------------------------------
- * CONTENT POPULATION FUNCTIONS
- * ------------------------------------------------------------------------
- */
 
 function populateSkills() {
     const skillsGrid = document.getElementById("skills-grid");
@@ -776,7 +734,7 @@ function setupCV() {
     cvBtn.addEventListener("click", (e) => {
         e.stopPropagation();
         const link = document.createElement("a");
-        link.href = "Vincent - iOS Developer - Resume.pdf";
+        link.href = "downloadable/Vincent_CV.pdf";
         link.download = "Vincent Saranang - Resume.pdf";
         document.body.appendChild(link);
         link.click();
