@@ -1,5 +1,17 @@
+/**
+ * ------------------------------------------------------------------------
+ * Initializes the AOS (Animate On Scroll) library for scroll animations.
+ * ------------------------------------------------------------------------
+ */
 AOS.init({ duration: 800, easing: 'ease-in-out', once: true });
 
+/**
+ * ------------------------------------------------------------------------
+ * DATA OBJECT
+ * This object contains all the personal content for the portfolio.
+ * To update your portfolio, you only need to edit this section.
+ * ------------------------------------------------------------------------
+ */
 const data = {
     hero: {
         name: "Vincent Saranang",
@@ -58,8 +70,8 @@ const data = {
             featured: true,
             image: [
                 "assets/projects/hetice.svg",
-                "assets/projects/hetice_placeholder_2.png", // Placeholder
-                "assets/projects/hetice_placeholder_3.png"  // Placeholder
+                "assets/projects/hetice_placeholder_2.png",
+                "assets/projects/hetice_placeholder_3.png"
             ],
             description: "Enhances environmental awareness for deaf individuals by converting sound into haptic feedback, offering a new way to experience the world through touch.",
             tech_stack: ["SwiftUI", "CoreHaptics", "SoundAnalysis", "Accessibility"],
@@ -96,7 +108,12 @@ const data = {
         },
         {
             name: "Dandenion",
-            image: ["assets/projects/Dandenion.svg"],
+            image: [
+                "assets/projects/Dandenion.svg",
+                "assets/projects/Dandenion2.svg",
+                "assets/projects/Dandenion3.svg"
+
+            ],
             description: "An app to enhance safety for women pedestrians with features for recording and incident reporting in catcalling-prone areas.",
             tech_stack: ["SwiftUI", "UIKit", "SwiftData", "CloudKit", "CoreLocation", "MapKit", "WatchConnectivity", "BackgroundTasks"],
             role: "iOS Developer",
@@ -112,7 +129,11 @@ const data = {
         },
         {
             name: "Cartulator",
-            image: ["assets/projects/Cartulator.svg"],
+            image: [
+                "assets/projects/Cartulator.svg",
+                "assets/projects/Cartulator2.svg",
+                "assets/projects/Cartulator3.svg"
+            ],
             description: "A grocery shopping app focusing on budgeting and expense tracking for elderly users, incorporating real-time calculations and spending alerts.",
             tech_stack: ["SwiftUI", "UIKit", "SwiftData", "AVFoundation"],
             role: "iOS Developer",
@@ -162,7 +183,14 @@ const data = {
         },
         {
             name: "SCUP",
-            image: ["assets/projects/SCUP.svg"],
+            image: [
+                "assets/projects/SCUP.svg",
+                "assets/projects/SCUP2.svg",
+                "assets/projects/SCUP3.svg",
+                "assets/projects/SCUP4.svg",
+                "assets/projects/SCUP5.svg",
+                "assets/projects/SCUP6.svg",
+            ],
             description: "A sketching app empowering users to transform initial sketches into polished illustrations, promoting creativity and skill improvement.",
             tech_stack: ["SwiftUI", "UIKit", "SwiftData", "Firebase", "AVKit", "Python Replicate"],
             role: "iOS Developer & Designer",
@@ -179,12 +207,7 @@ const data = {
             name: "Pinion",
             image: [
                 "assets/projects/Pinion.svg",
-                "assets/projects/Pinion2.svg",
-                "assets/projects/Pinion3.svg",
-                "assets/projects/Pinion4.svg",
-                "assets/projects/Pinion5.svg",
-                "assets/projects/Pinion6.svg",
-                "assets/projects/Pinion7.svg"
+                "assets/projects/Pinion2.jpg"
             ],
             description: "An app created for BSD Link drivers to manage passenger counts, enhancing efficiency and responsibility in tracking.",
             tech_stack: ["SwiftUI", "Python", "TensorFlow"],
@@ -247,6 +270,148 @@ const data = {
     ]
 };
 
+/**
+ * ------------------------------------------------------------------------
+ * Main application logic executes when the DOM is fully loaded.
+ * ------------------------------------------------------------------------
+ */
+document.addEventListener('DOMContentLoaded', () => {
+
+    // Populate static content first
+    const heroName = document.getElementById("hero-name");
+    if (heroName) heroName.textContent = data.hero.name;
+
+    const aboutText = document.getElementById("about-text");
+    if (aboutText) aboutText.textContent = data.about.textabout;
+    
+    // --- SETUP FUNCTIONS ---
+    createHeroCodeBackground();
+    setupThemeSwitcher();
+    setupNavbarScrollEffect();
+    typeAndDeleteLoop();
+    setupLoopingNavbarLogoAnimation();
+    renderFilterOptions();
+    renderProjects(1); // Initial render of projects
+    populateSkills();
+    populateAchievements();
+    populateExperience();
+    populateEducation();
+    setupCV();
+    setupDynamicScrollspy();
+    setupFooter();
+    
+    window.addEventListener('resize', setupDynamicScrollspy);
+
+    // --- MODAL LOGIC ---
+    const projectModal = document.getElementById('projectModal');
+    let projectCarousel = null;
+
+    if (projectModal) {
+        projectModal.addEventListener('show.bs.modal', function (event) {
+            const card = event.relatedTarget;
+            const projectName = card.getAttribute('data-project-name');
+            const projectData = data.projects.find(p => p.name === projectName);
+            if (!projectData) return;
+
+            // --- Step 1: Populate all text-based content first ---
+            const textColumn = projectModal.querySelector('.col-md-6:last-child');
+            const responsibilitiesContainer = textColumn.querySelector('div'); // The inner div holding all text
+            
+            projectModal.querySelector('#modal-project-title').textContent = projectData.name;
+            projectModal.querySelector('#modal-project-description').textContent = projectData.description;
+            projectModal.querySelector('#modal-project-tech-stack').innerHTML = (projectData.tech_stack || []).map(tech => `<span>${tech}</span>`).join('');
+
+            // Also populate the second part of the text content
+            const roleElement = projectModal.querySelector('#modal-project-role');
+            const responsibilitiesElement = projectModal.querySelector('#modal-project-responsibilities');
+            
+            roleElement.textContent = projectData.role || 'N/A';
+            responsibilitiesElement.innerHTML = (projectData.responsibilities || []).map(res => `<li>${res}</li>`).join('');
+
+            const modalLinks = projectModal.querySelector('#modal-project-links');
+            modalLinks.innerHTML = '';
+            if (projectData.links) {
+                if (projectData.links.appstore) { modalLinks.insertAdjacentHTML('beforeend', `<a href="${projectData.links.appstore}" class="btn btn-dark" target="_blank" rel="noopener noreferrer"><i class="bi bi-apple"></i> App Store</a>`); }
+                if (projectData.links.testflight) { modalLinks.insertAdjacentHTML('beforeend', `<a href="${projectData.links.testflight}" class="btn btn-info text-white" target="_blank" rel="noopener noreferrer"><i class="bi bi-box-seam"></i> TestFlight</a>`); }
+                if (projectData.links.github) { modalLinks.insertAdjacentHTML('beforeend', `<a href="${projectData.links.github}" class="btn btn-secondary" target="_blank" rel="noopener noreferrer"><i class="bi bi-github"></i> GitHub</a>`); }
+                if (projectData.links.medium) { modalLinks.insertAdjacentHTML('beforeend', `<a href="${projectData.links.medium}" class="btn btn-light" target="_blank" rel="noopener noreferrer"><i class="bi bi-medium"></i> Read Article</a>`); }
+                if (projectData.links.wwdc) { modalLinks.insertAdjacentHTML('beforeend', `<a href="${projectData.links.wwdc}" class="btn btn-wwdc" target="_blank" rel="noopener noreferrer"><i class="bi bi-trophy-fill"></i> WWDC Profile</a>`); }
+            }
+            modalLinks.insertAdjacentHTML('beforeend', `<button type="button" class="btn btn-modal-close ms-auto" data-bs-dismiss="modal">Close</button>`);
+
+            // --- Step 2: Set Image Container Height to Match Text Column Height ---
+            const imageContainer = projectModal.querySelector('.modal-image-container');
+            const modalBody = projectModal.querySelector('.modal-body');
+
+            // Use requestAnimationFrame to ensure the browser has rendered the text content before we measure it
+            requestAnimationFrame(() => {
+                const totalModalBodyHeight = modalBody.offsetHeight;
+                imageContainer.style.height = `${totalModalBodyHeight}px`;
+            });
+            
+            // --- Step 3: Populate the Carousel ---
+            const carouselInner = document.getElementById('modal-carousel-inner');
+            const carouselIndicators = document.getElementById('modal-carousel-indicators');
+            const carouselContainer = document.getElementById('projectImageCarousel');
+
+            carouselInner.innerHTML = '';
+            carouselIndicators.innerHTML = '';
+
+            const images = projectData.image || [];
+            if (images.length === 0) {
+                imageContainer.innerHTML = `<div class="carousel-image-wrapper"><span class="text-muted">No Image Available</span></div>`;
+                return;
+            };
+
+            images.forEach((src, index) => {
+                const activeClass = index === 0 ? 'active' : '';
+                
+                const carouselItemHTML = `
+                    <div class="carousel-item ${activeClass}">
+                        <div class="carousel-image-wrapper">
+                            <img src="${src}" class="d-block" alt="Project image ${index + 1}" onerror="this.onerror=null;this.src='https://placehold.co/800x600/2a2a2a/f8f9fa?text=Image+Not+Found';">
+                        </div>
+                    </div>
+                `;
+                carouselInner.insertAdjacentHTML('beforeend', carouselItemHTML);
+
+                const indicatorHTML = `<button type="button" data-bs-target="#projectImageCarousel" data-bs-slide-to="${index}" class="${activeClass}" aria-current="true" aria-label="Slide ${index + 1}"></button>`;
+                carouselIndicators.insertAdjacentHTML('beforeend', indicatorHTML);
+            });
+
+            // Initialize or re-initialize the Bootstrap Carousel component
+            if (images.length > 1) {
+                carouselContainer.classList.remove('single-image');
+                if (projectCarousel) projectCarousel.dispose();
+                projectCarousel = new bootstrap.Carousel(carouselContainer, {
+                    interval: 5000,
+                    pause: 'hover'
+                });
+            } else {
+                carouselContainer.classList.add('single-image');
+            }
+        });
+
+        projectModal.addEventListener('hidden.bs.modal', function () {
+            if (projectCarousel) {
+                projectCarousel.dispose();
+                projectCarousel = null;
+            }
+            const imageContainer = projectModal.querySelector('.modal-image-container');
+            if (imageContainer) {
+                imageContainer.style.height = null;
+            }
+        });
+    }
+});
+
+
+/**
+ * ------------------------------------------------------------------------
+ * UI & DYNAMIC CONTENT FUNCTIONS
+ * ------------------------------------------------------------------------
+ */
+
 function createHeroCodeBackground() {
     const bg = document.getElementById('hero-code-bg');
     if (!bg) return;
@@ -281,7 +446,6 @@ function setupThemeSwitcher() {
         applyTheme(this.checked ? 'dark' : 'light');
     });
 }
-
 
 function setupNavbarScrollEffect() {
     const navbar = document.querySelector('.navbar');
@@ -333,7 +497,6 @@ function typeAndDeleteLoop() {
 
         setTimeout(loop, time);
     }
-
     loop();
 }
 
@@ -373,27 +536,30 @@ function setupLoopingNavbarLogoAnimation() {
         
         setTimeout(loop, time);
     }
-
     loop();
 }
 
 
+/**
+ * ------------------------------------------------------------------------
+ * PROJECTS SECTION LOGIC (FILTERING, RENDERING, PAGINATION)
+ * ------------------------------------------------------------------------
+ */
 let filteredProjects = [...data.projects];
 let activeTags = [];
 let selectedTags = [];
-const projectGrid = document.getElementById("project-grid");
-const pagination = document.getElementById("project-pagination");
-const filterOptionsContainer = document.getElementById("filter-options-container");
-const applyFiltersBtn = document.getElementById("apply-filters-btn");
-const clearFiltersBtn = document.getElementById("clear-filters-btn");
-const offcanvasElement = document.getElementById('offcanvasFilters');
-const offcanvas = offcanvasElement ? new bootstrap.Offcanvas(offcanvasElement) : null;
-const itemsPerPage = 6;
 
 function renderFilterOptions() {
+    const filterOptionsContainer = document.getElementById("filter-options-container");
     if (!filterOptionsContainer) return;
     const allTags = [...new Set(data.projects.filter(p => !p.featured).flatMap(p => p.tech_stack || []))];
-    filterOptionsContainer.innerHTML = allTags.map(tag => `<div class="form-check form-switch mb-2"><input class="form-check-input" type="checkbox" value="${tag}" id="tag-${tag}" ${selectedTags.includes(tag) ? 'checked' : ''}><label class="form-check-label" for="tag-${tag}">${tag}</label></div>`).join('');
+    filterOptionsContainer.innerHTML = allTags.map(tag => `
+        <div class="form-check form-switch mb-2">
+            <input class="form-check-input" type="checkbox" value="${tag}" id="tag-${tag}" ${selectedTags.includes(tag) ? 'checked' : ''}>
+            <label class="form-check-label" for="tag-${tag}">${tag}</label>
+        </div>`
+    ).join('');
+    
     document.querySelectorAll('#filter-options-container .form-check-input').forEach(checkbox => {
         checkbox.addEventListener('change', (e) => {
             if (e.target.checked) {
@@ -403,33 +569,37 @@ function renderFilterOptions() {
             }
         });
     });
-}
 
-function applyFilters() {
-    activeTags = [...selectedTags];
-    if (activeTags.length === 0) {
-        filteredProjects = [...data.projects];
-    } else {
-        filteredProjects = data.projects.filter(project => 
-            activeTags.every(tag => project.tech_stack && project.tech_stack.includes(tag))
-        );
+    const applyFiltersBtn = document.getElementById("apply-filters-btn");
+    const clearFiltersBtn = document.getElementById("clear-filters-btn");
+    const offcanvasElement = document.getElementById('offcanvasFilters');
+    const offcanvas = offcanvasElement ? bootstrap.Offcanvas.getInstance(offcanvasElement) || new bootstrap.Offcanvas(offcanvasElement) : null;
+    
+    if (applyFiltersBtn) {
+        applyFiltersBtn.addEventListener('click', () => {
+            activeTags = [...selectedTags];
+            if (activeTags.length === 0) {
+                filteredProjects = [...data.projects];
+            } else {
+                filteredProjects = data.projects.filter(project => 
+                    activeTags.every(tag => project.tech_stack && project.tech_stack.includes(tag))
+                );
+            }
+            renderProjects(1); // Go back to page 1 after filtering
+            if(offcanvas) offcanvas.hide();
+        });
     }
-    renderProjects(1);
-    if(offcanvas) offcanvas.hide();
-}
 
-function clearFilters() {
-    selectedTags = [];
-    activeTags = [];
-    filteredProjects = [...data.projects];
-    renderFilterOptions();
-    renderProjects(1);
-    if(offcanvas) offcanvas.hide();
-}
-
-if (applyFiltersBtn && clearFiltersBtn) {
-    applyFiltersBtn.addEventListener('click', applyFilters);
-    clearFiltersBtn.addEventListener('click', clearFilters);
+    if (clearFiltersBtn) {
+        clearFiltersBtn.addEventListener('click', () => {
+            selectedTags = [];
+            activeTags = [];
+            filteredProjects = [...data.projects];
+            renderFilterOptions(); // Re-render filters to uncheck boxes
+            renderProjects(1);
+            if(offcanvas) offcanvas.hide();
+        });
+    }
 }
 
 function renderProjects(page) {
@@ -439,11 +609,12 @@ function renderProjects(page) {
     
     const featuredProject = data.projects.find(p => p.featured);
 
+    // Render Featured Project
     if (featuredProject) {
         featuredProjectContainer.innerHTML = `
             <div class="featured-project-card" data-aos="fade-up">
                 <div class="featured-project-img-wrapper">
-                    <img src="${featuredProject.image[0]}" class="img-fluid featured-project-image" alt="${featuredProject.name}">
+                    <img src="${featuredProject.image[0]}" class="img-fluid featured-project-image" alt="${featuredProject.name}" onerror="this.onerror=null;this.src='https://placehold.co/800x600/1e1e1e/f8f9fa?text=Featured+Image';">
                 </div>
                 <div class="featured-project-body">
                     <h4 class="featured-project-title">
@@ -462,8 +633,10 @@ function renderProjects(page) {
         `;
     }
 
+    // Render Regular Projects
     const regularProjects = filteredProjects.filter(p => !p.featured);
     projectGrid.innerHTML = "";
+    const itemsPerPage = 6;
     const start = (page - 1) * itemsPerPage;
     const end = start + itemsPerPage;
 
@@ -478,7 +651,7 @@ function renderProjects(page) {
                 <div class="project-card-link" data-bs-toggle="modal" data-bs-target="#projectModal" data-project-name="${proj.name}">
                     <div class="project-card h-100">
                         <div class="project-image-wrapper">
-                            ${hasImage ? `<img src="${proj.image[0]}" alt="${proj.name}" class="img-fluid project-image">` : `<div class="img-fluid project-image bg-light d-flex align-items-center justify-content-center border"><span class='text-muted'>No Image</span></div>`}
+                            ${hasImage ? `<img src="${proj.image[0]}" alt="${proj.name}" class="img-fluid project-image" onerror="this.onerror=null;this.src='https://placehold.co/400x250/1e1e1e/f8f9fa?text=Image';">` : `<div class="img-fluid project-image bg-light d-flex align-items-center justify-content-center border"><span class='text-muted'>No Image</span></div>`}
                         </div>
                         <div class="project-title">${proj.name}</div>
                         <div class="project-overlay">
@@ -491,17 +664,20 @@ function renderProjects(page) {
             projectGrid.appendChild(col);
         });
     }
-    renderPagination(page, regularProjects);
+    renderPagination(page, regularProjects, itemsPerPage);
 }
 
-function renderPagination(currentPage, projectsToPaginate) {
+function renderPagination(currentPage, projectsToPaginate, itemsPerPage) {
+    const pagination = document.getElementById("project-pagination");
     if (!pagination) return;
     const totalPages = Math.ceil(projectsToPaginate.length / itemsPerPage);
     pagination.innerHTML = '';
+
     if (totalPages <= 1) {
         pagination.style.display = 'none';
         return;
     }
+
     pagination.style.display = 'flex';
     for (let i = 1; i <= totalPages; i++) {
         const li = document.createElement('li');
@@ -515,6 +691,13 @@ function renderPagination(currentPage, projectsToPaginate) {
     }
 }
 
+
+/**
+ * ------------------------------------------------------------------------
+ * CONTENT POPULATION FUNCTIONS
+ * ------------------------------------------------------------------------
+ */
+
 function populateSkills() {
     const skillsGrid = document.getElementById("skills-grid");
     if (!skillsGrid) return;
@@ -527,32 +710,54 @@ function populateAchievements() {
     achievementGrid.innerHTML = data.achievements.map(ach => {
         const verifyButton = ach.verifyLink && ach.verifyLink !== "#" ? `<a href="${ach.verifyLink}" class="btn btn-outline-themed btn-sm" target="_blank" rel="noopener noreferrer">Verify <i class="bi bi-arrow-up-right-square-fill"></i></a>` : '';
         const winnerBadge = ach.title.includes("Winner") ? '<span class="winner-badge"><i class="bi bi-trophy-fill"></i> Winner</span>' : '';
-        return `<div class="col-lg-4 col-md-6"><div class="achievement-card h-100 d-flex flex-column">${winnerBadge}<div class="achievement-card-header"><i class="bi ${ach.icon}"></i><span class="issuer">${ach.issuer}</span></div><div class="achievement-card-body flex-grow-1"><h5 class="title">${ach.title}</h5><p class="date text-muted">${ach.date}</p><p class="description">${ach.description}</p></div><div class="achievement-card-footer mt-auto">${verifyButton}</div></div></div>`;
+        return `
+            <div class="col-lg-4 col-md-6">
+                <div class="achievement-card h-100 d-flex flex-column">
+                    ${winnerBadge}
+                    <div class="achievement-card-header">
+                        <i class="bi ${ach.icon}"></i>
+                        <span class="issuer">${ach.issuer}</span>
+                    </div>
+                    <div class="achievement-card-body flex-grow-1">
+                        <h5 class="title">${ach.title}</h5>
+                        <p class="date text-muted">${ach.date}</p>
+                        <p class="description">${ach.description}</p>
+                    </div>
+                    <div class="achievement-card-footer mt-auto">${verifyButton}</div>
+                </div>
+            </div>`;
     }).join('');
 }
 
 function populateExperience() {
     const timeline = document.getElementById("experience-timeline");
     if (!timeline) return;
-    timeline.innerHTML = data.experience.map(exp => `<div class="timeline-item"><h5 class="timeline-role">${exp.role}</h5><h6 class="timeline-company">${exp.company}</h6><p class="timeline-period text-muted">${exp.period}</p><p class="timeline-description">${exp.description}</p></div>`).join('');
+    timeline.innerHTML = data.experience.map(exp => `
+        <div class="timeline-item">
+            <h5 class="timeline-role">${exp.role}</h5>
+            <h6 class="timeline-company">${exp.company}</h6>
+            <p class="timeline-period text-muted">${exp.period}</p>
+            <p class="timeline-description">${exp.description}</p>
+        </div>`
+    ).join('');
 }
 
 function populateEducation() {
     const timeline = document.getElementById("education-timeline");
     if (!timeline) return;
-    timeline.innerHTML = data.education.map(edu => `<div class="timeline-item"><h5 class="timeline-role">${edu.degree}</h5><h6 class="timeline-company">${edu.university}</h6><p class="timeline-period text-muted">${edu.period}</p><ul class="timeline-details">${(edu.details || []).map(detail => `<li>${detail}</li>`).join('')}</ul></div>`).join('');
+    timeline.innerHTML = data.education.map(edu => `
+        <div class="timeline-item">
+            <h5 class="timeline-role">${edu.degree}</h5>
+            <h6 class="timeline-company">${edu.university}</h6>
+            <p class="timeline-period text-muted">${edu.period}</p>
+            <ul class="timeline-details">${(edu.details || []).map(detail => `<li>${detail}</li>`).join('')}</ul>
+        </div>`
+    ).join('');
 }
 
 function setupCV() {
     const cvBtn = document.getElementById("cv-download");
     if (!cvBtn) return;
-    const cvIcon = document.createElement("i");
-    cvIcon.className = "bi bi-file-earmark-person-fill";
-    cvBtn.innerHTML = '';
-    cvBtn.appendChild(cvIcon);
-    cvBtn.append(" Download CV");
-    cvBtn.addEventListener("mouseenter", () => { cvIcon.className = "bi bi-file-earmark-person"; });
-    cvBtn.addEventListener("mouseleave", () => { cvIcon.className = "bi bi-file-earmark-person-fill"; });
     cvBtn.addEventListener("click", (e) => {
         e.stopPropagation();
         const link = document.createElement("a");
@@ -574,151 +779,12 @@ function setupDynamicScrollspy() {
     }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    // Populate static content first
-    const heroName = document.getElementById("hero-name");
-    if (heroName) heroName.textContent = data.hero.name;
-    const aboutText = document.getElementById("about-text");
-    if (aboutText) aboutText.textContent = data.about.textabout;
-    
-    // Run all setup functions
-    createHeroCodeBackground();
-    setupThemeSwitcher();
-    setupNavbarScrollEffect();
-    typeAndDeleteLoop();
-    setupLoopingNavbarLogoAnimation();
-    renderFilterOptions();
-    renderProjects(1);
-    populateSkills();
-    populateAchievements();
-    populateExperience();
-    populateEducation();
-    setupCV();
-    
-    setupDynamicScrollspy();
-    window.addEventListener('resize', setupDynamicScrollspy);
-
-    const projectModal = document.getElementById('projectModal');
-    let projectCarousel = null;
-
-    if (projectModal) {
-        // Make the function async to use await for image loading
-        projectModal.addEventListener('show.bs.modal', async function (event) {
-            const card = event.relatedTarget;
-            const projectName = card.getAttribute('data-project-name');
-            const projectData = data.projects.find(p => p.name === projectName);
-            if (!projectData) return;
-
-            // Populate all text-based content first
-            projectModal.querySelector('#modal-project-title').textContent = projectData.name;
-            projectModal.querySelector('#modal-project-description').textContent = projectData.description;
-            projectModal.querySelector('#modal-project-role').textContent = projectData.role || 'N/A';
-            projectModal.querySelector('#modal-project-tech-stack').innerHTML = (projectData.tech_stack || []).map(tech => `<span>${tech}</span>`).join('');
-            projectModal.querySelector('#modal-project-responsibilities').innerHTML = (projectData.responsibilities || []).map(res => `<li>${res}</li>`).join('');
-
-            // Populate links
-            const modalLinks = projectModal.querySelector('#modal-project-links');
-            modalLinks.innerHTML = '';
-            if (projectData.links) {
-                if (projectData.links.appstore) {
-                    modalLinks.insertAdjacentHTML('beforeend', `<a href="${projectData.links.appstore}" class="btn btn-dark" target="_blank" rel="noopener noreferrer"><i class="bi bi-apple"></i> App Store</a>`);
-                }
-                if (projectData.links.testflight) {
-                    modalLinks.insertAdjacentHTML('beforeend', `<a href="${projectData.links.testflight}" class="btn btn-info text-white" target="_blank" rel="noopener noreferrer"><i class="bi bi-box-seam"></i> TestFlight</a>`);
-                }
-                if (projectData.links.github) {
-                    modalLinks.insertAdjacentHTML('beforeend', `<a href="${projectData.links.github}" class="btn btn-secondary" target="_blank" rel="noopener noreferrer"><i class="bi bi-github"></i> GitHub</a>`);
-                }
-                if (projectData.links.medium) {
-                    modalLinks.insertAdjacentHTML('beforeend', `<a href="${projectData.links.medium}" class="btn btn-light" target="_blank" rel="noopener noreferrer"><i class="bi bi-medium"></i> Read Article</a>`);
-                }
-                 if (projectData.links.wwdc) {
-                    modalLinks.insertAdjacentHTML('beforeend', `<a href="${projectData.links.wwdc}" class="btn btn-wwdc" target="_blank" rel="noopener noreferrer"><i class="bi bi-trophy-fill"></i> WWDC Profile</a>`);
-                }
-            }
-            modalLinks.insertAdjacentHTML('beforeend', `<button type="button" class="btn btn-modal-close ms-auto" data-bs-dismiss="modal">Close</button>`);
-
-            // --- Carousel stabilization and population logic ---
-            const carouselInner = document.getElementById('modal-carousel-inner');
-            const carouselIndicators = document.getElementById('modal-carousel-indicators');
-            const carouselContainer = document.getElementById('projectImageCarousel');
-            
-            carouselInner.innerHTML = '';
-            carouselIndicators.innerHTML = '';
-            
-            const images = projectData.image || [];
-            
-            // Pre-load images to get their dimensions before displaying them
-            const loadedImages = await Promise.all(images.map(src => {
-                return new Promise((resolve) => { // Changed reject to resolve
-                    const img = new Image();
-                    img.onload = () => resolve({ src: src, height: img.naturalHeight, loaded: true });
-                    img.onerror = () => {
-                        console.error(`Failed to load image: ${src}`);
-                        resolve({ src: 'assets/projects/image-placeholder.svg', height: 200, loaded: false }); // Resolve with a placeholder
-                    };
-                    img.src = src;
-                });
-            }));
-
-            // Filter out any potential completely failed loads (though our promise now always resolves)
-            const successfullyLoadedImages = loadedImages.filter(imgInfo => imgInfo.loaded || imgInfo.src === 'assets/projects/image-placeholder.svg');
-
-            // Find the height of the tallest *successfully loaded* image
-            const maxHeight = successfullyLoadedImages.length > 0 ? Math.max(...successfullyLoadedImages.map(imgInfo => imgInfo.height)) : 0;
-            
-            // --- THIS IS THE CRITICAL FIX ---
-            const imageContainer = projectModal.querySelector('.modal-image-container');
-            // ONLY set a fixed height if there's a carousel (more than 1 image)
-            if (loadedImages.length > 1 && maxHeight > 0) {
-                // Set the container height based on the tallest image, but cap it at a reasonable max value (e.g., 450px)
-                imageContainer.style.height = `${Math.min(maxHeight, 450)}px`;
-            } else {
-                // For single images or no images, let the height be natural and responsive
-                imageContainer.style.height = 'auto';
-            }
-
-            // Now, populate the carousel with the pre-loaded images and the wrapper div
-            loadedImages.forEach((img, index) => {
-                const activeClass = index === 0 ? 'active' : '';
-                
-                const carouselItem = `
-                    <div class="carousel-item ${activeClass}">
-                        <div class="carousel-image-wrapper">
-                            <img src="${img.src}" class="d-block" alt="Project image ${index + 1}">
-                        </div>
-                    </div>
-                `;
-                carouselInner.insertAdjacentHTML('beforeend', carouselItem);
-
-                const indicator = `<button type="button" data-bs-target="#projectImageCarousel" data-bs-slide-to="${index}" class="${activeClass}" aria-current="true" aria-label="Slide ${index + 1}"></button>`;
-                carouselIndicators.insertAdjacentHTML('beforeend', indicator);
-            });
-
-            // Initialize the carousel only if there is more than one image
-            if (images.length > 1) {
-                carouselContainer.classList.remove('single-image');
-                projectCarousel = new bootstrap.Carousel(carouselContainer, {
-                    interval: 5000,
-                    
-                    pause: 'hover', 
-                    
-                    ride: 'carousel' 
-                });
-            } else {
-                carouselContainer.classList.add('single-image');
-            }
-        });
-        
-        projectModal.addEventListener('hidden.bs.modal', function () {
-            // Dispose of the carousel instance to prevent memory leaks
-            if (projectCarousel) {
-                projectCarousel.dispose();
-                projectCarousel = null;
-            }
-            // IMPORTANT: Reset the inline height style to ensure the next modal is not affected
-            const imageContainer = projectModal.querySelector('.modal-image-container');
-            imageContainer.style.height = null;
-        });
+function setupFooter() {
+    const footerText = document.getElementById('footer-text');
+    if (footerText) {
+        const currentYear = new Date().getFullYear();
+        const lastUpdatedDate = new Date(); 
+        const formattedDate = lastUpdatedDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+        footerText.innerHTML = `©${currentYear} Vincent Saranang, All Rights Reserved.<br><span style="font-size: 0.8em; opacity: 0.7;">Last Updated: ${formattedDate}</span>`;
     }
-});
+}
