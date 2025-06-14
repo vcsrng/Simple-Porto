@@ -188,15 +188,15 @@
     </div>
 
     <div class="modal fade" id="projectModal" tabindex="-1" aria-labelledby="projectModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="projectModalLabel">Project Details</h5>
                 </div>
                 <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-6 mb-4 mb-md-0 d-flex align-items-center justify-content-center modal-image-container">
-                            <div id="projectImageCarousel" class="carousel slide w-100">
+                    <div class="modal-top-section">
+                        <div class="modal-image-container">
+                            <div id="projectImageCarousel" class="carousel slide w-100 h-100">
                                 <div class="carousel-indicators" id="modal-carousel-indicators"></div>
                                 <div class="carousel-inner" id="modal-carousel-inner"></div>
                                 <button class="carousel-control-prev" type="button" data-bs-target="#projectImageCarousel" data-bs-slide="prev">
@@ -209,14 +209,14 @@
                                 </button>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="modal-summary-text">
                             <h3 id="modal-project-title"></h3>
                             <p id="modal-project-description"></p>
                             <div id="modal-project-tech-stack" class="tech-stack mb-3"></div>
                         </div>
                     </div>
                     <hr class="my-4">
-                    <div>
+                    <div class="modal-bottom-section">
                         <h4>My Role: <span id="modal-project-role" class="fw-normal"></span></h4>
                         <h5 class="mt-3">Responsibilities:</h5>
                         <ul id="modal-project-responsibilities" class="responsibilities-list"></ul>

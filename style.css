@@ -56,19 +56,36 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--heading-color);
 }
 
+/* --- Base Navbar Style (Shared) --- */
 nav.navbar {
     position: fixed;
     top: 0;
     width: 100%;
     z-index: 1030;
-    background-color: transparent !important;
-    box-shadow: none;
     transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
-nav.navbar.navbar-scrolled {
+
+/* --- Mobile First Styles (Default) --- */
+nav.navbar {
     background-color: var(--bs-body-bg) !important;
-    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
 }
+
+/* --- Desktop Styles (Overrides mobile) --- */
+@media (min-width: 992px) {
+    /* On desktop, make it transparent initially */
+    nav.navbar {
+        background-color: transparent !important;
+        box-shadow: none;
+    }
+
+    /* On desktop, when scrolled, make it solid again */
+    nav.navbar.navbar-scrolled {
+        background-color: var(--bs-body-bg) !important;
+        box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    }
+}
+
 .navbar .navbar-brand,
 .navbar .nav-link {
     padding-top: 1.5rem;
@@ -260,8 +277,6 @@ nav.navbar.navbar-scrolled {
     justify-content: center;
 }
 .featured-project-card {
-    display: grid;
-    grid-template-columns: 1fr;
     max-width: 1000px;
     width: 100%;
     background-color: var(--card-bg-color);
@@ -270,23 +285,26 @@ nav.navbar.navbar-scrolled {
     overflow: hidden;
     box-shadow: 0 10px 30px rgba(0,0,0,0.07);
 }
-.featured-project-card .col-lg-7 {
-    padding: 1.5rem;
-    background-color: var(--section-bg-color);
-}
 .featured-project-img-wrapper {
     padding: 2rem;
     background-color: var(--section-bg-color);
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .featured-project-image {
     width: 100%;
     height: auto;
-    max-height: 350px;
+    max-height: 400px;
     object-fit: contain;
     border-radius: .75rem;
 }
 .featured-project-body {
     padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 .featured-project-title {
     font-size: 1rem;
@@ -305,6 +323,7 @@ nav.navbar.navbar-scrolled {
     color: var(--text-muted-color);
     margin-top: 1rem;
     margin-bottom: 2rem;
+    flex-grow: 1;
 }
 
 .project-card-link {
@@ -482,10 +501,9 @@ footer a:hover {
     color: var(--text-muted-color);
 }
 
-@media (min-width: 992px) {
-    .featured-project-card {
-        grid-template-columns: 1fr 1fr;
-        align-items: center;
+@media (max-width: 767.98px) {
+    .modal-top-section {
+        flex-direction: column;
     }
 }
 @media (max-width: 576px) {
@@ -532,17 +550,27 @@ footer a:hover {
     line-height: 1.6;
 }
 
-/* --- Carousel Enhancements --- */
+/* --- New Modal Layout Styles --- */
+.modal-top-section {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+}
 .modal-image-container {
     background-color: var(--section-bg-color);
     padding: 1rem;
     border-radius: .75rem;
-    transition: height 0.35s ease-in-out; /* Smooth height transition */
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 200px; 
+    flex-shrink: 0;
+    transition: width 0.35s ease-in-out, height 0.35s ease-in-out;
 }
+.modal-summary-text {
+    flex-grow: 1;
+}
+
+/* --- Carousel Enhancements --- */
 #projectImageCarousel,
 .carousel-inner,
 .carousel-item {

@@ -307,27 +307,19 @@ document.addEventListener('DOMContentLoaded', () => {
     let projectCarousel = null;
 
     if (projectModal) {
-        projectModal.addEventListener('show.bs.modal', function (event) {
+        projectModal.addEventListener('show.bs.modal', async function (event) {
             const card = event.relatedTarget;
             const projectName = card.getAttribute('data-project-name');
             const projectData = data.projects.find(p => p.name === projectName);
             if (!projectData) return;
 
-            // --- Step 1: Populate all text-based content first ---
-            const textColumn = projectModal.querySelector('.col-md-6:last-child');
-            const responsibilitiesContainer = textColumn.querySelector('div'); // The inner div holding all text
-            
+            // --- Step 1: Populate all text-based content ---
             projectModal.querySelector('#modal-project-title').textContent = projectData.name;
             projectModal.querySelector('#modal-project-description').textContent = projectData.description;
             projectModal.querySelector('#modal-project-tech-stack').innerHTML = (projectData.tech_stack || []).map(tech => `<span>${tech}</span>`).join('');
-
-            // Also populate the second part of the text content
-            const roleElement = projectModal.querySelector('#modal-project-role');
-            const responsibilitiesElement = projectModal.querySelector('#modal-project-responsibilities');
+            projectModal.querySelector('#modal-project-role').textContent = projectData.role || 'N/A';
+            projectModal.querySelector('#modal-project-responsibilities').innerHTML = (projectData.responsibilities || []).map(res => `<li>${res}</li>`).join('');
             
-            roleElement.textContent = projectData.role || 'N/A';
-            responsibilitiesElement.innerHTML = (projectData.responsibilities || []).map(res => `<li>${res}</li>`).join('');
-
             const modalLinks = projectModal.querySelector('#modal-project-links');
             modalLinks.innerHTML = '';
             if (projectData.links) {
@@ -339,47 +331,63 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             modalLinks.insertAdjacentHTML('beforeend', `<button type="button" class="btn btn-modal-close ms-auto" data-bs-dismiss="modal">Close</button>`);
 
-            // --- Step 2: Set Image Container Height to Match Text Column Height ---
-            const imageContainer = projectModal.querySelector('.modal-image-container');
-            const modalBody = projectModal.querySelector('.modal-body');
-
-            // Use requestAnimationFrame to ensure the browser has rendered the text content before we measure it
-            requestAnimationFrame(() => {
-                const totalModalBodyHeight = modalBody.offsetHeight;
-                imageContainer.style.height = `${totalModalBodyHeight}px`;
-            });
-            
-            // --- Step 3: Populate the Carousel ---
+            // --- Step 2: Calculate Frame Size & Populate Carousel ---
             const carouselInner = document.getElementById('modal-carousel-inner');
             const carouselIndicators = document.getElementById('modal-carousel-indicators');
             const carouselContainer = document.getElementById('projectImageCarousel');
+            const imageContainer = projectModal.querySelector('.modal-image-container');
 
             carouselInner.innerHTML = '';
             carouselIndicators.innerHTML = '';
+            imageContainer.style.height = null;
+            imageContainer.style.width = null;
 
             const images = projectData.image || [];
             if (images.length === 0) {
                 imageContainer.innerHTML = `<div class="carousel-image-wrapper"><span class="text-muted">No Image Available</span></div>`;
                 return;
-            };
+            }
 
-            images.forEach((src, index) => {
+            const loadedImageData = await Promise.all(images.map(src => {
+                return new Promise((resolve) => {
+                    const img = new Image();
+                    img.onload = () => resolve({ src, width: img.naturalWidth, height: img.naturalHeight, loaded: true });
+                    img.onerror = () => resolve({ src: 'https://placehold.co/800x600/2a2a2a/f8f9fa?text=Image+Not+Found', width: 800, height: 600, loaded: false });
+                    img.src = src;
+                });
+            }));
+
+            const minHeightPx = window.innerHeight * 0.40;
+            let masterFrame = { width: 0, height: minHeightPx };
+
+            loadedImageData.forEach(imgData => {
+                const aspectRatio = imgData.width / imgData.height;
+                const renderedWidthAtMinHeight = minHeightPx * aspectRatio;
+                if (renderedWidthAtMinHeight > masterFrame.width) {
+                    masterFrame.width = renderedWidthAtMinHeight;
+                }
+            });
+            
+            const maxAllowedWidth = 700; 
+            masterFrame.width = Math.min(masterFrame.width, maxAllowedWidth);
+
+            imageContainer.style.width = `${masterFrame.width}px`;
+            imageContainer.style.height = `${masterFrame.height}px`;
+
+            loadedImageData.forEach((imgData, index) => {
                 const activeClass = index === 0 ? 'active' : '';
-                
                 const carouselItemHTML = `
                     <div class="carousel-item ${activeClass}">
                         <div class="carousel-image-wrapper">
-                            <img src="${src}" class="d-block" alt="Project image ${index + 1}" onerror="this.onerror=null;this.src='https://placehold.co/800x600/2a2a2a/f8f9fa?text=Image+Not+Found';">
+                            <img src="${imgData.src}" class="d-block" alt="Project image ${index + 1}">
                         </div>
                     </div>
                 `;
                 carouselInner.insertAdjacentHTML('beforeend', carouselItemHTML);
-
                 const indicatorHTML = `<button type="button" data-bs-target="#projectImageCarousel" data-bs-slide-to="${index}" class="${activeClass}" aria-current="true" aria-label="Slide ${index + 1}"></button>`;
                 carouselIndicators.insertAdjacentHTML('beforeend', indicatorHTML);
             });
 
-            // Initialize or re-initialize the Bootstrap Carousel component
             if (images.length > 1) {
                 carouselContainer.classList.remove('single-image');
                 if (projectCarousel) projectCarousel.dispose();
@@ -400,6 +408,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const imageContainer = projectModal.querySelector('.modal-image-container');
             if (imageContainer) {
                 imageContainer.style.height = null;
+                imageContainer.style.width = null;
             }
         });
     }
@@ -613,21 +622,27 @@ function renderProjects(page) {
     if (featuredProject) {
         featuredProjectContainer.innerHTML = `
             <div class="featured-project-card" data-aos="fade-up">
-                <div class="featured-project-img-wrapper">
-                    <img src="${featuredProject.image[0]}" class="img-fluid featured-project-image" alt="${featuredProject.name}" onerror="this.onerror=null;this.src='https://placehold.co/800x600/1e1e1e/f8f9fa?text=Featured+Image';">
-                </div>
-                <div class="featured-project-body">
-                    <h4 class="featured-project-title">
-                        <i class="bi bi-award-fill text-warning me-2"></i> Featured Project
-                    </h4>
-                    <h3>${featuredProject.name}</h3>
-                    <p class="lead">${featuredProject.description}</p>
-                    <div class="tech-stack mb-4">
-                        ${(featuredProject.tech_stack || []).map(tech => `<span>${tech}</span>`).join('')}
+                <div class="row g-0 h-100">
+                    <div class="col-lg-7">
+                        <div class="featured-project-img-wrapper">
+                             <img src="${featuredProject.image[0]}" class="img-fluid featured-project-image" alt="${featuredProject.name}" onerror="this.onerror=null;this.src='https://placehold.co/800x600/1e1e1e/f8f9fa?text=Featured+Image';">
+                        </div>
                     </div>
-                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#projectModal" data-project-name="${featuredProject.name}">
-                        View Details <i class="bi bi-box-arrow-up-right"></i>
-                    </button>
+                    <div class="col-lg-5 d-flex">
+                        <div class="featured-project-body">
+                            <h4 class="featured-project-title">
+                                <i class="bi bi-award-fill text-warning me-2"></i> Featured Project
+                            </h4>
+                            <h3>${featuredProject.name}</h3>
+                            <p class="lead">${featuredProject.description}</p>
+                            <div class="tech-stack mb-4">
+                                ${(featuredProject.tech_stack || []).map(tech => `<span>${tech}</span>`).join('')}
+                            </div>
+                            <button class="btn btn-primary mt-auto" data-bs-toggle="modal" data-bs-target="#projectModal" data-project-name="${featuredProject.name}">
+                                View Details <i class="bi bi-box-arrow-up-right"></i>
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         `;
