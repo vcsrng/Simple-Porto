@@ -56,7 +56,11 @@ const data = {
         {
             name: "Hetice",
             featured: true,
-            image: "assets/projects/Hetice.svg",
+            image: [
+                "assets/projects/hetice.svg",
+                "assets/projects/hetice_placeholder_2.png", // Placeholder
+                "assets/projects/hetice_placeholder_3.png"  // Placeholder
+            ],
             description: "Enhances environmental awareness for deaf individuals by converting sound into haptic feedback, offering a new way to experience the world through touch.",
             tech_stack: ["SwiftUI", "CoreHaptics", "SoundAnalysis", "Accessibility"],
             role: "iOS Developer (WWDC25 Winning Project)",
@@ -73,7 +77,10 @@ const data = {
         },
         {
             name: "DariData",
-            image: "assets/projects/DariData.jpg",
+            image: [
+                "assets/projects/Daridata.jpg",
+                "assets/projects/Daridata.jpg" // Placeholder
+            ],
             description: "Empowers retail SMEs by transforming raw sales data into actionable insights using data analytics and machine learning.",
             tech_stack: ["SwiftUI", "UIKit", "Charts", "Firebase", "Python", "Flask", "GCP", "TensorFlow", "Pandas", "OpenAI", "Alamofire", "Keras", "Scikit Learn"],
             role: "Co-Founder & iOS Developer",
@@ -89,7 +96,7 @@ const data = {
         },
         {
             name: "Dandenion",
-            image: "assets/projects/Dandenion.svg",
+            image: ["assets/projects/Dandenion.svg"],
             description: "An app to enhance safety for women pedestrians with features for recording and incident reporting in catcalling-prone areas.",
             tech_stack: ["SwiftUI", "UIKit", "SwiftData", "CloudKit", "CoreLocation", "MapKit", "WatchConnectivity", "BackgroundTasks"],
             role: "iOS Developer",
@@ -105,7 +112,7 @@ const data = {
         },
         {
             name: "Cartulator",
-            image: "assets/projects/Cartulator.svg",
+            image: ["assets/projects/Cartulator.svg"],
             description: "A grocery shopping app focusing on budgeting and expense tracking for elderly users, incorporating real-time calculations and spending alerts.",
             tech_stack: ["SwiftUI", "UIKit", "SwiftData", "AVFoundation"],
             role: "iOS Developer",
@@ -121,7 +128,7 @@ const data = {
         },
         {
             name: "PhysiQuest",
-            image: "assets/projects/PhysiQuest.svg",
+            image: ["assets/projects/PhysiQuest.svg"],
             description: "An educational physics app with interactive experiments, structured materials, and exercises to make physics accessible and engaging.",
             tech_stack: ["SwiftUI", "UIKit", "SpriteKit", "GameplayKit", "Lottie"],
             role: "iOS Developer, UX Designer & Project Manager",
@@ -138,7 +145,7 @@ const data = {
         },
         {
             name: "Find then Guess",
-            image: "assets/projects/FTG.svg",
+            image: ["assets/projects/FTG.svg"],
             description: "An AR game blending real-world exploration and virtual guessing, encouraging physical movement and observational skill enhancement.",
             tech_stack: ["SwiftUI", "UIKit", "ARKit", "RealityKit", "AVFoundation", "Lottie"],
             role: "iOS Developer, Designer & Project Manager",
@@ -155,7 +162,7 @@ const data = {
         },
         {
             name: "SCUP",
-            image: "assets/projects/SCUP.svg",
+            image: ["assets/projects/SCUP.svg"],
             description: "A sketching app empowering users to transform initial sketches into polished illustrations, promoting creativity and skill improvement.",
             tech_stack: ["SwiftUI", "UIKit", "SwiftData", "Firebase", "AVKit", "Python Replicate"],
             role: "iOS Developer & Designer",
@@ -170,7 +177,15 @@ const data = {
         },
         {
             name: "Pinion",
-            image: "assets/projects/Pinion.svg",
+            image: [
+                "assets/projects/Pinion.svg",
+                "assets/projects/Pinion2.svg",
+                "assets/projects/Pinion3.svg",
+                "assets/projects/Pinion4.svg",
+                "assets/projects/Pinion5.svg",
+                "assets/projects/Pinion6.svg",
+                "assets/projects/Pinion7.svg"
+            ],
             description: "An app created for BSD Link drivers to manage passenger counts, enhancing efficiency and responsibility in tracking.",
             tech_stack: ["SwiftUI", "Python", "TensorFlow"],
             role: "iOS Developer & UX Designer/Researcher",
@@ -428,7 +443,7 @@ function renderProjects(page) {
         featuredProjectContainer.innerHTML = `
             <div class="featured-project-card" data-aos="fade-up">
                 <div class="featured-project-img-wrapper">
-                    <img src="${featuredProject.image}" class="img-fluid featured-project-image" alt="${featuredProject.name}">
+                    <img src="${featuredProject.image[0]}" class="img-fluid featured-project-image" alt="${featuredProject.name}">
                 </div>
                 <div class="featured-project-body">
                     <h4 class="featured-project-title">
@@ -458,12 +473,12 @@ function renderProjects(page) {
         regularProjects.slice(start, end).forEach(proj => {
             const col = document.createElement("div");
             col.className = "col-lg-4 col-md-6";
-            const hasImage = proj.image && proj.image.trim() !== "";
+            const hasImage = proj.image && proj.image.length > 0;
             col.innerHTML = `
                 <div class="project-card-link" data-bs-toggle="modal" data-bs-target="#projectModal" data-project-name="${proj.name}">
                     <div class="project-card h-100">
                         <div class="project-image-wrapper">
-                            ${hasImage ? `<img src="${proj.image}" alt="${proj.name}" class="img-fluid project-image">` : `<div class="img-fluid project-image bg-light d-flex align-items-center justify-content-center border"><span class='text-muted'>No Image</span></div>`}
+                            ${hasImage ? `<img src="${proj.image[0]}" alt="${proj.name}" class="img-fluid project-image">` : `<div class="img-fluid project-image bg-light d-flex align-items-center justify-content-center border"><span class='text-muted'>No Image</span></div>`}
                         </div>
                         <div class="project-title">${proj.name}</div>
                         <div class="project-overlay">
@@ -553,18 +568,20 @@ function setupDynamicScrollspy() {
     const mainNav = document.querySelector('.navbar');
     if (mainNav) {
         const navbarHeight = mainNav.offsetHeight;
-        const scrollSpy = bootstrap.ScrollSpy.getOrCreateInstance(document.body, {
+        bootstrap.ScrollSpy.getOrCreateInstance(document.body, {
             offset: navbarHeight + 10
         });
     }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Populate static content first
     const heroName = document.getElementById("hero-name");
     if (heroName) heroName.textContent = data.hero.name;
     const aboutText = document.getElementById("about-text");
     if (aboutText) aboutText.textContent = data.about.textabout;
     
+    // Run all setup functions
     createHeroCodeBackground();
     setupThemeSwitcher();
     setupNavbarScrollEffect();
@@ -582,30 +599,26 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('resize', setupDynamicScrollspy);
 
     const projectModal = document.getElementById('projectModal');
+    let projectCarousel = null;
+
     if (projectModal) {
-        projectModal.addEventListener('show.bs.modal', function (event) {
+        // Make the function async to use await for image loading
+        projectModal.addEventListener('show.bs.modal', async function (event) {
             const card = event.relatedTarget;
             const projectName = card.getAttribute('data-project-name');
             const projectData = data.projects.find(p => p.name === projectName);
             if (!projectData) return;
 
-            const modalTitle = projectModal.querySelector('#modal-project-title');
-            const modalImage = projectModal.querySelector('#modal-project-image');
-            const modalDescription = projectModal.querySelector('#modal-project-description');
-            const modalTechStack = projectModal.querySelector('#modal-project-tech-stack');
-            const modalRole = projectModal.querySelector('#modal-project-role');
-            const modalResponsibilities = projectModal.querySelector('#modal-project-responsibilities');
+            // Populate all text-based content first
+            projectModal.querySelector('#modal-project-title').textContent = projectData.name;
+            projectModal.querySelector('#modal-project-description').textContent = projectData.description;
+            projectModal.querySelector('#modal-project-role').textContent = projectData.role || 'N/A';
+            projectModal.querySelector('#modal-project-tech-stack').innerHTML = (projectData.tech_stack || []).map(tech => `<span>${tech}</span>`).join('');
+            projectModal.querySelector('#modal-project-responsibilities').innerHTML = (projectData.responsibilities || []).map(res => `<li>${res}</li>`).join('');
+
+            // Populate links
             const modalLinks = projectModal.querySelector('#modal-project-links');
-
-            modalTitle.textContent = projectData.name;
-            modalImage.src = projectData.image || 'assets/placeholder.png';
-            modalDescription.textContent = projectData.description;
-            modalRole.textContent = projectData.role || 'N/A';
-            
-            modalTechStack.innerHTML = (projectData.tech_stack || []).map(tech => `<span>${tech}</span>`).join('');
-            modalResponsibilities.innerHTML = (projectData.responsibilities || []).map(res => `<li>${res}</li>`).join('');
-
-            modalLinks.innerHTML = ''; 
+            modalLinks.innerHTML = '';
             if (projectData.links) {
                 if (projectData.links.appstore) {
                     modalLinks.insertAdjacentHTML('beforeend', `<a href="${projectData.links.appstore}" class="btn btn-dark" target="_blank" rel="noopener noreferrer"><i class="bi bi-apple"></i> App Store</a>`);
@@ -624,6 +637,88 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
             modalLinks.insertAdjacentHTML('beforeend', `<button type="button" class="btn btn-modal-close ms-auto" data-bs-dismiss="modal">Close</button>`);
+
+            // --- Carousel stabilization and population logic ---
+            const carouselInner = document.getElementById('modal-carousel-inner');
+            const carouselIndicators = document.getElementById('modal-carousel-indicators');
+            const carouselContainer = document.getElementById('projectImageCarousel');
+            
+            carouselInner.innerHTML = '';
+            carouselIndicators.innerHTML = '';
+            
+            const images = projectData.image || [];
+            
+            // Pre-load images to get their dimensions before displaying them
+            const loadedImages = await Promise.all(images.map(src => {
+                return new Promise((resolve) => { // Changed reject to resolve
+                    const img = new Image();
+                    img.onload = () => resolve({ src: src, height: img.naturalHeight, loaded: true });
+                    img.onerror = () => {
+                        console.error(`Failed to load image: ${src}`);
+                        resolve({ src: 'assets/projects/image-placeholder.svg', height: 200, loaded: false }); // Resolve with a placeholder
+                    };
+                    img.src = src;
+                });
+            }));
+
+            // Filter out any potential completely failed loads (though our promise now always resolves)
+            const successfullyLoadedImages = loadedImages.filter(imgInfo => imgInfo.loaded || imgInfo.src === 'assets/projects/image-placeholder.svg');
+
+            // Find the height of the tallest *successfully loaded* image
+            const maxHeight = successfullyLoadedImages.length > 0 ? Math.max(...successfullyLoadedImages.map(imgInfo => imgInfo.height)) : 0;
+            
+            // --- THIS IS THE CRITICAL FIX ---
+            const imageContainer = projectModal.querySelector('.modal-image-container');
+            // ONLY set a fixed height if there's a carousel (more than 1 image)
+            if (loadedImages.length > 1 && maxHeight > 0) {
+                // Set the container height based on the tallest image, but cap it at a reasonable max value (e.g., 450px)
+                imageContainer.style.height = `${Math.min(maxHeight, 450)}px`;
+            } else {
+                // For single images or no images, let the height be natural and responsive
+                imageContainer.style.height = 'auto';
+            }
+
+            // Now, populate the carousel with the pre-loaded images and the wrapper div
+            loadedImages.forEach((img, index) => {
+                const activeClass = index === 0 ? 'active' : '';
+                
+                const carouselItem = `
+                    <div class="carousel-item ${activeClass}">
+                        <div class="carousel-image-wrapper">
+                            <img src="${img.src}" class="d-block" alt="Project image ${index + 1}">
+                        </div>
+                    </div>
+                `;
+                carouselInner.insertAdjacentHTML('beforeend', carouselItem);
+
+                const indicator = `<button type="button" data-bs-target="#projectImageCarousel" data-bs-slide-to="${index}" class="${activeClass}" aria-current="true" aria-label="Slide ${index + 1}"></button>`;
+                carouselIndicators.insertAdjacentHTML('beforeend', indicator);
+            });
+
+            // Initialize the carousel only if there is more than one image
+            if (images.length > 1) {
+                carouselContainer.classList.remove('single-image');
+                projectCarousel = new bootstrap.Carousel(carouselContainer, {
+                    interval: 5000,
+                    
+                    pause: 'hover', 
+                    
+                    ride: 'carousel' 
+                });
+            } else {
+                carouselContainer.classList.add('single-image');
+            }
+        });
+        
+        projectModal.addEventListener('hidden.bs.modal', function () {
+            // Dispose of the carousel instance to prevent memory leaks
+            if (projectCarousel) {
+                projectCarousel.dispose();
+                projectCarousel = null;
+            }
+            // IMPORTANT: Reset the inline height style to ensure the next modal is not affected
+            const imageContainer = projectModal.querySelector('.modal-image-container');
+            imageContainer.style.height = null;
         });
     }
 });
