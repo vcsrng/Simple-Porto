@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
     <link rel="stylesheet" href="style.css">
+    <!-- MODIFIED: Reverted to a simple, single link for the favicon for reliability -->
+    <link id="favicon" rel="icon" type="image/svg+xml" href="assets/logo.svg">
 </head>
 <body data-bs-spy="scroll" data-bs-target=".navbar" tabindex="0">
     <nav class="navbar navbar-expand-lg fixed-top shadow-sm bg-body-secondary bg-opacity-25 navbar-backdrop">
@@ -202,8 +204,8 @@
                         </div>
                         <div class="col-md-6">
                             <h3 id="modal-project-title"></h3>
-                            <div id="modal-project-tech-stack" class="tech-stack mb-3"></div>
                             <p id="modal-project-description"></p>
+                            <div id="modal-project-tech-stack" class="tech-stack mb-3"></div>
                         </div>
                     </div>
                     <hr class="my-4">
@@ -214,7 +216,8 @@
                     </div>
                 </div>
                 <div class="modal-footer" id="modal-project-links">
-                    </div>
+                    <!-- Links will be dynamically added here by JavaScript -->
+                </div>
             </div>
         </div>
     </div>

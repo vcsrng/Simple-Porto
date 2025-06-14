@@ -91,11 +91,11 @@ const data = {
             name: "Dandenion",
             description: "An app to enhance safety for women pedestrians with features for recording and incident reporting in catcalling-prone areas.",
             tech_stack: ["SwiftUI", "UIKit", "SwiftData", "CloudKit", "CoreLocation", "MapKit", "WatchConnectivity", "BackgroundTasks"],
-            role: "iOS Developer (Apple Developer Academy Project)",
+            role: "iOS & watchOS Developer",
             responsibilities: [
-                "Implemented location-based services using CoreLocation and MapKit to identify and report incident-prone areas.",
-                "Utilized SwiftData and CloudKit for secure and persistent storage of incident reports.",
-                "Engineered WatchConnectivity to ensure seamless data synchronization between the iPhone and Apple Watch apps."
+                "Developed synchronized user interfaces for both iOS and watchOS to ensure consistent feature availability.",
+                "Engineered real-time data transfer between devices using the WatchConnectivity framework.",
+                "Implemented CoreLocation and MapKit to enable location-based incident reporting and safety alerts."
             ],
             links: {
                 github: "https://github.com/vcsrng/Dandenion",
@@ -106,11 +106,11 @@ const data = {
             name: "Cartulator",
             description: "A grocery shopping app focusing on budgeting and expense tracking for elderly users, incorporating real-time calculations and spending alerts.",
             tech_stack: ["SwiftUI", "UIKit", "SwiftData", "AVFoundation"],
-            role: "iOS Developer (Apple Developer Academy Project)",
+            role: "iOS Developer",
             responsibilities: [
-                "Designed a user-friendly interface with high contrast and large touch targets, focusing on accessibility for elderly users.",
-                "Used SwiftData for local, on-device storage of shopping lists and budgets.",
-                "Incorporated real-time calculation features to help users track spending as they shop."
+                "Developed the complete front-end using SwiftUI, focusing on an accessible and high-contrast user interface.",
+                "Engineered a responsive layout and a library of reusable components to support all iOS device sizes efficiently.",
+                "Conducted rigorous manual testing and debugging cycles to ensure a high-quality, stable application."
             ],
             links: {
                 appstore: "https://apps.apple.com/id/app/cartulator/id6547868094",
@@ -121,11 +121,12 @@ const data = {
             name: "PhysiQuest",
             description: "An educational physics app with interactive experiments, structured materials, and exercises to make physics accessible and engaging.",
             tech_stack: ["SwiftUI", "UIKit", "SpriteKit", "GameplayKit", "Lottie"],
-            role: "iOS Developer (Apple Developer Academy Project)",
+            role: "iOS Developer, UX Designer & Project Manager",
             responsibilities: [
-                "Created interactive physics simulations and experiments using SpriteKit and GameplayKit.",
-                "Structured the educational content and exercises within a user-friendly SwiftUI interface.",
-                "Implemented engaging animations with Lottie to make learning concepts more intuitive."
+                "Led project management using Notion to organize tasks and facilitate a parallel development workflow for the team.",
+                "Conducted user and content research to define educational material and interactive physics questions.",
+                "Designed and implemented the complete UI/UX for the Map, Material, and Profile pages, incorporating Lottie animations.",
+                "Ensured a seamless and responsive experience across all iPadOS screen sizes through adaptive layout engineering."
             ],
             links: {
                 github: "https://github.com/vcsrng/Physiquest",
@@ -152,11 +153,11 @@ const data = {
             name: "SCUP",
             description: "A sketching app empowering users to transform initial sketches into polished illustrations, promoting creativity and skill improvement.",
             tech_stack: ["SwiftUI", "UIKit", "SwiftData", "Firebase", "AVKit", "Python Replicate"],
-            role: "iOS Developer (Apple Developer Academy Project)",
+            role: "iOS Developer & Designer",
             responsibilities: [
-                "Built the core sketching canvas and toolset using a combination of SwiftUI and UIKit for performance.",
-                "Integrated Firebase for cloud storage and synchronization of user's artwork across devices.",
-                "Leveraged Python Replicate for advanced image processing features within the app."
+                "Owned the end-to-end design process, creating all UI/UX wireframes, visual assets, and application branding.",
+                "Built the core sketching canvas and toolset using a combination of SwiftUI and UIKit for optimal performance.",
+                "Developed the complete application interface, ensuring fluid performance and intuitive user interaction."
             ],
             links: {
                 github: "https://github.com/vcsrng/SCUP"
@@ -166,11 +167,11 @@ const data = {
             name: "Pinion",
             description: "An app created for BSD Link drivers to manage passenger counts, enhancing efficiency and responsibility in tracking.",
             tech_stack: ["SwiftUI", "Python", "TensorFlow"],
-            role: "iOS Developer (Apple Developer Academy Project)",
+            role: "iOS Developer & UX Designer/Researcher",
             responsibilities: [
+                "Conducted user research with drivers to inform the design of a simple and efficient UI, minimizing distraction.",
                 "Developed the main user interface for passenger count management using SwiftUI.",
-                "Collaborated with the team to integrate a Python and TensorFlow backend for data processing.",
-                "Focused on creating a simple and efficient UI to minimize driver distraction and maximize usability."
+                "Collaborated with the team to integrate a Python and TensorFlow backend for data processing."
             ]
         }
     ],
@@ -242,26 +243,25 @@ function createHeroCodeBackground() {
     }
 }
 
+// MODIFIED: Simplified the theme switcher function to remove favicon logic
 function setupThemeSwitcher() {
     const themeSwitch = document.getElementById('theme-switch');
     if (!themeSwitch) return;
-    const currentTheme = localStorage.getItem('theme');
-    if (currentTheme) {
-        document.documentElement.setAttribute('data-bs-theme', currentTheme);
-        if (currentTheme === 'dark') {
-            themeSwitch.checked = true;
-        }
-    }
+
+    const applyTheme = (theme) => {
+        document.documentElement.setAttribute('data-bs-theme', theme);
+        localStorage.setItem('theme', theme);
+        themeSwitch.checked = theme === 'dark';
+    };
+
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    applyTheme(savedTheme);
+
     themeSwitch.addEventListener('change', function() {
-        if (this.checked) {
-            document.documentElement.setAttribute('data-bs-theme', 'dark');
-            localStorage.setItem('theme', 'dark');
-        } else {
-            document.documentElement.setAttribute('data-bs-theme', 'light');
-            localStorage.setItem('theme', 'light');
-        }
+        applyTheme(this.checked ? 'dark' : 'light');
     });
 }
+
 
 function setupNavbarScrollEffect() {
     const navbar = document.querySelector('.navbar');
@@ -324,9 +324,9 @@ function setupLoopingNavbarLogoAnimation() {
     const logoText = "vcsrng.";
     let charIndex = 0;
     let isDeleting = false;
-    const typingSpeed = 450;
+    const typingSpeed = 250;
     const deletingSpeed = 150;
-    const pauseDuration = 5000;
+    const pauseDuration = 3000;
 
     function loop() {
         const currentText = logoText;
@@ -558,7 +558,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setupThemeSwitcher();
     setupNavbarScrollEffect();
     typeAndDeleteLoop();
-    setupLoopingNavbarLogoAnimation(); // Using the new looping function
+    setupLoopingNavbarLogoAnimation();
     renderFilterOptions();
     renderProjects(1);
     populateSkills();
