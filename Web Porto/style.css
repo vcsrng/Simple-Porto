@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Space+Mono:wght@700&display=swap');
+
 /* --- 1. CSS VARIABLES FOR THEME SWITCHING --- */
 :root, [data-bs-theme="light"] {
   --bs-body-bg: #fff;
@@ -55,6 +57,7 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--heading-color);
 }
 
+/* --- Navigation Bar --- */
 nav.navbar {
     position: fixed;
     top: 0;
@@ -73,6 +76,17 @@ nav.navbar.navbar-scrolled {
     padding-top: 1.5rem;
     padding-bottom: 1.5rem;
 }
+
+/* MODIFIED: Added styles for new animated logo */
+#navbar-logo {
+    font-family: 'Space Mono', monospace;
+    font-weight: 700;
+}
+#navbar-logo .cursor {
+    color: var(--bs-primary);
+    animation: blink 0.7s infinite;
+}
+
 
 /* --- Theme Switch --- */
 .theme-switch-wrapper {
@@ -164,6 +178,37 @@ nav.navbar.navbar-scrolled {
     margin-bottom: 1rem;
 }
 @media (max-width: 991.98px) { .about-me-title { text-align: center; margin-top: 2rem; } }
+
+/* --- About Me - Highlights Grid Styles --- */
+.highlight-item {
+    padding: 1.5rem 1rem;
+    background-color: var(--card-bg-color);
+    border: 1px solid var(--card-border-color);
+    border-radius: 12px;
+    height: 100%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.highlight-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+}
+.highlight-icon {
+    font-size: 2.5rem;
+    color: var(--bs-primary);
+    margin-bottom: 1rem;
+    display: block;
+}
+.highlight-title {
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+    font-size: 1.1rem;
+    color: var(--heading-color);
+}
+.highlight-text {
+    color: var(--text-muted-color);
+    font-size: 0.9rem;
+    margin: 0;
+}
 
 /* --- Experience & Education --- */
 #experience .section-title {
@@ -275,7 +320,10 @@ nav.navbar.navbar-scrolled {
 
 /* --- Regular Project Cards --- */
 .project-card-link {
-    color: var(--bs-body-color); text-decoration: none;
+    cursor: pointer;
+    display: block;
+    color: var(--bs-body-color);
+    text-decoration: none;
 }
 .project-card-link:hover {
     color: var(--bs-body-color);
@@ -430,6 +478,10 @@ nav.navbar.navbar-scrolled {
     font-size: 1.1rem;
     font-weight: 600;
 }
+/* MODIFIED: Increased bottom padding for contact section */
+#contact {
+    padding-bottom: 150px;
+}
 
 /* --- Footer --- */
 footer {
@@ -450,13 +502,91 @@ footer a:hover {
 
 @media (min-width: 992px) {
     .featured-project-card {
-        grid-template-columns: 1fr 1fr; /* 50/50 split for the two columns */
-        align-items: center; /* Vertically center the content */
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
     }
 }
-/* --- Responsive Media Queries --- */
 @media (max-width: 576px) {
   .hero h1 { font-size: 2.5rem; }
   .hero p { font-size: 1.1rem; }
   .btn-custom { display: block; width: 80%; margin: 0.5rem auto; }
+}
+
+/* --- Modal & Themed Button Styles --- */
+#projectModal .modal-content {
+    background-color: var(--bs-body-bg);
+    border: 1px solid var(--card-border-color);
+    border-radius: 1rem;
+}
+
+#projectModal .modal-header {
+    border-bottom: 1px solid var(--card-border-color);
+}
+#projectModal .modal-footer {
+    border-top: 1px solid var(--card-border-color);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+#projectModal h3 {
+    font-weight: 700;
+}
+
+#projectModal .tech-stack span {
+  display: inline-block;
+  padding: 0.3rem 0.75rem;
+  background-color: var(--section-bg-color);
+  color: var(--text-muted-color);
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.responsibilities-list {
+    padding-left: 1.25rem;
+    font-size: 0.95rem;
+}
+
+.responsibilities-list li {
+    margin-bottom: 0.75rem;
+    line-height: 1.6;
+}
+
+.btn-modal-close {
+    color: var(--bs-body-color);
+    border-color: var(--bs-body-color);
+    background-color: transparent;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out;
+}
+
+.btn-modal-close:hover {
+    color: var(--bs-body-bg);
+    background-color: var(--bs-body-color);
+    border-color: var(--bs-body-color);
+}
+
+.btn-wwdc {
+    background-color: #413599;
+    color: #fff;
+    border-color: #413599;
+}
+
+.btn-wwdc:hover {
+    background-color: #372d82;
+    color: #fff;
+    border-color: #372d82;
+}
+
+.btn-outline-themed {
+    --bs-btn-color: var(--bs-body-color);
+    --bs-btn-border-color: var(--bs-body-color);
+    --bs-btn-hover-color: var(--bs-body-bg);
+    --bs-btn-hover-bg: var(--bs-body-color);
+    --bs-btn-hover-border-color: var(--bs-body-color);
+    --bs-btn-active-color: var(--bs-body-bg);
+    --bs-btn-active-bg: var(--bs-body-color);
+    --bs-btn-active-border-color: var(--bs-body-color);
 }
