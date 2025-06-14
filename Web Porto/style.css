@@ -56,7 +56,6 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--heading-color);
 }
 
-/* --- Navigation Bar --- */
 nav.navbar {
     position: fixed;
     top: 0;
@@ -85,7 +84,6 @@ nav.navbar.navbar-scrolled {
     animation: blink 0.7s infinite;
 }
 
-/* --- Theme Switch --- */
 .theme-switch-wrapper {
     display: flex; align-items: center; gap: 0.5rem;
 }
@@ -106,7 +104,6 @@ nav.navbar.navbar-scrolled {
 [data-bs-theme="dark"] #theme-icon-sun { color: #6c757d; }
 [data-bs-theme="dark"] #theme-icon-moon { color: #4dabf7; }
 
-/* --- Hero Section & Background --- */
 .hero {
     height: 100vh;
     position: relative;
@@ -153,7 +150,6 @@ nav.navbar.navbar-scrolled {
     50% { opacity: 0; }
 }
 
-/* --- Social & CV Buttons --- */
 .btn-social {
     background-color: var(--social-btn-bg); color: var(--social-btn-color); border: 1px solid transparent; transition: background-color 0.2s ease-in-out;
 }
@@ -167,7 +163,6 @@ nav.navbar.navbar-scrolled {
 [data-bs-theme="dark"] #cv-download { color: var(--bs-body-color); border-color: var(--bs-body-color); }
 [data-bs-theme="dark"] #cv-download:hover { color: var(--bs-body-bg); background-color: var(--bs-body-color); border-color: var(--bs-body-color); }
 
-/* --- About Me --- */
 .profile-picture {
     max-width: 300px; border: 5px solid var(--card-bg-color);
 }
@@ -176,7 +171,6 @@ nav.navbar.navbar-scrolled {
 }
 @media (max-width: 991.98px) { .about-me-title { text-align: center; margin-top: 2rem; } }
 
-/* --- About Me - Highlights Grid Styles --- */
 .highlight-item {
     padding: 1.5rem 1rem;
     background-color: var(--card-bg-color);
@@ -207,7 +201,6 @@ nav.navbar.navbar-scrolled {
     margin: 0;
 }
 
-/* --- Experience & Education --- */
 #experience .section-title {
     position: relative; padding-bottom: 0.75rem; margin-bottom: 2rem;
 }
@@ -262,7 +255,6 @@ nav.navbar.navbar-scrolled {
     background-color: var(--section-bg-color); padding: 100px 0; transition: background-color 0.3s ease;
 }
 
-/* --- Featured Project --- */
 #featured-project-container {
     display: flex;
     justify-content: center;
@@ -315,7 +307,6 @@ nav.navbar.navbar-scrolled {
     margin-bottom: 2rem;
 }
 
-/* --- Regular Project Cards --- */
 .project-card-link {
     cursor: pointer;
     display: block;
@@ -388,7 +379,6 @@ nav.navbar.navbar-scrolled {
   font-weight: 500;
 }
 
-/* --- Pagination & Off-canvas --- */
 .pagination .page-item .page-link {
     color: var(--text-muted-color);
     background-color: transparent;
@@ -403,7 +393,6 @@ nav.navbar.navbar-scrolled {
     color: var(--bs-body-color);
 }
 
-/* --- Skills --- */
 .skills-grid {
     text-align: center;
 }
@@ -475,10 +464,9 @@ nav.navbar.navbar-scrolled {
     font-weight: 600;
 }
 #contact {
-    padding-bottom: 250px;
+    padding-bottom: 150px;
 }
 
-/* --- Footer --- */
 footer {
     background-color: #1e1e1e;
     color: #e0e0e0;
@@ -584,4 +572,20 @@ footer a:hover {
     --bs-btn-active-color: var(--bs-body-bg);
     --bs-btn-active-bg: var(--bs-body-color);
     --bs-btn-active-border-color: var(--bs-body-color);
+}
+
+#projectModal .modal-body .row > .col-md-6:first-child {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--section-bg-color);
+    padding: 1.5rem;
+    border-radius: .75rem;
+    min-height: 300px;
+}
+
+#modal-project-image {
+    object-fit: contain;
+    max-height: 100%;
+    max-width: 100%;
 }

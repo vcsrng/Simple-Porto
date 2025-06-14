@@ -5,8 +5,8 @@ const data = {
         name: "Vincent Saranang",
         specialities: [
             "iOS Developer",
-            "#WWDC25 Winner",
-            "Software Engineer"
+            "Software Engineer",
+            "T-Shaped Developer"
         ]
     },
     about: {
@@ -38,7 +38,7 @@ const data = {
             university: "BINUS University",
             period: "2021 - 2025",
             details: [
-                "Current GPA: 3.82/4.00",
+                "Current GPA: 3.85/4.00",
                 "Contestant: The 2022 ICPC Asia Jakarta National Contest"
             ]
         },
@@ -56,10 +56,10 @@ const data = {
         {
             name: "Hetice",
             featured: true,
-            image: "assets/hetice.svg",
+            image: "assets/projects/Hetice.svg",
             description: "Enhances environmental awareness for deaf individuals by converting sound into haptic feedback, offering a new way to experience the world through touch.",
             tech_stack: ["SwiftUI", "CoreHaptics", "SoundAnalysis", "Accessibility"],
-            role: "Solo iOS Developer (WWDC25 Winning Project)",
+            role: "iOS Developer (WWDC25 Winning Project)",
             responsibilities: [
                 "Architected the entire application from concept to a functional prototype using SwiftUI.",
                 "Engineered a real-time audio analysis pipeline using the SoundAnalysis framework to identify specific environmental sounds.",
@@ -73,7 +73,7 @@ const data = {
         },
         {
             name: "DariData",
-            image: "assets/daridata.png",
+            image: "assets/projects/DariData.jpg",
             description: "Empowers retail SMEs by transforming raw sales data into actionable insights using data analytics and machine learning.",
             tech_stack: ["SwiftUI", "UIKit", "Charts", "Firebase", "Python", "Flask", "GCP", "TensorFlow", "Pandas", "OpenAI", "Alamofire", "Keras", "Scikit Learn"],
             role: "Co-Founder & iOS Developer",
@@ -89,9 +89,10 @@ const data = {
         },
         {
             name: "Dandenion",
+            image: "assets/projects/Dandenion.svg",
             description: "An app to enhance safety for women pedestrians with features for recording and incident reporting in catcalling-prone areas.",
             tech_stack: ["SwiftUI", "UIKit", "SwiftData", "CloudKit", "CoreLocation", "MapKit", "WatchConnectivity", "BackgroundTasks"],
-            role: "iOS & watchOS Developer",
+            role: "iOS Developer",
             responsibilities: [
                 "Developed synchronized user interfaces for both iOS and watchOS to ensure consistent feature availability.",
                 "Engineered real-time data transfer between devices using the WatchConnectivity framework.",
@@ -104,6 +105,7 @@ const data = {
         },
         {
             name: "Cartulator",
+            image: "assets/projects/Cartulator.svg",
             description: "A grocery shopping app focusing on budgeting and expense tracking for elderly users, incorporating real-time calculations and spending alerts.",
             tech_stack: ["SwiftUI", "UIKit", "SwiftData", "AVFoundation"],
             role: "iOS Developer",
@@ -119,6 +121,7 @@ const data = {
         },
         {
             name: "PhysiQuest",
+            image: "assets/projects/PhysiQuest.svg",
             description: "An educational physics app with interactive experiments, structured materials, and exercises to make physics accessible and engaging.",
             tech_stack: ["SwiftUI", "UIKit", "SpriteKit", "GameplayKit", "Lottie"],
             role: "iOS Developer, UX Designer & Project Manager",
@@ -134,7 +137,8 @@ const data = {
             }
         },
         {
-            name: "Find then Guess (FTG)",
+            name: "Find then Guess",
+            image: "assets/projects/FTG.svg",
             description: "An AR game blending real-world exploration and virtual guessing, encouraging physical movement and observational skill enhancement.",
             tech_stack: ["SwiftUI", "UIKit", "ARKit", "RealityKit", "AVFoundation", "Lottie"],
             role: "iOS Developer, Designer & Project Manager",
@@ -151,6 +155,7 @@ const data = {
         },
         {
             name: "SCUP",
+            image: "assets/projects/SCUP.svg",
             description: "A sketching app empowering users to transform initial sketches into polished illustrations, promoting creativity and skill improvement.",
             tech_stack: ["SwiftUI", "UIKit", "SwiftData", "Firebase", "AVKit", "Python Replicate"],
             role: "iOS Developer & Designer",
@@ -165,6 +170,7 @@ const data = {
         },
         {
             name: "Pinion",
+            image: "assets/projects/Pinion.svg",
             description: "An app created for BSD Link drivers to manage passenger counts, enhancing efficiency and responsibility in tracking.",
             tech_stack: ["SwiftUI", "Python", "TensorFlow"],
             role: "iOS Developer & UX Designer/Researcher",
@@ -243,7 +249,6 @@ function createHeroCodeBackground() {
     }
 }
 
-// MODIFIED: Simplified the theme switcher function to remove favicon logic
 function setupThemeSwitcher() {
     const themeSwitch = document.getElementById('theme-switch');
     if (!themeSwitch) return;
@@ -387,7 +392,13 @@ function renderFilterOptions() {
 
 function applyFilters() {
     activeTags = [...selectedTags];
-    filteredProjects = activeTags.length === 0 ? [...data.projects] : data.projects.filter(project => activeTags.some(tag => project.tech_stack.includes(tag)));
+    if (activeTags.length === 0) {
+        filteredProjects = [...data.projects];
+    } else {
+        filteredProjects = data.projects.filter(project => 
+            activeTags.every(tag => project.tech_stack && project.tech_stack.includes(tag))
+        );
+    }
     renderProjects(1);
     if(offcanvas) offcanvas.hide();
 }
@@ -441,8 +452,8 @@ function renderProjects(page) {
     const start = (page - 1) * itemsPerPage;
     const end = start + itemsPerPage;
 
-    if (regularProjects.length === 0 && !featuredProject) {
-        projectGrid.innerHTML = `<div class="col-12 text-center"><p class="text-muted fs-5 mt-4">No other projects found.</p></div>`;
+    if (regularProjects.length === 0) {
+        projectGrid.innerHTML = `<div class="col-12 text-center"><p class="text-muted fs-5 mt-4">No projects match the selected filters.</p></div>`;
     } else {
         regularProjects.slice(start, end).forEach(proj => {
             const col = document.createElement("div");
