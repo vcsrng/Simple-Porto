@@ -213,23 +213,22 @@ const data = {
             ]
         }
     ],
-    skillset: [
-        // iOS & Swift Ecosystem
-        "Swift", "SwiftUI", "UIKit", "Combine", "AutoLayout", "SwiftData", "CoreData",
-        "MapKit", "ARKit", "Watch Connectivity", "AVFoundation", "BackgroundTasks",
-
-        // Programming & Tools
-        "C", "C++", "Java", "Python", "Git", "Xcode", "App Store Connect",
-
-        // Web Basics
-        "HTML", "CSS", "JavaScript", "MySQL", "PHP",
-
-        // Development Practices
-        "Version Control", "Debugging", "Refactoring", "Design Patterns", "OOP", "Prototyping", "Usability Testing",
-
-        // UI/UX & Design
-        "Figma", "Canva", "Adobe Illustrator", "Adobe Premiere Pro", "Procreate", "Human-Centered Design", "UI Style Guides", "Gamification"
-    ],
+    skillset: {
+        tech: [
+            "Swift", "SwiftUI", "UIKit", "Combine", "AutoLayout", "SwiftData", "CoreData",
+            "MapKit", "ARKit", "Watch Connectivity", "AVFoundation", "BackgroundTasks",
+            "C", "C++", "Java", "Python", "Git", "Xcode", "HTML", "CSS", "JavaScript", "MySQL", "PHP",
+            "Version Control", "Debugging", "Refactoring", "OOP"
+        ],
+        design: [
+            "Figma", "Canva", "Adobe Illustrator", "Adobe Premiere Pro", "Procreate",
+            "Human-Centered Design", "UI Style Guides", "Gamification",  "Design Patterns", 
+            "Prototyping", "Usability Testing"
+        ],
+        product: [
+            "Notion", "Jira", "App Store Connect"
+        ]
+    },
     achievements: [
         {
             icon: "bi-apple",
@@ -288,7 +287,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setupLoopingNavbarLogoAnimation();
     renderFilterOptions();
     renderProjects(1);
-    populateSkills();
+    populateGroupedSkills();
     populateAchievements();
     populateExperience();
     populateEducation();
@@ -695,10 +694,45 @@ function renderPagination(currentPage, projectsToPaginate, itemsPerPage) {
     }
 }
 
-function populateSkills() {
-    const skillsGrid = document.getElementById("skills-grid");
-    if (!skillsGrid) return;
-    skillsGrid.innerHTML = [...new Set(data.skillset)].map(skill => `<span class="badge">${skill}</span>`).join('');
+function populateGroupedSkills() {
+    const skillGroupsContainer = document.getElementById("skill-groups");
+    if (!skillGroupsContainer) return;
+
+    const categoryIcons = {
+        tech: "bi bi-wrench-adjustable-circle-fill",
+        design: "bi bi-brush-fill",
+        product: "bi bi-buildings-fill"
+    };
+
+    const categoryColors = {
+        tech: "text-tech",
+        design: "text-design",
+        product: "text-product"
+    };
+
+    for (const [category, skills] of Object.entries(data.skillset)) {
+        const icon = categoryIcons[category] || "bi-tags";
+        const colorClass = categoryColors[category] || "text-muted";
+        const capitalized = category.charAt(0).toUpperCase() + category.slice(1);
+
+        const groupCol = document.createElement("div");
+        groupCol.className = "col-12 col-sm-10 col-md-6 col-lg-4";
+
+        groupCol.innerHTML = `
+            <div class="skill-group-box h-100">
+                <h5 class="mb-3 text-center ${colorClass}">
+                    <i class="bi ${icon} me-2"></i>${capitalized}
+                </h5>
+                <div class="skills-grid d-flex flex-wrap justify-content-center">
+                    ${skills.map(skill =>
+                        `<span class="badge ${category}" title="${skill}">${skill}</span>`
+                    ).join('')}
+                </div>
+            </div>
+        `;
+
+        skillGroupsContainer.appendChild(groupCol);
+    }
 }
 
 function populateAchievements() {
@@ -768,12 +802,14 @@ function setupCV() {
 
 function setupDynamicScrollspy() {
     const mainNav = document.querySelector('.navbar');
-    if (mainNav) {
-        const navbarHeight = mainNav.offsetHeight;
-        bootstrap.ScrollSpy.getOrCreateInstance(document.body, {
-            offset: navbarHeight + 10
-        });
-    }
+    if (!mainNav) return;
+
+    const navbarHeight = mainNav.offsetHeight;
+    const scrollspy = bootstrap.ScrollSpy.getOrCreateInstance(document.body, {
+        offset: navbarHeight + 10
+    });
+
+    setTimeout(() => { scrollspy.refresh(); }, 100);
 }
 
 function setupFooter() {

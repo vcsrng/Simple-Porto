@@ -406,15 +406,15 @@ nav.navbar {
     font-weight: 700;
 }
 #projectModal .tech-stack span {
-  display: inline-block;
-  padding: 0.3rem 0.75rem;
-  background-color: var(--section-bg-color);
-  color: var(--text-muted-color);
-  border-radius: 20px;
-  font-size: 0.75rem;
-  font-weight: 500;
-  margin-right: 0.5rem;
-  margin-bottom: 0.5rem;
+    display: inline-block;
+    padding: 0.3rem 0.75rem;
+    background-color: var(--section-bg-color);
+    color: var(--text-muted-color);
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
 }
 .modal-top-section {
     align-items: flex-start;
@@ -533,23 +533,90 @@ nav.navbar {
     color: var(--bs-body-color);
 }
 
+.skill-group-box {
+    border-radius: 1.5rem;
+    padding: 2rem;
+    text-align: center;
+    border: 1px solid var(--card-border-color);
+    background-color: var(--bs-body-bg);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+    height: 100%;
+}
+
 .skills-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    gap: 0.5rem;
     text-align: center;
 }
 #skills .badge {
     background-color: var(--card-border-color) !important;
     color: var(--bs-body-color) !important;
     padding: 0.6rem 1.2rem;
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-weight: 500;
     border-radius: 1.5rem;
-    margin: 0.25rem;
     display: inline-block;
-    transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+    transition: transform 0.2s ease-out, box-shadow 0.2s ease-out, background-color 0.2s ease-out, color 0.2s ease-out;
+}
+#skills .badge.tech {
+  background-color: #3b82f6 !important;  /* Soft blue */
+  color: #fff !important;
+}
+#skills .badge.design {
+  background-color: #ef4444 !important;  /* Balanced red */
+  color: #fff !important;
+}
+#skills .badge.product {
+  background-color: #f59e0b !important;  /* Golden orange */
+  color: #fff !important;
 }
 #skills .badge:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+[data-bs-theme="dark"] #skills .badge.tech {
+  background-color: #3586fd !important;
+}
+[data-bs-theme="dark"] #skills .badge.design {
+  background-color: #fb6565 !important;
+}
+[data-bs-theme="dark"] #skills .badge.product {
+  background-color: #f7ae34 !important;
+}
+[data-bs-theme="dark"] #skills .badge:hover {
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+}
+
+
+.text-tech {
+  color: #3b82f6 !important;
+  font-weight: 700;
+}
+.text-design {
+  color: #ef4444 !important;
+  font-weight: 700;
+}
+.text-product {
+  color: #f59e0b !important;
+  font-weight: 700;
+}
+
+[data-bs-theme="dark"] .text-tech {
+  color: #60a5fa !important;
+}
+[data-bs-theme="dark"] .text-design {
+  color: #fb6565 !important;
+}
+[data-bs-theme="dark"] .text-product {
+  color: #f7ae34 !important;
 }
 
 .achievement-card {
