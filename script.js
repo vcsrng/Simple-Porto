@@ -62,7 +62,7 @@ const data = {
                 "assets/projects/hetice_placeholder_3.png"
             ],
             description: "Enhances environmental awareness for deaf individuals by converting sound into haptic feedback, offering a new way to experience the world through touch.",
-            tech_stack: ["SwiftUI", "CoreHaptics", "SoundAnalysis", "AVFoundation", "Accessibility"],
+            tech_stack: ["SwiftUI", "CoreHaptics", "SoundAnalysis", "AVFoundation"],
             role: "iOS Developer (WWDC25 Winning Project)",
             responsibilities: [
                 "Architected the entire application from concept to a functional prototype using SwiftUI.",
@@ -83,7 +83,7 @@ const data = {
             ],
             scale_image_to_height: true,
             description: "Empowers retail SMEs by transforming raw sales data into actionable insights using data analytics and machine learning.",
-            tech_stack: ["SwiftUI", "UIKit", "Charts", "Firebase", "Python", "Flask", "GCP", "TensorFlow", "Pandas", "OpenAI", "Alamofire", "Keras", "Scikit Learn"],
+            tech_stack: ["SwiftUI", "UIKit", "Security", "Charts", "Pandas", "OpenAI", "Alamofire", "Firebase", "Python", "TensorFlow", "Keras", "Scikit Learn", "Flask", "GCP", "Lottie"],
             role: "Co-Founder & iOS Developer",
             responsibilities: [
                 "Developed core front-end features for the iOS application using Swift and SwiftUI, ensuring a seamless user experience.",
@@ -103,7 +103,7 @@ const data = {
                 "assets/projects/Dandenion3.svg"
             ],
             description: "An app to enhance safety for women pedestrians with features for recording and incident reporting in catcalling-prone areas.",
-            tech_stack: ["SwiftUI", "UIKit", "SwiftData", "CloudKit", "CoreLocation", "MapKit", "WatchConnectivity", "BackgroundTasks"],
+            tech_stack: ["SwiftUI", "UIKit", "SwiftData", "CloudKit", "AVFoundation", "BackgroundTasks", "CoreLocation", "MapKit", "WatchConnectivity", "UserNotifications"],
             role: "iOS Developer",
             responsibilities: [
                 "Developed synchronized user interfaces for both iOS and watchOS to ensure consistent feature availability.",
@@ -141,7 +141,7 @@ const data = {
             image: ["assets/projects/PhysiQuest.svg"],
             scale_image_to_height: true,
             description: "An educational physics app with interactive experiments, structured materials, and exercises to make physics accessible and engaging.",
-            tech_stack: ["SwiftUI", "UIKit", "SpriteKit", "GameplayKit", "Lottie"],
+            tech_stack: ["SwiftUI", "UIKit", "SpriteKit", "GameplayKit", "UserDefault", "Lottie"],
             role: "iOS Developer, UX Designer & Project Manager",
             responsibilities: [
                 "Led project management using Notion to organize tasks and facilitate a parallel development workflow for the team.",
@@ -161,7 +161,7 @@ const data = {
                 "assets/projects/FTG2.svg"
             ],
             description: "An AR game blending real-world exploration and virtual guessing, encouraging physical movement and observational skill enhancement.",
-            tech_stack: ["SwiftUI", "UIKit", "ARKit", "RealityKit", "AVFoundation", "Lottie"],
+            tech_stack: ["SwiftUI", "UIKit", "ARKit", "RealityKit", "UserDefault", "AVFoundation", "Lottie"],
             role: "iOS Developer, Designer & Project Manager",
             responsibilities: [
                 "Led the project from concept to App Store submission, overseeing all aspects of development, design, and project management.",
@@ -214,11 +214,21 @@ const data = {
         }
     ],
     skillset: [
-        "Swift", "SwiftUI", "UIKit", "Combine", "Objective-C", "AutoLayout", "ARKit", "Watch Connectivity", 
-        "Debugging", "Refactoring", "Version Control (Git)", "Design Patterns", "OOP", "Functional Programming", 
-        "Local Storage (SwiftData, CoreData)", "Cloud Storage (Firebase, CloudKit)", "Location & Maps (MapKit)", 
-        "Localization", "App Store Connect", "Team Communication", "Prototyping", "Usability Testing", 
-        "Human-Centered Design", "UI Style Guides", "Gamification", "Python", "SQL", "HTML/CSS", "JavaScript", "Figma"
+        // iOS & Swift Ecosystem
+        "Swift", "SwiftUI", "UIKit", "Combine", "AutoLayout", "SwiftData", "CoreData",
+        "MapKit", "ARKit", "Watch Connectivity", "AVFoundation", "BackgroundTasks",
+
+        // Programming & Tools
+        "C", "C++", "Java", "Python", "Git", "Xcode", "App Store Connect",
+
+        // Web Basics
+        "HTML", "CSS", "JavaScript", "MySQL", "PHP",
+
+        // Development Practices
+        "Version Control", "Debugging", "Refactoring", "Design Patterns", "OOP", "Prototyping", "Usability Testing",
+
+        // UI/UX & Design
+        "Figma", "Canva", "Adobe Illustrator", "Adobe Premiere Pro", "Procreate", "Human-Centered Design", "UI Style Guides", "Gamification"
     ],
     achievements: [
         {
