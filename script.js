@@ -62,7 +62,7 @@ const data = {
                 "assets/projects/hetice_placeholder_3.png"
             ],
             description: "Enhances environmental awareness for deaf individuals by converting sound into haptic feedback, offering a new way to experience the world through touch.",
-            tech_stack: ["SwiftUI", "CoreHaptics", "SoundAnalysis", "Accessibility"],
+            tech_stack: ["SwiftUI", "CoreHaptics", "SoundAnalysis", "AVFoundation", "Accessibility"],
             role: "iOS Developer (WWDC25 Winning Project)",
             responsibilities: [
                 "Architected the entire application from concept to a functional prototype using SwiftUI.",
@@ -81,6 +81,7 @@ const data = {
                 "assets/projects/Daridata.jpg",
                 "assets/projects/Daridata_.jpg"
             ],
+            scale_image_to_height: true,
             description: "Empowers retail SMEs by transforming raw sales data into actionable insights using data analytics and machine learning.",
             tech_stack: ["SwiftUI", "UIKit", "Charts", "Firebase", "Python", "Flask", "GCP", "TensorFlow", "Pandas", "OpenAI", "Alamofire", "Keras", "Scikit Learn"],
             role: "Co-Founder & iOS Developer",
@@ -100,7 +101,6 @@ const data = {
                 "assets/projects/Dandenion.svg",
                 "assets/projects/Dandenion2.svg",
                 "assets/projects/Dandenion3.svg"
-
             ],
             description: "An app to enhance safety for women pedestrians with features for recording and incident reporting in catcalling-prone areas.",
             tech_stack: ["SwiftUI", "UIKit", "SwiftData", "CloudKit", "CoreLocation", "MapKit", "WatchConnectivity", "BackgroundTasks"],
@@ -122,6 +122,7 @@ const data = {
                 "assets/projects/Cartulator2.svg",
                 "assets/projects/Cartulator3.svg"
             ],
+            scale_image_to_height: true,
             description: "A grocery shopping app focusing on budgeting and expense tracking for elderly users, incorporating real-time calculations and spending alerts.",
             tech_stack: ["SwiftUI", "UIKit", "SwiftData", "AVFoundation"],
             role: "iOS Developer",
@@ -138,6 +139,7 @@ const data = {
         {
             name: "PhysiQuest",
             image: ["assets/projects/PhysiQuest.svg"],
+            scale_image_to_height: true,
             description: "An educational physics app with interactive experiments, structured materials, and exercises to make physics accessible and engaging.",
             tech_stack: ["SwiftUI", "UIKit", "SpriteKit", "GameplayKit", "Lottie"],
             role: "iOS Developer, UX Designer & Project Manager",
@@ -200,6 +202,7 @@ const data = {
                 "assets/projects/Pinion.svg",
                 "assets/projects/Pinion2.jpg"
             ],
+            scale_image_to_height: true,
             description: "An app created for BSD Link drivers to manage passenger counts, enhancing efficiency and responsibility in tracking.",
             tech_stack: ["SwiftUI", "Python", "TensorFlow"],
             role: "iOS Developer & UX Designer/Researcher",
@@ -582,16 +585,17 @@ function renderProjects(page) {
     const featuredProjectContainer = document.getElementById("featured-project-container");
     const projectGrid = document.getElementById("project-grid");
     if (!projectGrid || !featuredProjectContainer) return;
-    
+
     const featuredProject = data.projects.find(p => p.featured);
 
+    // Render Featured Project
     if (featuredProject) {
         featuredProjectContainer.innerHTML = `
             <div class="featured-project-card" data-aos="fade-up">
                 <div class="row g-0 h-100">
                     <div class="col-lg-7">
                         <div class="featured-project-img-wrapper">
-                             <img src="${featuredProject.image[0]}" class="img-fluid featured-project-image" alt="${featuredProject.name}" onerror="this.onerror=null;this.src='https://placehold.co/800x600/1e1e1e/f8f9fa?text=Featured+Image';">
+                            <img src="${featuredProject.image[0]}" class="img-fluid featured-project-image" alt="${featuredProject.name}" onerror="this.onerror=null;this.src='https://placehold.co/800x600/1e1e1e/f8f9fa?text=Featured+Image';">
                         </div>
                     </div>
                     <div class="col-lg-5 d-flex">
@@ -614,6 +618,7 @@ function renderProjects(page) {
         `;
     }
 
+    // Render Regular Projects
     const regularProjects = filteredProjects.filter(p => !p.featured);
     projectGrid.innerHTML = "";
     const itemsPerPage = 6;
@@ -627,11 +632,19 @@ function renderProjects(page) {
             const col = document.createElement("div");
             col.className = "col-lg-4 col-md-6";
             const hasImage = proj.image && proj.image.length > 0;
+
+            let imageClass = "";
+            if (proj.scale_image_to_height) {
+                imageClass = "fit-height";
+            }
+
             col.innerHTML = `
                 <div class="project-card-link" data-bs-toggle="modal" data-bs-target="#projectModal" data-project-name="${proj.name}">
                     <div class="project-card h-100">
                         <div class="project-image-wrapper">
-                            ${hasImage ? `<img src="${proj.image[0]}" alt="${proj.name}" class="img-fluid project-image" onerror="this.onerror=null;this.src='https://placehold.co/400x250/1e1e1e/f8f9fa?text=Image';">` : `<div class="img-fluid project-image bg-light d-flex align-items-center justify-content-center border"><span class='text-muted'>No Image</span></div>`}
+                            ${hasImage
+                                ? `<img src="${proj.image[0]}" alt="${proj.name}" class="img-fluid project-image ${imageClass}" onerror="this.onerror=null;this.src='https://placehold.co/400x250/1e1e1e/f8f9fa?text=Image';">`
+                                : `<div class="img-fluid project-image bg-light d-flex align-items-center justify-content-center border"><span class='text-muted'>No Image</span></div>`}
                         </div>
                         <div class="project-title">${proj.name}</div>
                         <div class="project-overlay">
@@ -644,6 +657,7 @@ function renderProjects(page) {
             projectGrid.appendChild(col);
         });
     }
+
     renderPagination(page, regularProjects, itemsPerPage);
 }
 
