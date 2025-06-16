@@ -244,7 +244,7 @@ const data = {
             issuer: "HackerRank",
             date: "Nov 2023",
             description: "Demonstrated proficiency in data structures and algorithms.",
-            verifyLink: "#"
+            verifyLink: "https://www.hackerrank.com/certificates/b70b6aca8a30"
         },
         {
             icon: "bi-patch-check-fill",
@@ -252,7 +252,7 @@ const data = {
             issuer: "HackerRank",
             date: "Nov 2023",
             description: "Validated skills in complex SQL queries and database manipulation.",
-            verifyLink: "#"
+            verifyLink: "https://www.hackerrank.com/certificates/d4d9f49e6202"
         },
         {
             icon: "bi-cloud-fill",
@@ -260,7 +260,7 @@ const data = {
             issuer: "Cognitive Class by IBM",
             date: "May 2023",
             description: "Completed coursework on cloud computing fundamentals.",
-            verifyLink: "#"
+            verifyLink: "https://courses.cognitiveclass.ai/certificates/e2a3ed120bfa47e2a63fd88cb735cae1"
         },
         {
             icon: "bi-trophy-fill",
@@ -268,7 +268,7 @@ const data = {
             issuer: "ICPC",
             date: "Nov 2022",
             description: "Competed in the prestigious International Collegiate Programming Contest.",
-            verifyLink: "#"
+            verifyLink: "https://icpc.global/ICPCID/LRZY144ZGFUC"
         }
     ]
 };
