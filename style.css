@@ -724,6 +724,30 @@ footer a:hover {
     border-color: #372d82;
 }
 
+.btn-instagram {
+    background-color: #E1306C;
+    color: #fff;
+    border-color: #E1306C;
+}
+.btn-instagram:hover {
+    background-color: #c7295f;
+    color: #fff;
+    border-color: #c7295f;
+}
+
+.btn-web {
+    background-color: #004d99;
+    color: #ffffff;
+    border: 1px solid #004d99;
+    transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.btn-web:hover {
+    background-color: #003366;
+    color: #ffffff;
+    border-color: #003366;
+}
+
 .btn-outline-themed {
     --bs-btn-color: var(--bs-body-color);
     --bs-btn-border-color: var(--bs-body-color);

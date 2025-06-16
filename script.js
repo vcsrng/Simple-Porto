@@ -124,7 +124,7 @@ const data = {
             ],
             scale_image_to_height: true,
             description: "A grocery shopping app focusing on budgeting and expense tracking for elderly users, incorporating real-time calculations and spending alerts.",
-            tech_stack: ["SwiftUI", "UIKit", "SwiftData", "AVFoundation"],
+            tech_stack: ["SwiftUI", "UIKit", "SwiftData", "AVFoundation", "Localization"],
             role: "iOS Developer",
             responsibilities: [
                 "Developed the complete front-end using SwiftUI, focusing on an accessible and high-contrast user interface.",
@@ -211,6 +211,65 @@ const data = {
                 "Developed the main user interface for passenger count management using SwiftUI.",
                 "Collaborated with the team to integrate a Python and TensorFlow backend for data processing."
             ]
+        },
+        {
+            name: "sehh.id",
+            image: [
+                "assets/projects/sehh.png",
+                "assets/projects/sehh2.svg",
+                "assets/projects/sehh3.svg",
+                "assets/projects/sehh4.svg",
+                "assets/projects/sehh5.svg",
+                "assets/projects/sehh6.svg"
+            ],
+            description: "An LMS platform designed to streamline educational content delivery and user engagement for an online learning initiative.",
+            tech_stack: ["Figma", "Human-Centered Design", "UI/UX Style Guides", "Design Patterns", "Prototyping", "User Research", "Product Strategy"],
+            role: "Product Owner & Designer",
+            responsibilities: [
+                "Led cross-functional team efforts to research and define core problems, conceptualize solutions, and establish the product's value proposition.",
+                "Developed the TAM, SAM, and SOM analysis to define market opportunity and formulated the supply chain and sustainable business model to ensure product viability and operational efficiency.",
+                "Defined and designed essential product features, producing comprehensive prototypes to articulate solutions and ensure alignment with user experience objectives."
+            ],
+            links: {
+                instagram: "https://www.instagram.com/sehh.id"
+            }
+        },
+        {
+            name: "FARbucks",
+            image: [
+                "assets/projects/farbucks.svg"
+            ],
+            scale_image_to_height: true,
+            description: "A comprehensive cafe website developed as part of an HCI course, designed to enhance user experience for coffee enthusiasts with menu, pricing, and event information.",
+            tech_stack: ["HTML", "CSS", "JavaScript", "Figma", "UI/UX Style Guides", "Design Patterns", "Usability Testing"],
+            role: "Lead Developer & UX Designer",
+            responsibilities: [
+                "Directed the design and user experience for the website, focusing on intuitive navigation and visual appeal.",
+                "Developed all front-end functionalities for menu display, pricing, special offers, and cafe history.",
+                "Managed project timelines and deliverables, ensuring the successful completion of the assignment within course requirements."
+            ],
+            links: {
+                github: "https://github.com/vcsrng/FarBucksWebProject",
+                web: "https://vcsrng.github.io/FarBucksWebProject/home.html"
+            }
+        },
+        {
+            name: "All About Space",
+            image: [
+                "assets/projects/AAS.svg"
+            ],
+            description: "An interactive web platform from HCI coursework providing simplified information about planets and outer space, aimed at broadening public knowledge.",
+            tech_stack: ["HTML", "CSS", "JavaScript", "Figma", "UI/UX Style Guides", "Design Patterns", "Usability Testing"],
+            role: "Full-Stack Developer & Project Lead",
+            responsibilities: [
+                "Oversaw the entire project lifecycle, from conceptualization to deployment, ensuring all objectives were met.",
+                "Designed and implemented the user interface to present complex astronomical data in an accessible and engaging manner.",
+                "Developed dynamic content features to provide detailed planet information and enhance user interaction."
+            ],
+            links: {
+                github: "https://github.com/vcsrng/SimplePlanetWebProject",
+                web: "https://vcsrng.github.io/SimplePlanetWebProject/home.html"
+            }
         }
     ],
     skillset: {
@@ -218,15 +277,15 @@ const data = {
             "Swift", "SwiftUI", "UIKit", "Combine", "AutoLayout", "SwiftData", "CoreData",
             "MapKit", "ARKit", "Watch Connectivity", "AVFoundation", "BackgroundTasks",
             "C", "C++", "Java", "Python", "Git", "Xcode", "HTML", "CSS", "JavaScript", "MySQL", "PHP",
-            "Version Control", "Debugging", "Refactoring", "OOP"
+            "Localization", "Version Control", "Debugging", "Refactoring", "OOP"
         ],
         design: [
             "Figma", "Canva", "Adobe Illustrator", "Adobe Premiere Pro", "Procreate",
-            "Human-Centered Design", "UI Style Guides", "Gamification",  "Design Patterns", 
+            "Human-Centered Design", "UI/UX Style Guides", "Gamification", "Design Patterns",
             "Prototyping", "Usability Testing"
         ],
         product: [
-            "Notion", "Jira", "App Store Connect"
+            "Notion", "Jira", "App Store Connect", "User Research", "Product Strategy"
         ]
     },
     achievements: [
@@ -279,7 +338,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const aboutText = document.getElementById("about-text");
     if (aboutText) aboutText.textContent = data.about.textabout;
-    
+
     createHeroCodeBackground();
     setupThemeSwitcher();
     setupNavbarScrollEffect();
@@ -294,7 +353,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setupCV();
     setupDynamicScrollspy();
     setupFooter();
-    
+
     window.addEventListener('resize', setupDynamicScrollspy);
 
     const projectModal = document.getElementById('projectModal');
@@ -312,7 +371,7 @@ document.addEventListener('DOMContentLoaded', () => {
             projectModal.querySelector('#modal-project-tech-stack').innerHTML = (projectData.tech_stack || []).map(tech => `<span>${tech}</span>`).join('');
             projectModal.querySelector('#modal-project-role').textContent = projectData.role || 'N/A';
             projectModal.querySelector('#modal-project-responsibilities').innerHTML = (projectData.responsibilities || []).map(res => `<li>${res}</li>`).join('');
-            
+
             const modalLinks = projectModal.querySelector('#modal-project-links');
             modalLinks.innerHTML = '';
             if (projectData.links) {
@@ -321,6 +380,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (projectData.links.github) { modalLinks.insertAdjacentHTML('beforeend', `<a href="${projectData.links.github}" class="btn btn-secondary" target="_blank" rel="noopener noreferrer"><i class="bi bi-github"></i> GitHub</a>`); }
                 if (projectData.links.medium) { modalLinks.insertAdjacentHTML('beforeend', `<a href="${projectData.links.medium}" class="btn btn-light" target="_blank" rel="noopener noreferrer"><i class="bi bi-medium"></i> Read Article</a>`); }
                 if (projectData.links.wwdc) { modalLinks.insertAdjacentHTML('beforeend', `<a href="${projectData.links.wwdc}" class="btn btn-wwdc" target="_blank" rel="noopener noreferrer"><i class="bi bi-trophy-fill"></i> WWDC Profile</a>`); }
+                if (projectData.links.instagram) { modalLinks.insertAdjacentHTML('beforeend', `<a href="${projectData.links.instagram}" class="btn btn-instagram" target="_blank" rel="noopener noreferrer"><i class="bi bi-instagram"></i> Instagram</a>`); }
+                if (projectData.links.web) { modalLinks.insertAdjacentHTML('beforeend', `<a href="${projectData.links.web}" class="btn btn-web" target="_blank" rel="noopener noreferrer"><i class="bi bi-globe"></i> Website</a>`); }
             }
             modalLinks.insertAdjacentHTML('beforeend', `<button type="button" class="btn btn-modal-close ms-auto" data-bs-dismiss="modal">Close</button>`);
 
@@ -359,8 +420,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     masterFrame.width = renderedWidthAtMinHeight;
                 }
             });
-            
-            const maxAllowedWidth = 700; 
+
+            const maxAllowedWidth = 700;
             masterFrame.width = Math.min(masterFrame.width, maxAllowedWidth);
 
             imageContainer.style.width = `${masterFrame.width}px`;
@@ -527,7 +588,7 @@ function setupLoopingNavbarLogoAnimation() {
         } else if (isDeleting && charIndex === 0) {
             isDeleting = false;
         }
-        
+
         setTimeout(loop, time);
     }
     loop();
@@ -547,7 +608,7 @@ function renderFilterOptions() {
             <label class="form-check-label" for="tag-${tag}">${tag}</label>
         </div>`
     ).join('');
-    
+
     document.querySelectorAll('#filter-options-container .form-check-input').forEach(checkbox => {
         checkbox.addEventListener('change', (e) => {
             if (e.target.checked) {
@@ -562,14 +623,14 @@ function renderFilterOptions() {
     const clearFiltersBtn = document.getElementById("clear-filters-btn");
     const offcanvasElement = document.getElementById('offcanvasFilters');
     const offcanvas = offcanvasElement ? bootstrap.Offcanvas.getInstance(offcanvasElement) || new bootstrap.Offcanvas(offcanvasElement) : null;
-    
+
     if (applyFiltersBtn) {
         applyFiltersBtn.addEventListener('click', () => {
             activeTags = [...selectedTags];
             if (activeTags.length === 0) {
                 filteredProjects = [...data.projects];
             } else {
-                filteredProjects = data.projects.filter(project => 
+                filteredProjects = data.projects.filter(project =>
                     activeTags.every(tag => project.tech_stack && project.tech_stack.includes(tag))
                 );
             }
@@ -816,7 +877,7 @@ function setupFooter() {
     const footerText = document.getElementById('footer-text');
     if (footerText) {
         const currentYear = new Date().getFullYear();
-        const lastUpdatedDate = new Date(); 
+        const lastUpdatedDate = new Date();
         const formattedDate = lastUpdatedDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
         footerText.innerHTML = `©${currentYear} Vincent Saranang, All Rights Reserved.<br><span style="font-size: 0.8em; opacity: 0.7;">Last Updated: ${formattedDate}</span>`;
     }
