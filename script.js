@@ -78,8 +78,7 @@ const data = {
         {
             name: "DariData",
             image: [
-                "assets/projects/Daridata.jpg",
-                "assets/projects/Daridata_.jpg"
+                "assets/projects/Daridata.jpg"
             ],
             scale_image_to_height: true,
             description: "Empowers retail SMEs by transforming raw sales data into actionable insights using data analytics and machine learning.",
@@ -99,8 +98,8 @@ const data = {
             name: "Dandenion",
             image: [
                 "assets/projects/Dandenion.svg",
-                "assets/projects/Dandenion2.svg",
-                "assets/projects/Dandenion3.svg"
+                "assets/projects/Dandenion2.png",
+                "assets/projects/Dandenion3.png"
             ],
             description: "An app to enhance safety for women pedestrians with features for recording and incident reporting in catcalling-prone areas.",
             tech_stack: ["SwiftUI", "UIKit", "SwiftData", "CloudKit", "AVFoundation", "BackgroundTasks", "CoreLocation", "MapKit", "WatchConnectivity", "UserNotifications"],
@@ -158,7 +157,7 @@ const data = {
             name: "Find then Guess",
             image: [
                 "assets/projects/FTG.svg",
-                "assets/projects/FTG2.svg"
+                "assets/projects/FTG2.png"
             ],
             description: "An AR game blending real-world exploration and virtual guessing, encouraging physical movement and observational skill enhancement.",
             tech_stack: ["SwiftUI", "UIKit", "ARKit", "RealityKit", "UserDefault", "AVFoundation", "Lottie"],
@@ -200,7 +199,12 @@ const data = {
             name: "Pinion",
             image: [
                 "assets/projects/Pinion.svg",
-                "assets/projects/Pinion2.jpg"
+                "assets/projects/Pinion2.png",
+                "assets/projects/Pinion3.png",
+                "assets/projects/Pinion4.png",
+                "assets/projects/Pinion5.png",
+                "assets/projects/Pinion6.png",
+                "assets/projects/Pinion7.png"
             ],
             scale_image_to_height: true,
             description: "An app created for BSD Link drivers to manage passenger counts, enhancing efficiency and responsibility in tracking.",
@@ -242,7 +246,7 @@ const data = {
             scale_image_to_height: true,
             description: "A comprehensive cafe website developed as part of an HCI course, designed to enhance user experience for coffee enthusiasts with menu, pricing, and event information.",
             tech_stack: ["HTML", "CSS", "JavaScript", "Figma", "UI/UX Style Guides", "Design Patterns", "Usability Testing"],
-            role: "Lead Developer & UX Designer",
+            role: "Lead Developer & Designer",
             responsibilities: [
                 "Directed the design and user experience for the website, focusing on intuitive navigation and visual appeal.",
                 "Developed all front-end functionalities for menu display, pricing, special offers, and cafe history.",
@@ -260,7 +264,7 @@ const data = {
             ],
             description: "An interactive web platform from HCI coursework providing simplified information about planets and outer space, aimed at broadening public knowledge.",
             tech_stack: ["HTML", "CSS", "JavaScript", "Figma", "UI/UX Style Guides", "Design Patterns", "Usability Testing"],
-            role: "Full-Stack Developer & Project Lead",
+            role: "Developer & Designer",
             responsibilities: [
                 "Oversaw the entire project lifecycle, from conceptualization to deployment, ensuring all objectives were met.",
                 "Designed and implemented the user interface to present complex astronomical data in an accessible and engaging manner.",
