@@ -392,16 +392,21 @@ async function updateVisitCounter() {
     const counterElement = document.getElementById('visit-counter');
     if (!counterElement) return;
 
-    const apiUrl = 'https://api.counterapi.dev/v2/vincent-porto/pageviews/up';
+    const incrementUrl = 'https://api.counterapi.dev/v2/vincent-porto/pageviews/up';
+    const getUrl = 'https://api.counterapi.dev/v2/vincent-porto/pageviews/';
 
     try {
-        const response = await fetch(apiUrl, {
-            method: 'POST'
-        });
-        if (!response.ok) throw new Error('Counter API response not OK');
+        await fetch(incrementUrl, { method: 'POST' });
+
+        const response = await fetch(getUrl);
+        if (!response.ok) {
+            throw new Error('Could not retrieve counter value');
+        }
+        
         const countData = await response.json();
         
-        counterElement.textContent = countData.count; 
+        counterElement.textContent = countData.count;
+
     } catch (error) {
         console.error('Failed to update visit counter:', error);
         counterElement.textContent = 'N/A';
