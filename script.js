@@ -55,9 +55,7 @@ const data = {
             name: "Hetice",
             featured: true,
             image: [
-                "assets/projects/Hetice.svg",
-                "assets/projects/hetice_placeholder_2.png",
-                "assets/projects/hetice_placeholder_3.png"
+                "https://vcsrng.github.io/assets/projects/Hetice.svg"
             ],
             description: "Enhances environmental awareness for deaf individuals by converting sound into haptic feedback, offering a new way to experience the world through touch.",
             tech_stack: ["SwiftUI", "CoreHaptics", "SoundAnalysis", "AVFoundation"],
@@ -76,7 +74,7 @@ const data = {
         {
             name: "DariData",
             image: [
-                "assets/projects/Daridata.jpg"
+                "https://vcsrng.github.io/assets/projects/Daridata.jpg"
             ],
             scale_image_to_height: true,
             description: "Empowers retail SMEs by transforming raw sales data into actionable insights using data analytics and machine learning.",
@@ -95,9 +93,9 @@ const data = {
         {
             name: "Dandenion",
             image: [
-                "assets/projects/Dandenion.svg",
-                "assets/projects/Dandenion2.png",
-                "assets/projects/Dandenion3.png"
+                "https://vcsrng.github.io/assets/projects/Dandenion.svg",
+                "https://vcsrng.github.io/assets/projects/Dandenion2.png",
+                "https://vcsrng.github.io/assets/projects/Dandenion3.png"
             ],
             description: "An app to enhance safety for women pedestrians with features for recording and incident reporting in catcalling-prone areas.",
             tech_stack: ["SwiftUI", "UIKit", "SwiftData", "CloudKit", "AVFoundation", "BackgroundTasks", "CoreLocation", "MapKit", "WatchConnectivity", "UserNotifications"],
@@ -115,9 +113,9 @@ const data = {
         {
             name: "Cartulator",
             image: [
-                "assets/projects/Cartulator.svg",
-                "assets/projects/Cartulator2.svg",
-                "assets/projects/Cartulator3.svg"
+                "https://vcsrng.github.io/assets/projects/Cartulator.svg",
+                "https://vcsrng.github.io/assets/projects/Cartulator2.svg",
+                "https://vcsrng.github.io/assets/projects/Cartulator3.svg"
             ],
             scale_image_to_height: true,
             description: "A grocery shopping app focusing on budgeting and expense tracking for elderly users, incorporating real-time calculations and spending alerts.",
@@ -135,7 +133,9 @@ const data = {
         },
         {
             name: "PhysiQuest",
-            image: ["assets/projects/Physiquest.svg"],
+            image: [
+                "https://vcsrng.github.io/assets/projects/Physiquest.svg"
+            ],
             scale_image_to_height: true,
             description: "An educational physics app with interactive experiments, structured materials, and exercises to make physics accessible and engaging.",
             tech_stack: ["SwiftUI", "UIKit", "SpriteKit", "GameplayKit", "UserDefault", "Lottie"],
@@ -154,8 +154,8 @@ const data = {
         {
             name: "Find then Guess",
             image: [
-                "assets/projects/FTG.svg",
-                "assets/projects/FTG2.png"
+                "https://vcsrng.github.io/assets/projects/FTG.svg",
+                "https://vcsrng.github.io/assets/projects/FTG2.png"
             ],
             description: "An AR game blending real-world exploration and virtual guessing, encouraging physical movement and observational skill enhancement.",
             tech_stack: ["SwiftUI", "UIKit", "ARKit", "RealityKit", "UserDefault", "AVFoundation", "Lottie"],
@@ -174,12 +174,12 @@ const data = {
         {
             name: "SCUP",
             image: [
-                "assets/projects/SCUP.svg",
-                "assets/projects/SCUP2.svg",
-                "assets/projects/SCUP3.svg",
-                "assets/projects/SCUP4.svg",
-                "assets/projects/SCUP5.svg",
-                "assets/projects/SCUP6.svg",
+                "https://vcsrng.github.io/assets/projects/SCUP.svg",
+                "https://vcsrng.github.io/assets/projects/SCUP2.svg",
+                "https://vcsrng.github.io/assets/projects/SCUP3.svg",
+                "https://vcsrng.github.io/assets/projects/SCUP4.svg",
+                "https://vcsrng.github.io/assets/projects/SCUP5.svg",
+                "https://vcsrng.github.io/assets/projects/SCUP6.svg",
             ],
             description: "A sketching app empowering users to transform initial sketches into polished illustrations, promoting creativity and skill improvement.",
             tech_stack: ["SwiftUI", "UIKit", "SwiftData", "Firebase", "AVKit", "Python Replicate"],
@@ -196,13 +196,13 @@ const data = {
         {
             name: "Pinion",
             image: [
-                "assets/projects/Pinion.svg",
-                "assets/projects/Pinion2.png",
-                "assets/projects/Pinion3.png",
-                "assets/projects/Pinion4.png",
-                "assets/projects/Pinion5.png",
-                "assets/projects/Pinion6.png",
-                "assets/projects/Pinion7.png"
+                "https://vcsrng.github.io/assets/projects/Pinion.svg",
+                "https://vcsrng.github.io/assets/projects/Pinion2.png",
+                "https://vcsrng.github.io/assets/projects/Pinion3.png",
+                "https://vcsrng.github.io/assets/projects/Pinion4.png",
+                "https://vcsrng.github.io/assets/projects/Pinion5.png",
+                "https://vcsrng.github.io/assets/projects/Pinion6.png",
+                "https://vcsrng.github.io/assets/projects/Pinion7.png"
             ],
             scale_image_to_height: true,
             description: "An app created for BSD Link drivers to manage passenger counts, enhancing efficiency and responsibility in tracking.",
@@ -217,12 +217,12 @@ const data = {
         {
             name: "sehh.id",
             image: [
-                "assets/projects/sehh.png",
-                "assets/projects/sehh2.svg",
-                "assets/projects/sehh3.svg",
-                "assets/projects/sehh4.svg",
-                "assets/projects/sehh5.svg",
-                "assets/projects/sehh6.svg"
+                "https://vcsrng.github.io/assets/projects/sehh.png",
+                "https://vcsrng.github.io/assets/projects/sehh2.svg",
+                "https://vcsrng.github.io/assets/projects/sehh3.svg",
+                "https://vcsrng.github.io/assets/projects/sehh4.svg",
+                "https://vcsrng.github.io/assets/projects/sehh5.svg",
+                "https://vcsrng.github.io/assets/projects/sehh6.svg"
             ],
             description: "An LMS platform designed to streamline educational content delivery and user engagement for an online learning initiative.",
             tech_stack: ["Figma", "Human-Centered Design", "UI/UX Style Guides", "Design Patterns", "Prototyping", "User Research", "Product Strategy"],
@@ -239,7 +239,7 @@ const data = {
         {
             name: "FARbucks",
             image: [
-                "assets/projects/farbucks.svg"
+                "https://vcsrng.github.io/assets/projects/farbucks.svg"
             ],
             scale_image_to_height: true,
             description: "A comprehensive cafe website developed as part of an HCI course, designed to enhance user experience for coffee enthusiasts with menu, pricing, and event information.",
@@ -258,7 +258,7 @@ const data = {
         {
             name: "All About Space",
             image: [
-                "assets/projects/AAS.svg"
+                "https://vcsrng.github.io/assets/projects/AAS.svg"
             ],
             description: "An interactive web platform from HCI coursework providing simplified information about planets and outer space, aimed at broadening public knowledge.",
             tech_stack: ["HTML", "CSS", "JavaScript", "Figma", "UI/UX Style Guides", "Design Patterns", "Usability Testing"],
