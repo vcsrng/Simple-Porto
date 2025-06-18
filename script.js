@@ -395,7 +395,7 @@ async function updateVisitCounter() {
     if (!counterElement) return;
 
     const incrementUrl = 'https://api.counterapi.dev/v2/vincent-porto/pageviews/up';
-    const getUrl = 'https://api.counterapi.dev/v2/vincent-porto/pageviews/';
+    const getUrl = 'https://api.counterapi.dev/v2/vincent-porto/pageviews';
 
     try {
         await fetch(incrementUrl);
