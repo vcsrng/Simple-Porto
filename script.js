@@ -335,12 +335,9 @@ const data = {
     ]
 };
 
-// Main function to run after the DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-    // --- INITIALIZE PLUGINS AND SETUP ---
     AOS.init({ duration: 800, easing: 'ease-in-out', once: true });
 
-    // --- POPULATE DYNAMIC CONTENT ---
     const heroName = document.getElementById("hero-name");
     if (heroName) heroName.textContent = data.hero.name;
 
@@ -361,168 +358,47 @@ document.addEventListener('DOMContentLoaded', () => {
     setupCV();
     setupFooter();
 
-    // --- UPDATED NAVIGATION SETUP ---
-    // This function now correctly sets up Scrollspy and smooth scrolling
     setupNavigation();
-
-    // --- MODAL LOGIC ---
-    const projectModal = document.getElementById('projectModal');
-    let projectCarousel = null;
-
-    if (projectModal) {
-        projectModal.addEventListener('show.bs.modal', async function (event) {
-            const card = event.relatedTarget;
-            const projectName = card.getAttribute('data-project-name');
-            const projectData = data.projects.find(p => p.name === projectName);
-            if (!projectData) return;
-
-            projectModal.querySelector('#modal-project-title').textContent = projectData.name;
-            projectModal.querySelector('#modal-project-description').textContent = projectData.description;
-            projectModal.querySelector('#modal-project-tech-stack').innerHTML = (projectData.tech_stack || []).map(tech => `<span>${tech}</span>`).join('');
-            projectModal.querySelector('#modal-project-role').textContent = projectData.role || 'N/A';
-            projectModal.querySelector('#modal-project-responsibilities').innerHTML = (projectData.responsibilities || []).map(res => `<li>${res}</li>`).join('');
-
-            const modalLinks = projectModal.querySelector('#modal-project-links');
-            modalLinks.innerHTML = '';
-            if (projectData.links) {
-                if (projectData.links.appstore) { modalLinks.insertAdjacentHTML('beforeend', `<a href="${projectData.links.appstore}" class="btn btn-dark" target="_blank" rel="noopener noreferrer"><i class="bi bi-apple"></i> App Store</a>`); }
-                if (projectData.links.testflight) { modalLinks.insertAdjacentHTML('beforeend', `<a href="${projectData.links.testflight}" class="btn btn-info text-white" target="_blank" rel="noopener noreferrer"><i class="bi bi-box-seam"></i> TestFlight</a>`); }
-                if (projectData.links.github) { modalLinks.insertAdjacentHTML('beforeend', `<a href="${projectData.links.github}" class="btn btn-secondary" target="_blank" rel="noopener noreferrer"><i class="bi bi-github"></i> GitHub</a>`); }
-                if (projectData.links.medium) { modalLinks.insertAdjacentHTML('beforeend', `<a href="${projectData.links.medium}" class="btn btn-light" target="_blank" rel="noopener noreferrer"><i class="bi bi-medium"></i> Read Article</a>`); }
-                if (projectData.links.wwdc) { modalLinks.insertAdjacentHTML('beforeend', `<a href="${projectData.links.wwdc}" class="btn btn-wwdc" target="_blank" rel="noopener noreferrer"><i class="bi bi-trophy-fill"></i> WWDC Profile</a>`); }
-                if (projectData.links.instagram) { modalLinks.insertAdjacentHTML('beforeend', `<a href="${projectData.links.instagram}" class="btn btn-instagram" target="_blank" rel="noopener noreferrer"><i class="bi bi-instagram"></i> Instagram</a>`); }
-                if (projectData.links.web) { modalLinks.insertAdjacentHTML('beforeend', `<a href="${projectData.links.web}" class="btn btn-web" target="_blank" rel="noopener noreferrer"><i class="bi bi-globe"></i> Website</a>`); }
-            }
-            modalLinks.insertAdjacentHTML('beforeend', `<button type="button" class="btn btn-modal-close ms-auto" data-bs-dismiss="modal">Close</button>`);
-
-            const carouselInner = document.getElementById('modal-carousel-inner');
-            const carouselIndicators = document.getElementById('modal-carousel-indicators');
-            const carouselContainer = document.getElementById('projectImageCarousel');
-            const imageContainer = projectModal.querySelector('.modal-image-container');
-
-            carouselInner.innerHTML = '';
-            carouselIndicators.innerHTML = '';
-            imageContainer.style.height = null;
-            imageContainer.style.width = null;
-
-            const images = projectData.image || [];
-            if (images.length === 0) {
-                imageContainer.innerHTML = `<div class="carousel-image-wrapper"><span class="text-muted">No Image Available</span></div>`;
-                return;
-            }
-
-            const loadedImageData = await Promise.all(images.map(src => {
-                return new Promise((resolve) => {
-                    const img = new Image();
-                    img.onload = () => resolve({ src, width: img.naturalWidth, height: img.naturalHeight, loaded: true });
-                    img.onerror = () => resolve({ src: 'https://placehold.co/800x600/2a2a2a/f8f9fa?text=Image+Not+Found', width: 800, height: 600, loaded: false });
-                    img.src = src;
-                });
-            }));
-
-            const minHeightPx = window.innerHeight * 0.40;
-            let masterFrame = { width: 0, height: minHeightPx };
-
-            loadedImageData.forEach(imgData => {
-                const aspectRatio = imgData.width / imgData.height;
-                const renderedWidthAtMinHeight = minHeightPx * aspectRatio;
-                if (renderedWidthAtMinHeight > masterFrame.width) {
-                    masterFrame.width = renderedWidthAtMinHeight;
-                }
-            });
-
-            const maxAllowedWidth = 700;
-            masterFrame.width = Math.min(masterFrame.width, maxAllowedWidth);
-
-            imageContainer.style.width = `${masterFrame.width}px`;
-            imageContainer.style.height = `${masterFrame.height}px`;
-
-            loadedImageData.forEach((imgData, index) => {
-                const activeClass = index === 0 ? 'active' : '';
-                const carouselItemHTML = `
-                    <div class="carousel-item ${activeClass}">
-                        <div class="carousel-image-wrapper">
-                            <img src="${imgData.src}" class="d-block" alt="Project image ${index + 1}">
-                        </div>
-                    </div>
-                `;
-                carouselInner.insertAdjacentHTML('beforeend', carouselItemHTML);
-                const indicatorHTML = `<button type="button" data-bs-target="#projectImageCarousel" data-bs-slide-to="${index}" class="${activeClass}" aria-current="true" aria-label="Slide ${index + 1}"></button>`;
-                carouselIndicators.insertAdjacentHTML('beforeend', indicatorHTML);
-            });
-
-            if (images.length > 1) {
-                carouselContainer.classList.remove('single-image');
-                if (projectCarousel) projectCarousel.dispose();
-                projectCarousel = new bootstrap.Carousel(carouselContainer, {
-                    interval: 5000,
-                    pause: 'hover'
-                });
-            } else {
-                carouselContainer.classList.add('single-image');
-            }
-        });
-
-        projectModal.addEventListener('hidden.bs.modal', function () {
-            if (projectCarousel) {
-                projectCarousel.dispose();
-                projectCarousel = null;
-            }
-            const imageContainer = projectModal.querySelector('.modal-image-container');
-            if (imageContainer) {
-                imageContainer.style.height = null;
-                imageContainer.style.width = null;
-            }
-        });
-    }
 });
 
 function setupNavigation() {
     const mainNav = document.querySelector('.navbar');
     if (!mainNav) return;
 
-    // Initialize Scrollspy
-    const navbarHeight = mainNav.offsetHeight;
-    const scrollSpy = new bootstrap.ScrollSpy(document.body, {
-        target: '#navbarNav',
-        offset: navbarHeight + 20 // Adjusted offset for better accuracy
-    });
+    const refreshScrollspy = () => {
+        const scrollSpy = bootstrap.ScrollSpy.getOrCreateInstance(document.body, {
+            target: '#navbarNav'
+        });
+        scrollSpy.refresh();
 
-    // Add smooth scrolling to all nav links
+        const atBottom = Math.ceil(window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight;
+        if (atBottom) {
+            const contactLink = document.querySelector('a.nav-link[href="#contact"]');
+            if (contactLink && !contactLink.classList.contains('active')) {
+                document.querySelectorAll('a.nav-link.active').forEach(link => link.classList.remove('active'));
+                contactLink.classList.add('active');
+            }
+        }
+    };
+
+    setTimeout(refreshScrollspy, 500);
+
+    window.addEventListener('resize', refreshScrollspy);
+    document.addEventListener('scroll', refreshScrollspy);
+
     const navLinks = document.querySelectorAll('#navbarNav .nav-link');
     navLinks.forEach(link => {
-        link.addEventListener('click', function (e) {
-            const href = this.getAttribute('href');
-            // Ensure it's an internal link
-            if (href && href.startsWith('#')) {
-                e.preventDefault();
-                const targetEl = document.querySelector(href);
-                if (targetEl) {
-                    const navbarHeight = mainNav.offsetHeight;
-                    const elementPosition = targetEl.getBoundingClientRect().top;
-                    const offsetPosition = elementPosition + window.pageYOffset - navbarHeight;
-
-                    window.scrollTo({
-                        top: offsetPosition,
-                        behavior: "smooth"
-                    });
-                    
-                    // If navbar is collapsed, close it on click
-                    const navbarCollapse = document.querySelector('.navbar-collapse');
-                    if(navbarCollapse.classList.contains('show')) {
-                        const toggler = document.querySelector('.navbar-toggler');
-                        toggler.click();
-                    }
-                }
+        link.addEventListener('click', function(e) {
+            const navbarCollapse = document.querySelector('.navbar-collapse.show');
+            if (navbarCollapse) {
+                const bsCollapse = new bootstrap.Collapse(navbarCollapse, {
+                    toggle: false
+                });
+                bsCollapse.hide();
             }
         });
     });
-
-    window.addEventListener('resize', () => {
-        scrollSpy.refresh();
-    });
 }
-
 
 function createHeroCodeBackground() {
     const bg = document.getElementById('hero-code-bg');
@@ -715,7 +591,6 @@ function renderProjects(page) {
 
     const featuredProject = data.projects.find(p => p.featured);
 
-    // Render Featured Project
     if (featuredProject) {
         featuredProjectContainer.innerHTML = `
             <div class="featured-project-card" data-aos="fade-up">
@@ -745,7 +620,6 @@ function renderProjects(page) {
         `;
     }
 
-    // Render Regular Projects
     const regularProjects = filteredProjects.filter(p => !p.featured);
     projectGrid.innerHTML = "";
     const itemsPerPage = 6;
@@ -759,11 +633,7 @@ function renderProjects(page) {
             const col = document.createElement("div");
             col.className = "col-lg-4 col-md-6";
             const hasImage = proj.image && proj.image.length > 0;
-
-            let imageClass = "";
-            if (proj.scale_image_to_height) {
-                imageClass = "fit-height";
-            }
+            let imageClass = proj.scale_image_to_height ? "fit-height" : "";
 
             col.innerHTML = `
                 <div class="project-card-link" data-bs-toggle="modal" data-bs-target="#projectModal" data-project-name="${proj.name}">
@@ -786,6 +656,12 @@ function renderProjects(page) {
     }
 
     renderPagination(page, regularProjects, itemsPerPage);
+    setTimeout(() => {
+        const scrollSpy = bootstrap.ScrollSpy.getInstance(document.body);
+        if (scrollSpy) {
+            scrollSpy.refresh();
+        }
+    }, 300);
 }
 
 function renderPagination(currentPage, projectsToPaginate, itemsPerPage) {
