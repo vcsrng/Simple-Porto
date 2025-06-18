@@ -392,40 +392,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
 async function updateVisitCounter() {
     const counterElement = document.getElementById('visit-counter');
-    if (!counterElement) {
-        console.error("Error: Could not find the element with id 'visit-counter'. Make sure it's in your HTML.");
-        return;
-    }
-    console.log("Found counter element, starting update...");
+    if (!counterElement) return;
 
     const incrementUrl = 'https://api.counterapi.dev/v2/vincent-porto/pageviews/up';
+    const getUrl = 'https://api.counterapi.dev/v2/vincent-porto/pageviews/';
 
     try {
-        console.log("Attempting to fetch from:", incrementUrl);
+        await fetch(incrementUrl);
 
-        const response = await fetch(incrementUrl);
-        
-        console.log("Received response from API.");
-
+        const response = await fetch(getUrl);
         if (!response.ok) {
-            const errorText = await response.text();
-            throw new Error(`API response was not OK. Status: ${response.status}. Message: ${errorText}`);
+            throw new Error('Could not retrieve counter value');
         }
-
-        const data = await response.json();
         
-        console.log("API data received successfully:", data);
+        const getData = await response.json();
 
-        if (data && data.data && data.data.count !== undefined) {
-             counterElement.textContent = data.data.count;
-        } else if (data && data.count !== undefined) {
-             counterElement.textContent = data.count;
+        if (getData && getData.count !== undefined) {
+            counterElement.textContent = getData.count;
         } else {
-            console.error("Could not find 'count' property in the API response.", data);
-            throw new Error("Response did not contain a 'count' property.");
+            throw new Error("Response from GET endpoint did not contain a 'count' property.");
         }
-        
-        console.log("Counter updated on page successfully.");
 
     } catch (error) {
         console.error('Failed to update visit counter:', error);
