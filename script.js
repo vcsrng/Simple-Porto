@@ -1,5 +1,4 @@
-AOS.init({ duration: 800, easing: 'ease-in-out', once: true });
-
+// Global data for the portfolio
 const data = {
     hero: {
         name: "Vincent Saranang",
@@ -62,7 +61,7 @@ const data = {
                 "assets/projects/hetice_placeholder_3.png"
             ],
             description: "Enhances environmental awareness for deaf individuals by converting sound into haptic feedback, offering a new way to experience the world through touch.",
-            tech_stack: ["SwiftUI", "CoreHaptics", "SoundAnalysis", "Accessibility"],
+            tech_stack: ["SwiftUI", "CoreHaptics", "SoundAnalysis", "AVFoundation"],
             role: "iOS Developer (WWDC25 Winning Project)",
             responsibilities: [
                 "Architected the entire application from concept to a functional prototype using SwiftUI.",
@@ -78,11 +77,11 @@ const data = {
         {
             name: "DariData",
             image: [
-                "assets/projects/Daridata.jpg",
-                "assets/projects/Daridata_.jpg"
+                "assets/projects/Daridata.jpg"
             ],
+            scale_image_to_height: true,
             description: "Empowers retail SMEs by transforming raw sales data into actionable insights using data analytics and machine learning.",
-            tech_stack: ["SwiftUI", "UIKit", "Charts", "Firebase", "Python", "Flask", "GCP", "TensorFlow", "Pandas", "OpenAI", "Alamofire", "Keras", "Scikit Learn"],
+            tech_stack: ["SwiftUI", "UIKit", "Security", "Charts", "Pandas", "OpenAI", "Alamofire", "Firebase", "Python", "TensorFlow", "Keras", "Scikit Learn", "Flask", "GCP", "Lottie"],
             role: "Co-Founder & iOS Developer",
             responsibilities: [
                 "Developed core front-end features for the iOS application using Swift and SwiftUI, ensuring a seamless user experience.",
@@ -98,12 +97,11 @@ const data = {
             name: "Dandenion",
             image: [
                 "assets/projects/Dandenion.svg",
-                "assets/projects/Dandenion2.svg",
-                "assets/projects/Dandenion3.svg"
-
+                "assets/projects/Dandenion2.png",
+                "assets/projects/Dandenion3.png"
             ],
             description: "An app to enhance safety for women pedestrians with features for recording and incident reporting in catcalling-prone areas.",
-            tech_stack: ["SwiftUI", "UIKit", "SwiftData", "CloudKit", "CoreLocation", "MapKit", "WatchConnectivity", "BackgroundTasks"],
+            tech_stack: ["SwiftUI", "UIKit", "SwiftData", "CloudKit", "AVFoundation", "BackgroundTasks", "CoreLocation", "MapKit", "WatchConnectivity", "UserNotifications"],
             role: "iOS Developer",
             responsibilities: [
                 "Developed synchronized user interfaces for both iOS and watchOS to ensure consistent feature availability.",
@@ -122,8 +120,9 @@ const data = {
                 "assets/projects/Cartulator2.svg",
                 "assets/projects/Cartulator3.svg"
             ],
+            scale_image_to_height: true,
             description: "A grocery shopping app focusing on budgeting and expense tracking for elderly users, incorporating real-time calculations and spending alerts.",
-            tech_stack: ["SwiftUI", "UIKit", "SwiftData", "AVFoundation"],
+            tech_stack: ["SwiftUI", "UIKit", "SwiftData", "AVFoundation", "Localization"],
             role: "iOS Developer",
             responsibilities: [
                 "Developed the complete front-end using SwiftUI, focusing on an accessible and high-contrast user interface.",
@@ -138,8 +137,9 @@ const data = {
         {
             name: "PhysiQuest",
             image: ["assets/projects/PhysiQuest.svg"],
+            scale_image_to_height: true,
             description: "An educational physics app with interactive experiments, structured materials, and exercises to make physics accessible and engaging.",
-            tech_stack: ["SwiftUI", "UIKit", "SpriteKit", "GameplayKit", "Lottie"],
+            tech_stack: ["SwiftUI", "UIKit", "SpriteKit", "GameplayKit", "UserDefault", "Lottie"],
             role: "iOS Developer, UX Designer & Project Manager",
             responsibilities: [
                 "Led project management using Notion to organize tasks and facilitate a parallel development workflow for the team.",
@@ -156,10 +156,10 @@ const data = {
             name: "Find then Guess",
             image: [
                 "assets/projects/FTG.svg",
-                "assets/projects/FTG2.svg"
+                "assets/projects/FTG2.png"
             ],
             description: "An AR game blending real-world exploration and virtual guessing, encouraging physical movement and observational skill enhancement.",
-            tech_stack: ["SwiftUI", "UIKit", "ARKit", "RealityKit", "AVFoundation", "Lottie"],
+            tech_stack: ["SwiftUI", "UIKit", "ARKit", "RealityKit", "UserDefault", "AVFoundation", "Lottie"],
             role: "iOS Developer, Designer & Project Manager",
             responsibilities: [
                 "Led the project from concept to App Store submission, overseeing all aspects of development, design, and project management.",
@@ -198,8 +198,14 @@ const data = {
             name: "Pinion",
             image: [
                 "assets/projects/Pinion.svg",
-                "assets/projects/Pinion2.jpg"
+                "assets/projects/Pinion2.png",
+                "assets/projects/Pinion3.png",
+                "assets/projects/Pinion4.png",
+                "assets/projects/Pinion5.png",
+                "assets/projects/Pinion6.png",
+                "assets/projects/Pinion7.png"
             ],
+            scale_image_to_height: true,
             description: "An app created for BSD Link drivers to manage passenger counts, enhancing efficiency and responsibility in tracking.",
             tech_stack: ["SwiftUI", "Python", "TensorFlow"],
             role: "iOS Developer & UX Designer/Researcher",
@@ -208,15 +214,83 @@ const data = {
                 "Developed the main user interface for passenger count management using SwiftUI.",
                 "Collaborated with the team to integrate a Python and TensorFlow backend for data processing."
             ]
+        },
+        {
+            name: "sehh.id",
+            image: [
+                "assets/projects/sehh.png",
+                "assets/projects/sehh2.svg",
+                "assets/projects/sehh3.svg",
+                "assets/projects/sehh4.svg",
+                "assets/projects/sehh5.svg",
+                "assets/projects/sehh6.svg"
+            ],
+            description: "An LMS platform designed to streamline educational content delivery and user engagement for an online learning initiative.",
+            tech_stack: ["Figma", "Human-Centered Design", "UI/UX Style Guides", "Design Patterns", "Prototyping", "User Research", "Product Strategy"],
+            role: "Product Owner & Designer",
+            responsibilities: [
+                "Led cross-functional team efforts to research and define core problems, conceptualize solutions, and establish the product's value proposition.",
+                "Developed the TAM, SAM, and SOM analysis to define market opportunity and formulated the supply chain and sustainable business model to ensure product viability and operational efficiency.",
+                "Defined and designed essential product features, producing comprehensive prototypes to articulate solutions and ensure alignment with user experience objectives."
+            ],
+            links: {
+                instagram: "https://www.instagram.com/sehh.id"
+            }
+        },
+        {
+            name: "FARbucks",
+            image: [
+                "assets/projects/farbucks.svg"
+            ],
+            scale_image_to_height: true,
+            description: "A comprehensive cafe website developed as part of an HCI course, designed to enhance user experience for coffee enthusiasts with menu, pricing, and event information.",
+            tech_stack: ["HTML", "CSS", "JavaScript", "Figma", "UI/UX Style Guides", "Design Patterns", "Usability Testing"],
+            role: "Lead Developer & Designer",
+            responsibilities: [
+                "Directed the design and user experience for the website, focusing on intuitive navigation and visual appeal.",
+                "Developed all front-end functionalities for menu display, pricing, special offers, and cafe history.",
+                "Managed project timelines and deliverables, ensuring the successful completion of the assignment within course requirements."
+            ],
+            links: {
+                github: "https://github.com/vcsrng/FarBucksWebProject",
+                web: "https://vcsrng.github.io/FarBucksWebProject/home.html"
+            }
+        },
+        {
+            name: "All About Space",
+            image: [
+                "assets/projects/AAS.svg"
+            ],
+            description: "An interactive web platform from HCI coursework providing simplified information about planets and outer space, aimed at broadening public knowledge.",
+            tech_stack: ["HTML", "CSS", "JavaScript", "Figma", "UI/UX Style Guides", "Design Patterns", "Usability Testing"],
+            role: "Developer & Designer",
+            responsibilities: [
+                "Oversaw the entire project lifecycle, from conceptualization to deployment, ensuring all objectives were met.",
+                "Designed and implemented the user interface to present complex astronomical data in an accessible and engaging manner.",
+                "Developed dynamic content features to provide detailed planet information and enhance user interaction."
+            ],
+            links: {
+                github: "https://github.com/vcsrng/SimplePlanetWebProject",
+                web: "https://vcsrng.github.io/SimplePlanetWebProject/home.html"
+            }
         }
     ],
-    skillset: [
-        "Swift", "SwiftUI", "UIKit", "Combine", "Objective-C", "AutoLayout", "ARKit", "Watch Connectivity", 
-        "Debugging", "Refactoring", "Version Control (Git)", "Design Patterns", "OOP", "Functional Programming", 
-        "Local Storage (SwiftData, CoreData)", "Cloud Storage (Firebase, CloudKit)", "Location & Maps (MapKit)", 
-        "Localization", "App Store Connect", "Team Communication", "Prototyping", "Usability Testing", 
-        "Human-Centered Design", "UI Style Guides", "Gamification", "Python", "SQL", "HTML/CSS", "JavaScript", "Figma"
-    ],
+    skillset: {
+        tech: [
+            "Swift", "SwiftUI", "UIKit", "Combine", "AutoLayout", "SwiftData", "CoreData",
+            "MapKit", "ARKit", "Watch Connectivity", "AVFoundation", "BackgroundTasks",
+            "C", "C++", "Java", "Python", "Git", "Xcode", "HTML", "CSS", "JavaScript", "MySQL", "PHP",
+            "Localization", "Version Control", "Debugging", "Refactoring", "OOP"
+        ],
+        design: [
+            "Figma", "Canva", "Adobe Illustrator", "Adobe Premiere Pro", "Procreate",
+            "Human-Centered Design", "UI/UX Style Guides", "Gamification", "Design Patterns",
+            "Prototyping", "Usability Testing"
+        ],
+        product: [
+            "Notion", "Jira", "App Store Connect", "User Research", "Product Strategy"
+        ]
+    },
     achievements: [
         {
             icon: "bi-apple",
@@ -232,7 +306,7 @@ const data = {
             issuer: "HackerRank",
             date: "Nov 2023",
             description: "Demonstrated proficiency in data structures and algorithms.",
-            verifyLink: "#"
+            verifyLink: "https://www.hackerrank.com/certificates/b70b6aca8a30"
         },
         {
             icon: "bi-patch-check-fill",
@@ -240,7 +314,7 @@ const data = {
             issuer: "HackerRank",
             date: "Nov 2023",
             description: "Validated skills in complex SQL queries and database manipulation.",
-            verifyLink: "#"
+            verifyLink: "https://www.hackerrank.com/certificates/d4d9f49e6202"
         },
         {
             icon: "bi-cloud-fill",
@@ -248,7 +322,7 @@ const data = {
             issuer: "Cognitive Class by IBM",
             date: "May 2023",
             description: "Completed coursework on cloud computing fundamentals.",
-            verifyLink: "#"
+            verifyLink: "https://courses.cognitiveclass.ai/certificates/e2a3ed120bfa47e2a63fd88cb735cae1"
         },
         {
             icon: "bi-trophy-fill",
@@ -256,18 +330,20 @@ const data = {
             issuer: "ICPC",
             date: "Nov 2022",
             description: "Competed in the prestigious International Collegiate Programming Contest.",
-            verifyLink: "#"
+            verifyLink: "https://icpc.global/ICPCID/LRZY144ZGFUC"
         }
     ]
 };
 
 document.addEventListener('DOMContentLoaded', () => {
+    AOS.init({ duration: 800, easing: 'ease-in-out', once: true });
+
     const heroName = document.getElementById("hero-name");
     if (heroName) heroName.textContent = data.hero.name;
 
     const aboutText = document.getElementById("about-text");
     if (aboutText) aboutText.textContent = data.about.textabout;
-    
+
     createHeroCodeBackground();
     setupThemeSwitcher();
     setupNavbarScrollEffect();
@@ -275,124 +351,54 @@ document.addEventListener('DOMContentLoaded', () => {
     setupLoopingNavbarLogoAnimation();
     renderFilterOptions();
     renderProjects(1);
-    populateSkills();
+    populateGroupedSkills();
     populateAchievements();
     populateExperience();
     populateEducation();
     setupCV();
-    setupDynamicScrollspy();
     setupFooter();
-    
-    window.addEventListener('resize', setupDynamicScrollspy);
 
-    const projectModal = document.getElementById('projectModal');
-    let projectCarousel = null;
-
-    if (projectModal) {
-        projectModal.addEventListener('show.bs.modal', async function (event) {
-            const card = event.relatedTarget;
-            const projectName = card.getAttribute('data-project-name');
-            const projectData = data.projects.find(p => p.name === projectName);
-            if (!projectData) return;
-
-            projectModal.querySelector('#modal-project-title').textContent = projectData.name;
-            projectModal.querySelector('#modal-project-description').textContent = projectData.description;
-            projectModal.querySelector('#modal-project-tech-stack').innerHTML = (projectData.tech_stack || []).map(tech => `<span>${tech}</span>`).join('');
-            projectModal.querySelector('#modal-project-role').textContent = projectData.role || 'N/A';
-            projectModal.querySelector('#modal-project-responsibilities').innerHTML = (projectData.responsibilities || []).map(res => `<li>${res}</li>`).join('');
-            
-            const modalLinks = projectModal.querySelector('#modal-project-links');
-            modalLinks.innerHTML = '';
-            if (projectData.links) {
-                if (projectData.links.appstore) { modalLinks.insertAdjacentHTML('beforeend', `<a href="${projectData.links.appstore}" class="btn btn-dark" target="_blank" rel="noopener noreferrer"><i class="bi bi-apple"></i> App Store</a>`); }
-                if (projectData.links.testflight) { modalLinks.insertAdjacentHTML('beforeend', `<a href="${projectData.links.testflight}" class="btn btn-info text-white" target="_blank" rel="noopener noreferrer"><i class="bi bi-box-seam"></i> TestFlight</a>`); }
-                if (projectData.links.github) { modalLinks.insertAdjacentHTML('beforeend', `<a href="${projectData.links.github}" class="btn btn-secondary" target="_blank" rel="noopener noreferrer"><i class="bi bi-github"></i> GitHub</a>`); }
-                if (projectData.links.medium) { modalLinks.insertAdjacentHTML('beforeend', `<a href="${projectData.links.medium}" class="btn btn-light" target="_blank" rel="noopener noreferrer"><i class="bi bi-medium"></i> Read Article</a>`); }
-                if (projectData.links.wwdc) { modalLinks.insertAdjacentHTML('beforeend', `<a href="${projectData.links.wwdc}" class="btn btn-wwdc" target="_blank" rel="noopener noreferrer"><i class="bi bi-trophy-fill"></i> WWDC Profile</a>`); }
-            }
-            modalLinks.insertAdjacentHTML('beforeend', `<button type="button" class="btn btn-modal-close ms-auto" data-bs-dismiss="modal">Close</button>`);
-
-            const carouselInner = document.getElementById('modal-carousel-inner');
-            const carouselIndicators = document.getElementById('modal-carousel-indicators');
-            const carouselContainer = document.getElementById('projectImageCarousel');
-            const imageContainer = projectModal.querySelector('.modal-image-container');
-
-            carouselInner.innerHTML = '';
-            carouselIndicators.innerHTML = '';
-            imageContainer.style.height = null;
-            imageContainer.style.width = null;
-
-            const images = projectData.image || [];
-            if (images.length === 0) {
-                imageContainer.innerHTML = `<div class="carousel-image-wrapper"><span class="text-muted">No Image Available</span></div>`;
-                return;
-            }
-
-            const loadedImageData = await Promise.all(images.map(src => {
-                return new Promise((resolve) => {
-                    const img = new Image();
-                    img.onload = () => resolve({ src, width: img.naturalWidth, height: img.naturalHeight, loaded: true });
-                    img.onerror = () => resolve({ src: 'https://placehold.co/800x600/2a2a2a/f8f9fa?text=Image+Not+Found', width: 800, height: 600, loaded: false });
-                    img.src = src;
-                });
-            }));
-
-            const minHeightPx = window.innerHeight * 0.40;
-            let masterFrame = { width: 0, height: minHeightPx };
-
-            loadedImageData.forEach(imgData => {
-                const aspectRatio = imgData.width / imgData.height;
-                const renderedWidthAtMinHeight = minHeightPx * aspectRatio;
-                if (renderedWidthAtMinHeight > masterFrame.width) {
-                    masterFrame.width = renderedWidthAtMinHeight;
-                }
-            });
-            
-            const maxAllowedWidth = 700; 
-            masterFrame.width = Math.min(masterFrame.width, maxAllowedWidth);
-
-            imageContainer.style.width = `${masterFrame.width}px`;
-            imageContainer.style.height = `${masterFrame.height}px`;
-
-            loadedImageData.forEach((imgData, index) => {
-                const activeClass = index === 0 ? 'active' : '';
-                const carouselItemHTML = `
-                    <div class="carousel-item ${activeClass}">
-                        <div class="carousel-image-wrapper">
-                            <img src="${imgData.src}" class="d-block" alt="Project image ${index + 1}">
-                        </div>
-                    </div>
-                `;
-                carouselInner.insertAdjacentHTML('beforeend', carouselItemHTML);
-                const indicatorHTML = `<button type="button" data-bs-target="#projectImageCarousel" data-bs-slide-to="${index}" class="${activeClass}" aria-current="true" aria-label="Slide ${index + 1}"></button>`;
-                carouselIndicators.insertAdjacentHTML('beforeend', indicatorHTML);
-            });
-
-            if (images.length > 1) {
-                carouselContainer.classList.remove('single-image');
-                if (projectCarousel) projectCarousel.dispose();
-                projectCarousel = new bootstrap.Carousel(carouselContainer, {
-                    interval: 5000,
-                    pause: 'hover'
-                });
-            } else {
-                carouselContainer.classList.add('single-image');
-            }
-        });
-
-        projectModal.addEventListener('hidden.bs.modal', function () {
-            if (projectCarousel) {
-                projectCarousel.dispose();
-                projectCarousel = null;
-            }
-            const imageContainer = projectModal.querySelector('.modal-image-container');
-            if (imageContainer) {
-                imageContainer.style.height = null;
-                imageContainer.style.width = null;
-            }
-        });
-    }
+    setupNavigation();
 });
+
+function setupNavigation() {
+    const mainNav = document.querySelector('.navbar');
+    if (!mainNav) return;
+
+    const refreshScrollspy = () => {
+        const scrollSpy = bootstrap.ScrollSpy.getOrCreateInstance(document.body, {
+            target: '#navbarNav'
+        });
+        scrollSpy.refresh();
+
+        const atBottom = Math.ceil(window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight;
+        if (atBottom) {
+            const contactLink = document.querySelector('a.nav-link[href="#contact"]');
+            if (contactLink && !contactLink.classList.contains('active')) {
+                document.querySelectorAll('a.nav-link.active').forEach(link => link.classList.remove('active'));
+                contactLink.classList.add('active');
+            }
+        }
+    };
+
+    setTimeout(refreshScrollspy, 500);
+
+    window.addEventListener('resize', refreshScrollspy);
+    document.addEventListener('scroll', refreshScrollspy);
+
+    const navLinks = document.querySelectorAll('#navbarNav .nav-link');
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            const navbarCollapse = document.querySelector('.navbar-collapse.show');
+            if (navbarCollapse) {
+                const bsCollapse = new bootstrap.Collapse(navbarCollapse, {
+                    toggle: false
+                });
+                bsCollapse.hide();
+            }
+        });
+    });
+}
 
 function createHeroCodeBackground() {
     const bg = document.getElementById('hero-code-bg');
@@ -515,7 +521,7 @@ function setupLoopingNavbarLogoAnimation() {
         } else if (isDeleting && charIndex === 0) {
             isDeleting = false;
         }
-        
+
         setTimeout(loop, time);
     }
     loop();
@@ -535,7 +541,7 @@ function renderFilterOptions() {
             <label class="form-check-label" for="tag-${tag}">${tag}</label>
         </div>`
     ).join('');
-    
+
     document.querySelectorAll('#filter-options-container .form-check-input').forEach(checkbox => {
         checkbox.addEventListener('change', (e) => {
             if (e.target.checked) {
@@ -550,14 +556,14 @@ function renderFilterOptions() {
     const clearFiltersBtn = document.getElementById("clear-filters-btn");
     const offcanvasElement = document.getElementById('offcanvasFilters');
     const offcanvas = offcanvasElement ? bootstrap.Offcanvas.getInstance(offcanvasElement) || new bootstrap.Offcanvas(offcanvasElement) : null;
-    
+
     if (applyFiltersBtn) {
         applyFiltersBtn.addEventListener('click', () => {
             activeTags = [...selectedTags];
             if (activeTags.length === 0) {
                 filteredProjects = [...data.projects];
             } else {
-                filteredProjects = data.projects.filter(project => 
+                filteredProjects = data.projects.filter(project =>
                     activeTags.every(tag => project.tech_stack && project.tech_stack.includes(tag))
                 );
             }
@@ -582,7 +588,7 @@ function renderProjects(page) {
     const featuredProjectContainer = document.getElementById("featured-project-container");
     const projectGrid = document.getElementById("project-grid");
     if (!projectGrid || !featuredProjectContainer) return;
-    
+
     const featuredProject = data.projects.find(p => p.featured);
 
     if (featuredProject) {
@@ -591,7 +597,7 @@ function renderProjects(page) {
                 <div class="row g-0 h-100">
                     <div class="col-lg-7">
                         <div class="featured-project-img-wrapper">
-                             <img src="${featuredProject.image[0]}" class="img-fluid featured-project-image" alt="${featuredProject.name}" onerror="this.onerror=null;this.src='https://placehold.co/800x600/1e1e1e/f8f9fa?text=Featured+Image';">
+                            <img src="${featuredProject.image[0]}" class="img-fluid featured-project-image" alt="${featuredProject.name}" onerror="this.onerror=null;this.src='https://placehold.co/800x600/1e1e1e/f8f9fa?text=Featured+Image';">
                         </div>
                     </div>
                     <div class="col-lg-5 d-flex">
@@ -627,11 +633,15 @@ function renderProjects(page) {
             const col = document.createElement("div");
             col.className = "col-lg-4 col-md-6";
             const hasImage = proj.image && proj.image.length > 0;
+            let imageClass = proj.scale_image_to_height ? "fit-height" : "";
+
             col.innerHTML = `
                 <div class="project-card-link" data-bs-toggle="modal" data-bs-target="#projectModal" data-project-name="${proj.name}">
                     <div class="project-card h-100">
                         <div class="project-image-wrapper">
-                            ${hasImage ? `<img src="${proj.image[0]}" alt="${proj.name}" class="img-fluid project-image" onerror="this.onerror=null;this.src='https://placehold.co/400x250/1e1e1e/f8f9fa?text=Image';">` : `<div class="img-fluid project-image bg-light d-flex align-items-center justify-content-center border"><span class='text-muted'>No Image</span></div>`}
+                            ${hasImage
+                                ? `<img src="${proj.image[0]}" alt="${proj.name}" class="img-fluid project-image ${imageClass}" onerror="this.onerror=null;this.src='https://placehold.co/400x250/1e1e1e/f8f9fa?text=Image';">`
+                                : `<div class="img-fluid project-image bg-light d-flex align-items-center justify-content-center border"><span class='text-muted'>No Image</span></div>`}
                         </div>
                         <div class="project-title">${proj.name}</div>
                         <div class="project-overlay">
@@ -644,7 +654,14 @@ function renderProjects(page) {
             projectGrid.appendChild(col);
         });
     }
+
     renderPagination(page, regularProjects, itemsPerPage);
+    setTimeout(() => {
+        const scrollSpy = bootstrap.ScrollSpy.getInstance(document.body);
+        if (scrollSpy) {
+            scrollSpy.refresh();
+        }
+    }, 300);
 }
 
 function renderPagination(currentPage, projectsToPaginate, itemsPerPage) {
@@ -671,10 +688,45 @@ function renderPagination(currentPage, projectsToPaginate, itemsPerPage) {
     }
 }
 
-function populateSkills() {
-    const skillsGrid = document.getElementById("skills-grid");
-    if (!skillsGrid) return;
-    skillsGrid.innerHTML = [...new Set(data.skillset)].map(skill => `<span class="badge">${skill}</span>`).join('');
+function populateGroupedSkills() {
+    const skillGroupsContainer = document.getElementById("skill-groups");
+    if (!skillGroupsContainer) return;
+
+    const categoryIcons = {
+        tech: "bi bi-wrench-adjustable-circle-fill",
+        design: "bi bi-brush-fill",
+        product: "bi bi-buildings-fill"
+    };
+
+    const categoryColors = {
+        tech: "text-tech",
+        design: "text-design",
+        product: "text-product"
+    };
+
+    for (const [category, skills] of Object.entries(data.skillset)) {
+        const icon = categoryIcons[category] || "bi-tags";
+        const colorClass = categoryColors[category] || "text-muted";
+        const capitalized = category.charAt(0).toUpperCase() + category.slice(1);
+
+        const groupCol = document.createElement("div");
+        groupCol.className = "col-12 col-sm-10 col-md-6 col-lg-4";
+
+        groupCol.innerHTML = `
+            <div class="skill-group-box h-100">
+                <h5 class="mb-3 text-center ${colorClass}">
+                    <i class="bi ${icon} me-2"></i>${capitalized}
+                </h5>
+                <div class="skills-grid d-flex flex-wrap justify-content-center">
+                    ${skills.map(skill =>
+                        `<span class="badge ${category}" title="${skill}">${skill}</span>`
+                    ).join('')}
+                </div>
+            </div>
+        `;
+
+        skillGroupsContainer.appendChild(groupCol);
+    }
 }
 
 function populateAchievements() {
@@ -742,21 +794,11 @@ function setupCV() {
     });
 }
 
-function setupDynamicScrollspy() {
-    const mainNav = document.querySelector('.navbar');
-    if (mainNav) {
-        const navbarHeight = mainNav.offsetHeight;
-        bootstrap.ScrollSpy.getOrCreateInstance(document.body, {
-            offset: navbarHeight + 10
-        });
-    }
-}
-
 function setupFooter() {
     const footerText = document.getElementById('footer-text');
     if (footerText) {
         const currentYear = new Date().getFullYear();
-        const lastUpdatedDate = new Date(); 
+        const lastUpdatedDate = new Date();
         const formattedDate = lastUpdatedDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
         footerText.innerHTML = `©${currentYear} Vincent Saranang, All Rights Reserved.<br><span style="font-size: 0.8em; opacity: 0.7;">Last Updated: ${formattedDate}</span>`;
     }
