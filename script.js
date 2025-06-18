@@ -390,26 +390,44 @@ document.addEventListener('DOMContentLoaded', () => {
 
 async function updateVisitCounter() {
     const counterElement = document.getElementById('visit-counter');
-    if (!counterElement) return;
+    if (!counterElement) {
+        console.error("Error: Could not find the element with id 'visit-counter'. Make sure it's in your HTML.");
+        return;
+    }
+    console.log("Found counter element, starting update...");
 
     const incrementUrl = 'https://api.counterapi.dev/v2/vincent-porto/pageviews/up';
-    const getUrl = 'https://api.counterapi.dev/v2/vincent-porto/pageviews/';
 
     try {
-        await fetch(incrementUrl, { method: 'POST' });
+        console.log("Attempting to fetch from:", incrementUrl);
 
-        const response = await fetch(getUrl);
+        const response = await fetch(incrementUrl);
+        
+        console.log("Received response from API.");
+
         if (!response.ok) {
-            throw new Error('Could not retrieve counter value');
+            const errorText = await response.text();
+            throw new Error(`API response was not OK. Status: ${response.status}. Message: ${errorText}`);
+        }
+
+        const data = await response.json();
+        
+        console.log("API data received successfully:", data);
+
+        if (data && data.data && data.data.count !== undefined) {
+             counterElement.textContent = data.data.count;
+        } else if (data && data.count !== undefined) {
+             counterElement.textContent = data.count;
+        } else {
+            console.error("Could not find 'count' property in the API response.", data);
+            throw new Error("Response did not contain a 'count' property.");
         }
         
-        const countData = await response.json();
-        
-        counterElement.textContent = countData.count;
+        console.log("Counter updated on page successfully.");
 
     } catch (error) {
         console.error('Failed to update visit counter:', error);
-        counterElement.textContent = 'N/A';
+        counterElement.textContent = 'Error';
     }
 }
 
