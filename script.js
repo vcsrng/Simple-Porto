@@ -55,7 +55,12 @@ const data = {
             name: "Hetice",
             featured: true,
             image: [
-                "https://vcsrng.github.io/assets/projects/Hetice.svg"
+                "https://vcsrng.github.io/assets/projects/Hetice.svg",
+                "https://vcsrng.github.io/assets/projects/Hetice2.png",
+                "https://vcsrng.github.io/assets/projects/Hetice3.png",
+                "https://vcsrng.github.io/assets/projects/Hetice4.png",
+                "https://vcsrng.github.io/assets/projects/Hetice5.png",
+                "https://vcsrng.github.io/assets/projects/Hetice6.png"
             ],
             description: "Enhances environmental awareness for deaf individuals by converting sound into haptic feedback, offering a new way to experience the world through touch.",
             tech_stack: ["SwiftUI", "CoreHaptics", "SoundAnalysis", "AVFoundation"],
@@ -134,7 +139,12 @@ const data = {
         {
             name: "PhysiQuest",
             image: [
-                "https://vcsrng.github.io/assets/projects/Physiquest.svg"
+                "https://vcsrng.github.io/assets/projects/Physiquest.svg",
+                "https://vcsrng.github.io/assets/projects/Physiquest2.svg",
+                "https://vcsrng.github.io/assets/projects/Physiquest3.svg",
+                "https://vcsrng.github.io/assets/projects/Physiquest4.svg",
+                "https://vcsrng.github.io/assets/projects/Physiquest5.svg"
+
             ],
             scale_image_to_height: true,
             description: "An educational physics app with interactive experiments, structured materials, and exercises to make physics accessible and engaging.",
@@ -155,7 +165,11 @@ const data = {
             name: "Find then Guess",
             image: [
                 "https://vcsrng.github.io/assets/projects/FTG.svg",
-                "https://vcsrng.github.io/assets/projects/FTG2.png"
+                "https://vcsrng.github.io/assets/projects/FTG2.png",
+                "https://vcsrng.github.io/assets/projects/FTG3.png",
+                "https://vcsrng.github.io/assets/projects/FTG4.png",
+                "https://vcsrng.github.io/assets/projects/FTG5.png",
+                "https://vcsrng.github.io/assets/projects/FTG6.png"
             ],
             description: "An AR game blending real-world exploration and virtual guessing, encouraging physical movement and observational skill enhancement.",
             tech_stack: ["SwiftUI", "UIKit", "ARKit", "RealityKit", "UserDefault", "AVFoundation", "Lottie"],
@@ -239,7 +253,9 @@ const data = {
         {
             name: "FARbucks",
             image: [
-                "https://vcsrng.github.io/assets/projects/farbucks.svg"
+                "https://vcsrng.github.io/assets/projects/Farbucks.svg",
+                "https://vcsrng.github.io/assets/projects/Farbucks2.png",
+                "https://vcsrng.github.io/assets/projects/Farbucks3.png"
             ],
             scale_image_to_height: true,
             description: "A comprehensive cafe website developed as part of an HCI course, designed to enhance user experience for coffee enthusiasts with menu, pricing, and event information.",
@@ -258,7 +274,10 @@ const data = {
         {
             name: "All About Space",
             image: [
-                "https://vcsrng.github.io/assets/projects/AAS.svg"
+                "https://vcsrng.github.io/assets/projects/AAS.svg",
+                "assets/projects/AAS2.png",
+                "assets/projects/AAS3.png",
+                "assets/projects/AAS4.png"
             ],
             description: "An interactive web platform from HCI coursework providing simplified information about planets and outer space, aimed at broadening public knowledge.",
             tech_stack: ["HTML", "CSS", "JavaScript", "Figma", "UI/UX Style Guides", "Design Patterns", "Usability Testing"],
