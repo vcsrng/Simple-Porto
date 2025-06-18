@@ -398,10 +398,8 @@ async function updateVisitCounter() {
     const getUrl = 'https://api.counterapi.dev/v2/vincent-porto/pageviews';
 
     try {
-        // Step 1: Increment the counter using GET, as per the documentation.
         await fetch(incrementUrl);
 
-        // Step 2: Get the new value.
         const response = await fetch(getUrl);
         if (!response.ok) {
             throw new Error('Could not retrieve counter value');
@@ -409,11 +407,9 @@ async function updateVisitCounter() {
         
         const getData = await response.json();
         
-        // Use the correct path to the count value: getData.data.up_count
         if (getData && getData.data && getData.data.up_count !== undefined) {
             counterElement.textContent = getData.data.up_count;
         } else {
-            // Fallback for the GET /:name/ endpoint which might have a different structure
             counterElement.textContent = getData.count;
         }
 
