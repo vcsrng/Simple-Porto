@@ -1,5 +1,4 @@
-AOS.init({ duration: 800, easing: 'ease-in-out', once: true });
-
+// Global data for the portfolio
 const data = {
     hero: {
         name: "Vincent Saranang",
@@ -336,7 +335,12 @@ const data = {
     ]
 };
 
+// Main function to run after the DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
+    // --- INITIALIZE PLUGINS AND SETUP ---
+    AOS.init({ duration: 800, easing: 'ease-in-out', once: true });
+
+    // --- POPULATE DYNAMIC CONTENT ---
     const heroName = document.getElementById("hero-name");
     if (heroName) heroName.textContent = data.hero.name;
 
@@ -355,11 +359,13 @@ document.addEventListener('DOMContentLoaded', () => {
     populateExperience();
     populateEducation();
     setupCV();
-    setupDynamicScrollspy();
     setupFooter();
 
-    window.addEventListener('resize', setupDynamicScrollspy);
+    // --- UPDATED NAVIGATION SETUP ---
+    // This function now correctly sets up Scrollspy and smooth scrolling
+    setupNavigation();
 
+    // --- MODAL LOGIC ---
     const projectModal = document.getElementById('projectModal');
     let projectCarousel = null;
 
@@ -470,6 +476,53 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+function setupNavigation() {
+    const mainNav = document.querySelector('.navbar');
+    if (!mainNav) return;
+
+    // Initialize Scrollspy
+    const navbarHeight = mainNav.offsetHeight;
+    const scrollSpy = new bootstrap.ScrollSpy(document.body, {
+        target: '#navbarNav',
+        offset: navbarHeight + 20 // Adjusted offset for better accuracy
+    });
+
+    // Add smooth scrolling to all nav links
+    const navLinks = document.querySelectorAll('#navbarNav .nav-link');
+    navLinks.forEach(link => {
+        link.addEventListener('click', function (e) {
+            const href = this.getAttribute('href');
+            // Ensure it's an internal link
+            if (href && href.startsWith('#')) {
+                e.preventDefault();
+                const targetEl = document.querySelector(href);
+                if (targetEl) {
+                    const navbarHeight = mainNav.offsetHeight;
+                    const elementPosition = targetEl.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - navbarHeight;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: "smooth"
+                    });
+                    
+                    // If navbar is collapsed, close it on click
+                    const navbarCollapse = document.querySelector('.navbar-collapse');
+                    if(navbarCollapse.classList.contains('show')) {
+                        const toggler = document.querySelector('.navbar-toggler');
+                        toggler.click();
+                    }
+                }
+            }
+        });
+    });
+
+    window.addEventListener('resize', () => {
+        scrollSpy.refresh();
+    });
+}
+
 
 function createHeroCodeBackground() {
     const bg = document.getElementById('hero-code-bg');
@@ -863,18 +916,6 @@ function setupCV() {
         link.click();
         document.body.removeChild(link);
     });
-}
-
-function setupDynamicScrollspy() {
-    const mainNav = document.querySelector('.navbar');
-    if (!mainNav) return;
-
-    const navbarHeight = mainNav.offsetHeight;
-    const scrollspy = bootstrap.ScrollSpy.getOrCreateInstance(document.body, {
-        offset: navbarHeight + 10
-    });
-
-    setTimeout(() => { scrollspy.refresh(); }, 100);
 }
 
 function setupFooter() {

@@ -242,9 +242,13 @@ nav.navbar {
   animation: pulse-border 2.5s ease-out infinite;
 }
 
-.section-bg-wrapper {
+.section-bg {
     background-color: var(--section-bg-color);
-    padding: 80px 0;
+    transition: background-color 0.3s ease;
+}
+
+.section-bg-wrapper-clear {
+    padding: 132px 0;
     transition: background-color 0.3s ease;
 }
 
@@ -667,7 +671,7 @@ nav.navbar {
     box-shadow: 0 4px 10px rgba(255, 152, 0, 0.4); }
 
 #contact {
-    padding-bottom: 150px;
+    padding-bottom: 92px;
 }
 .contact-email-btn {
     padding: 0.8rem 2rem;
