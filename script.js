@@ -1,4 +1,3 @@
-// Global data for the portfolio
 const data = {
     hero: {
         name: "Vincent Saranang",
@@ -56,7 +55,7 @@ const data = {
             name: "Hetice",
             featured: true,
             image: [
-                "assets/projects/hetice.svg",
+                "assets/projects/Hetice.svg",
                 "assets/projects/hetice_placeholder_2.png",
                 "assets/projects/hetice_placeholder_3.png"
             ],
@@ -136,7 +135,7 @@ const data = {
         },
         {
             name: "PhysiQuest",
-            image: ["assets/projects/PhysiQuest.svg"],
+            image: ["assets/projects/Physiquest.svg"],
             scale_image_to_height: true,
             description: "An educational physics app with interactive experiments, structured materials, and exercises to make physics accessible and engaging.",
             tech_stack: ["SwiftUI", "UIKit", "SpriteKit", "GameplayKit", "UserDefault", "Lottie"],
@@ -534,7 +533,7 @@ function renderFilterOptions() {
         clearFiltersBtn.addEventListener('click', () => {
             selectedTags = [];
             activeTags = [];
-            renderFilterOptions(); // Re-render to clear checks
+            renderFilterOptions();
             renderProjects(1);
             if (offcanvas) offcanvas.hide();
         });
