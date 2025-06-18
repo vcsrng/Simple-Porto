@@ -386,6 +386,8 @@ document.addEventListener('DOMContentLoaded', () => {
     setupFooter();
     setupNavigation();
     setupProjectModal();
+
+    updateVisitCounter();
 });
 
 async function updateVisitCounter() {
