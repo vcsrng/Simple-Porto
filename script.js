@@ -398,7 +398,7 @@ async function updateVisitCounter() {
     const getUrl = 'https://api.counterapi.dev/v2/vincent-porto/pageviews';
 
     try {
-        await fetch(incrementUrl);
+        await fetch(incrementUrl, { method: 'POST' });
 
         const response = await fetch(getUrl);
         if (!response.ok) {
@@ -406,11 +406,11 @@ async function updateVisitCounter() {
         }
         
         const getData = await response.json();
-
-        if (getData && getData.count !== undefined) {
-            counterElement.textContent = getData.count;
+        
+        if (getData && getData.data && getData.data.up_count !== undefined) {
+            counterElement.textContent = getData.data.up_count;
         } else {
-            throw new Error("Response from GET endpoint did not contain a 'count' property.");
+            throw new Error("Response structure was not as expected.");
         }
 
     } catch (error) {
