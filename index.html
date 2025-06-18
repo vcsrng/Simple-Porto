@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vincent Saranang | iOS Developer</title>
+    <link id="favicon" rel="icon" type="image/svg+xml" href="assets/icon/icon.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Space+Mono:wght@700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body data-bs-spy="scroll" data-bs-target=".navbar" tabindex="0">
+    <nav class="navbar navbar-expand-lg fixed-top shadow-sm bg-body-secondary bg-opacity-25 navbar-backdrop">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#" id="navbar-logo"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav align-items-center">
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#achievements">Achievements</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                    <li class="nav-item ms-lg-3">
+                        <div class="theme-switch-wrapper">
+                            <i class="bi bi-sun-fill theme-icon" id="theme-icon-sun"></i>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" role="switch" id="theme-switch">
+                            </div>
+                            <i class="bi bi-moon-fill theme-icon" id="theme-icon-moon"></i>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section id="hero" class="hero">
+        <div id="hero-code-bg"></div>
+        <div class="hero-content" data-aos="fade-up">
+            <h1 id="hero-name"></h1>
+            <p id="hero-specialities"></p>
+            <div data-aos-delay="100">
+                <button id="cv-download" class="btn btn-outline-dark btn-custom">Download CV</button>
+                <a href="https://github.com/vcsrng" class="btn btn-custom btn-social" target="_blank" rel="noopener noreferrer"><i class="bi bi-github"></i> GitHub</a>
+                <a href="https://apps.apple.com/id/developer/vincent/id1748705316" class="btn btn-custom btn-social" target="_blank" rel="noopener noreferrer"><i class="bi bi-apple"></i> App Store</a>
+                <a href="https://www.linkedin.com/in/vincentsaranang/" class="btn btn-custom btn-social" target="_blank" rel="noopener noreferrer"><i class="bi bi-linkedin"></i> LinkedIn</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" data-aos="fade-up">
+        <div class="container">
+            <div class="row align-items-center justify-content-center">
+                <div class="col-lg-4 col-md-8 mb-5 mb-lg-0 text-center">
+                    <img src="assets/profile.jpg" class="img-fluid rounded-circle shadow-lg profile-picture" alt="A photo of Vincent Saranang">
+                </div>
+                <div class="col-lg-8">
+                    <h2 class="about-me-title">About Me</h2>
+                    <p id="about-text"></p>
+                    <div class="row text-center mt-5">
+                        <div class="col-md-6 mb-4">
+                            <div class="highlight-item">
+                                <i class="bi bi-trophy-fill highlight-icon"></i>
+                                <h5 class="highlight-title">WWDC25 Winner</h5>
+                                <p class="highlight-text">Swift Student Challenge</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <div class="highlight-item">
+                                <i class="bi bi-apple highlight-icon"></i>
+                                <h5 class="highlight-title">Academy Graduate</h5>
+                                <p class="highlight-text">Apple Developer Academy</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <div class="highlight-item">
+                                <i class="bi bi-code-slash highlight-icon"></i>
+                                <h5 class="highlight-title">8+ Apps Built</h5>
+                                <p class="highlight-text">Portfolio of Shipped Projects</p>
+                            </div>
+                        </div>
+                         <div class="col-md-6 mb-4">
+                            <div class="highlight-item">
+                                <i class="bi bi-geo-alt-fill highlight-icon"></i>
+                                <h5 class="highlight-title">Based In</h5>
+                                <p class="highlight-text">Jakarta, Indonesia</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" data-aos="fade-up">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <h2 class="section-title mb-5">Experience</h2>
+                    <div id="experience-timeline"></div>
+                </div>
+                <div class="col-lg-6">
+                    <h2 class="section-title mb-5">Education</h2>
+                    <div id="education-timeline"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" data-aos="fade-up">
+        <div class="section-bg-wrapper">
+            <div class="container">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h2 class="mb-0">Projects</h2>
+                    <button class="btn btn-outline-themed" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasFilters" aria-controls="offcanvasFilters">
+                        <i class="bi bi-filter"></i> Filter
+                    </button>
+                </div>
+                <div id="featured-project-container" class="mb-5"></div>
+                <div id="project-grid" class="row g-4 justify-content-center align-items-start"></div>
+                <nav class="mt-4 d-flex justify-content-center">
+                    <ul class="pagination" id="project-pagination"></ul>
+                </nav>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" data-aos="fade-up">
+        <div class="container">
+            <h2 class="text-center">Skills</h2>
+            <div id="skills-grid" class="skills-grid mt-4"></div>
+        </div>
+    </section>
+
+    <section id="achievements" data-aos="fade-up">
+        <div class="section-bg-wrapper">
+             <div class="container">
+                <h2 class="text-center mb-5">Certificates & Awards</h2>
+                <div id="achievements-grid" class="row g-4 justify-content-center"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" data-aos="fade-up">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <h2>Get In Touch</h2>
+                    <p class="lead mb-4">
+                        My inbox is always open. Whether you have a question, a proposal, or just want to say hello, I'll do my best to get back to you!
+                    </p>
+                    <a href="mailto:vincentsaranang@gmail.com?subject=Reaching%20Out%20From%20Your%20Portfolio" class="btn btn-primary btn-lg contact-email-btn">
+                        <i class="bi bi-envelope-fill me-2"></i> Say Hello
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div>
+            <a href="https://github.com/vcsrng" target="_blank" rel="noopener noreferrer"><i class="bi bi-github"></i></a>
+            <a href="https://apps.apple.com/id/developer/vincent/id1748705316" target="_blank" rel="noopener noreferrer"><i class="bi bi-apple"></i></a>
+            <a href="https://www.linkedin.com/in/vincentsaranang/" target="_blank" rel="noopener noreferrer"><i class="bi bi-linkedin"></i></a>
+        </div>
+        <p class="mt-3" id="footer-text">©2025 Vincent Saranang, All Rights Reserved</p>
+    </footer>
+
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasFilters" aria-labelledby="offcanvasFiltersLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasFiltersLabel">Filter Projects</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <p class="text-muted">Select one or more tags to filter the projects.</p>
+            <div id="filter-options-container"></div>
+        </div>
+        <div class="offcanvas-footer p-3 border-top">
+            <button class="btn btn-dark w-100 mb-2" id="apply-filters-btn">Apply Filters</button>
+            <button class="btn btn-outline-secondary w-100" id="clear-filters-btn">Clear All Filters</button>
+        </div>
+    </div>
+
+    <div class="modal fade" id="projectModal" tabindex="-1" aria-labelledby="projectModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="projectModalLabel">Project Details</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-top-section row g-3"> <div class="col-md-7"> <div class="modal-image-container">
+                                <div id="projectImageCarousel" class="carousel slide w-100 h-100">
+                                    <div class="carousel-indicators" id="modal-carousel-indicators"></div>
+                                    <div class="carousel-inner" id="modal-carousel-inner"></div>
+                                    <button class="carousel-control-prev" type="button" data-bs-target="#projectImageCarousel" data-bs-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Previous</span>
+                                    </button>
+                                    <button class="carousel-control-next" type="button" data-bs-target="#projectImageCarousel" data-bs-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Next</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-5"> <div class="modal-summary-text">
+                                <h3 id="modal-project-title"></h3>
+                                <p id="modal-project-description"></p>
+                                <div id="modal-project-tech-stack" class="tech-stack mb-3"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="my-4">
+                    <div class="modal-bottom-section">
+                        <h4>My Role: <span id="modal-project-role" class="fw-normal"></span></h4>
+                        <h5 class="mt-3">Responsibilities:</h5>
+                        <ul id="modal-project-responsibilities" class="responsibilities-list"></ul>
+                    </div>
+                </div>
+                <div class="modal-footer" id="modal-project-links"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
