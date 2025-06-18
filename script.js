@@ -8,7 +8,7 @@ const data = {
         ]
     },
     about: {
-        textabout: "Hi! I'm an iOS developer passionate about solving problems and pushing boundaries to create meaningful technology. As a student at BINUS University and a recent graduate of Apple Developer Academy's Cohort 7, I thrive on applying my technical skills to create innovative solutions. I believe in continuous learning and innovation, always striving to make an impact—while remembering to enjoy the process!"
+        textabout: `Hi! I'm Vincent\n I'm an iOS developer passionate about solving problems and pushing boundaries to create meaningful technology. As a Computer Science freshgraduate from BINUS University and and a recent graduate of Apple Developer Academy's Cohort 7, I thrive on applying my technical skills to create innovative solutions. I believe in continuous learning and innovation, always striving to make an impact—while remembering to enjoy the process!`
     },
     experience: [
         {
@@ -368,7 +368,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (heroName) heroName.textContent = data.hero.name;
 
     const aboutText = document.getElementById("about-text");
-    if (aboutText) aboutText.textContent = data.about.textabout;
+    if (aboutText) aboutText.innerHTML = data.about.textabout;
     
     typeAndDeleteLoop();
     renderFilterOptions();
@@ -760,7 +760,8 @@ function setupFooter() {
         const currentYear = new Date().getFullYear();
         const lastUpdatedDate = new Date();
         const formattedDate = lastUpdatedDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
-        footerText.innerHTML = `©${currentYear} Vincent Saranang, All Rights Reserved.<br><span style="font-size: 0.8em; opacity: 0.7;">Last Updated: ${formattedDate}</span>`;
+        footerText.innerHTML = `©${currentYear} Vincent Saranang, All Rights Reserved.
+            <br><span style="font-size: 0.8em; opacity: 0.7; display: none;">Last Updated: ${formattedDate}</span>`;
     }
 }
 
