@@ -395,10 +395,13 @@ async function updateVisitCounter() {
     const apiUrl = 'https://api.counterapi.dev/v2/workspaces/vcsrngporto/counters/vincent-porto/up';
 
     try {
-        const response = await fetch(apiUrl);
+        const response = await fetch(apiUrl, {
+            method: 'POST'
+        });
         if (!response.ok) throw new Error('Counter API response not OK');
         const countData = await response.json();
-        counterElement.textContent = countData.value;
+        
+        counterElement.textContent = countData.count; 
     } catch (error) {
         console.error('Failed to update visit counter:', error);
         counterElement.textContent = 'N/A';
