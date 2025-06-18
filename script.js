@@ -343,22 +343,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const aboutText = document.getElementById("about-text");
     if (aboutText) aboutText.textContent = data.about.textabout;
-
-    createHeroCodeBackground();
-    setupThemeSwitcher();
-    setupNavbarScrollEffect();
+    
     typeAndDeleteLoop();
-    setupLoopingNavbarLogoAnimation();
     renderFilterOptions();
     renderProjects(1);
     populateGroupedSkills();
     populateAchievements();
     populateExperience();
     populateEducation();
+    
+    createHeroCodeBackground();
+    setupThemeSwitcher();
+    setupNavbarScrollEffect();
+    setupLoopingNavbarLogoAnimation();
     setupCV();
     setupFooter();
-
     setupNavigation();
+    setupProjectModal();
 });
 
 function setupNavigation() {
@@ -382,7 +383,6 @@ function setupNavigation() {
     };
 
     setTimeout(refreshScrollspy, 500);
-
     window.addEventListener('resize', refreshScrollspy);
     document.addEventListener('scroll', refreshScrollspy);
 
@@ -391,9 +391,7 @@ function setupNavigation() {
         link.addEventListener('click', function(e) {
             const navbarCollapse = document.querySelector('.navbar-collapse.show');
             if (navbarCollapse) {
-                const bsCollapse = new bootstrap.Collapse(navbarCollapse, {
-                    toggle: false
-                });
+                const bsCollapse = new bootstrap.Collapse(navbarCollapse, { toggle: false });
                 bsCollapse.hide();
             }
         });
@@ -420,16 +418,13 @@ function createHeroCodeBackground() {
 function setupThemeSwitcher() {
     const themeSwitch = document.getElementById('theme-switch');
     if (!themeSwitch) return;
-
     const applyTheme = (theme) => {
         document.documentElement.setAttribute('data-bs-theme', theme);
         localStorage.setItem('theme', theme);
         themeSwitch.checked = theme === 'dark';
     };
-
     const savedTheme = localStorage.getItem('theme') || 'light';
     applyTheme(savedTheme);
-
     themeSwitch.addEventListener('change', function() {
         applyTheme(this.checked ? 'dark' : 'light');
     });
@@ -439,11 +434,7 @@ function setupNavbarScrollEffect() {
     const navbar = document.querySelector('.navbar');
     if (!navbar) return;
     window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            navbar.classList.add('navbar-scrolled');
-        } else {
-            navbar.classList.remove('navbar-scrolled');
-        }
+        navbar.classList.toggle('navbar-scrolled', window.scrollY > 50);
     });
 }
 
@@ -451,7 +442,6 @@ function typeAndDeleteLoop() {
     const specialitiesElement = document.getElementById("hero-specialities");
     const specialities = data.hero.specialities;
     if (!specialitiesElement || !specialities.length) return;
-
     let specialityIndex = 0;
     let charIndex = 0;
     let isDeleting = false;
@@ -461,20 +451,12 @@ function typeAndDeleteLoop() {
 
     function loop() {
         const currentSpeciality = specialities[specialityIndex];
-        let displayText;
-
-        if (isDeleting) {
-            displayText = currentSpeciality.substring(0, charIndex - 1);
-            charIndex--;
-        } else {
-            displayText = currentSpeciality.substring(0, charIndex + 1);
-            charIndex++;
-        }
-
+        let displayText = isDeleting ?
+            currentSpeciality.substring(0, charIndex - 1) :
+            currentSpeciality.substring(0, charIndex + 1);
+        charIndex += isDeleting ? -1 : 1;
         specialitiesElement.innerHTML = `${displayText}<span class="cursor">|</span>`;
-
         let time = isDeleting ? deletingSpeed : typingSpeed;
-
         if (!isDeleting && charIndex === currentSpeciality.length) {
             time = pauseDuration;
             isDeleting = true;
@@ -482,7 +464,6 @@ function typeAndDeleteLoop() {
             isDeleting = false;
             specialityIndex = (specialityIndex + 1) % specialities.length;
         }
-
         setTimeout(loop, time);
     }
     loop();
@@ -491,7 +472,6 @@ function typeAndDeleteLoop() {
 function setupLoopingNavbarLogoAnimation() {
     const logoElement = document.getElementById('navbar-logo');
     if (!logoElement) return;
-
     const logoText = "vcsrng.";
     let charIndex = 0;
     let isDeleting = false;
@@ -500,34 +480,24 @@ function setupLoopingNavbarLogoAnimation() {
     const pauseDuration = 3000;
 
     function loop() {
-        const currentText = logoText;
-        let displayText;
-
-        if (isDeleting) {
-            displayText = currentText.substring(0, charIndex - 1);
-            charIndex--;
-        } else {
-            displayText = currentText.substring(0, charIndex + 1);
-            charIndex++;
-        }
-
+        let displayText = isDeleting ?
+            logoText.substring(0, charIndex - 1) :
+            logoText.substring(0, charIndex + 1);
+        charIndex += isDeleting ? -1 : 1;
         logoElement.innerHTML = `${displayText}<span class="cursor">|</span>`;
-
         let time = isDeleting ? deletingSpeed : typingSpeed;
-
-        if (!isDeleting && charIndex === currentText.length) {
+        if (!isDeleting && charIndex === logoText.length) {
             time = pauseDuration;
             isDeleting = true;
         } else if (isDeleting && charIndex === 0) {
             isDeleting = false;
         }
-
         setTimeout(loop, time);
     }
     loop();
 }
 
-let filteredProjects = [...data.projects];
+let filteredProjects = [];
 let activeTags = [];
 let selectedTags = [];
 
@@ -539,9 +509,7 @@ function renderFilterOptions() {
         <div class="form-check form-switch mb-2">
             <input class="form-check-input" type="checkbox" value="${tag}" id="tag-${tag}" ${selectedTags.includes(tag) ? 'checked' : ''}>
             <label class="form-check-label" for="tag-${tag}">${tag}</label>
-        </div>`
-    ).join('');
-
+        </div>`).join('');
     document.querySelectorAll('#filter-options-container .form-check-input').forEach(checkbox => {
         checkbox.addEventListener('change', (e) => {
             if (e.target.checked) {
@@ -551,82 +519,57 @@ function renderFilterOptions() {
             }
         });
     });
-
     const applyFiltersBtn = document.getElementById("apply-filters-btn");
     const clearFiltersBtn = document.getElementById("clear-filters-btn");
     const offcanvasElement = document.getElementById('offcanvasFilters');
     const offcanvas = offcanvasElement ? bootstrap.Offcanvas.getInstance(offcanvasElement) || new bootstrap.Offcanvas(offcanvasElement) : null;
-
     if (applyFiltersBtn) {
         applyFiltersBtn.addEventListener('click', () => {
             activeTags = [...selectedTags];
-            if (activeTags.length === 0) {
-                filteredProjects = [...data.projects];
-            } else {
-                filteredProjects = data.projects.filter(project =>
-                    activeTags.every(tag => project.tech_stack && project.tech_stack.includes(tag))
-                );
-            }
             renderProjects(1);
-            if(offcanvas) offcanvas.hide();
+            if (offcanvas) offcanvas.hide();
         });
     }
-
     if (clearFiltersBtn) {
         clearFiltersBtn.addEventListener('click', () => {
             selectedTags = [];
             activeTags = [];
-            filteredProjects = [...data.projects];
-            renderFilterOptions();
+            renderFilterOptions(); // Re-render to clear checks
             renderProjects(1);
-            if(offcanvas) offcanvas.hide();
+            if (offcanvas) offcanvas.hide();
         });
     }
 }
 
 function renderProjects(page) {
+    if (activeTags.length > 0) {
+        filteredProjects = data.projects.filter(project =>
+            activeTags.every(tag => project.tech_stack && project.tech_stack.includes(tag))
+        );
+    } else {
+        filteredProjects = [...data.projects];
+    }
     const featuredProjectContainer = document.getElementById("featured-project-container");
     const projectGrid = document.getElementById("project-grid");
     if (!projectGrid || !featuredProjectContainer) return;
-
-    const featuredProject = data.projects.find(p => p.featured);
-
+    const featuredProject = filteredProjects.find(p => p.featured);
     if (featuredProject) {
         featuredProjectContainer.innerHTML = `
             <div class="featured-project-card" data-aos="fade-up">
                 <div class="row g-0 h-100">
-                    <div class="col-lg-7">
-                        <div class="featured-project-img-wrapper">
-                            <img src="${featuredProject.image[0]}" class="img-fluid featured-project-image" alt="${featuredProject.name}" onerror="this.onerror=null;this.src='https://placehold.co/800x600/1e1e1e/f8f9fa?text=Featured+Image';">
-                        </div>
-                    </div>
-                    <div class="col-lg-5 d-flex">
-                        <div class="featured-project-body">
-                            <h4 class="featured-project-title">
-                                <i class="bi bi-award-fill text-warning me-2"></i> Featured Project
-                            </h4>
-                            <h3>${featuredProject.name}</h3>
-                            <p class="lead">${featuredProject.description}</p>
-                            <div class="tech-stack mb-4">
-                                ${(featuredProject.tech_stack || []).map(tech => `<span>${tech}</span>`).join('')}
-                            </div>
-                            <button class="btn btn-primary mt-auto" data-bs-toggle="modal" data-bs-target="#projectModal" data-project-name="${featuredProject.name}">
-                                View Details <i class="bi bi-box-arrow-up-right"></i>
-                            </button>
-                        </div>
-                    </div>
+                    <div class="col-lg-7"><div class="featured-project-img-wrapper"><img src="${featuredProject.image[0]}" class="img-fluid featured-project-image" alt="${featuredProject.name}" onerror="this.onerror=null;this.src='https://placehold.co/800x600/1e1e1e/f8f9fa?text=Featured+Image';"></div></div>
+                    <div class="col-lg-5 d-flex"><div class="featured-project-body"><h4 class="featured-project-title"><i class="bi bi-award-fill text-warning me-2"></i> Featured Project</h4><h3>${featuredProject.name}</h3><p class="lead">${featuredProject.description}</p><div class="tech-stack mb-4">${(featuredProject.tech_stack || []).map(tech => `<span>${tech}</span>`).join('')}</div><button class="btn btn-primary mt-auto" data-bs-toggle="modal" data-bs-target="#projectModal" data-project-name="${featuredProject.name}">View Details <i class="bi bi-box-arrow-up-right"></i></button></div></div>
                 </div>
-            </div>
-        `;
+            </div>`;
+    } else {
+        featuredProjectContainer.innerHTML = '';
     }
-
     const regularProjects = filteredProjects.filter(p => !p.featured);
     projectGrid.innerHTML = "";
     const itemsPerPage = 6;
     const start = (page - 1) * itemsPerPage;
     const end = start + itemsPerPage;
-
-    if (regularProjects.length === 0) {
+    if (regularProjects.length === 0 && activeTags.length > 0) {
         projectGrid.innerHTML = `<div class="col-12 text-center"><p class="text-muted fs-5 mt-4">No projects match the selected filters.</p></div>`;
     } else {
         regularProjects.slice(start, end).forEach(proj => {
@@ -634,27 +577,17 @@ function renderProjects(page) {
             col.className = "col-lg-4 col-md-6";
             const hasImage = proj.image && proj.image.length > 0;
             let imageClass = proj.scale_image_to_height ? "fit-height" : "";
-
             col.innerHTML = `
                 <div class="project-card-link" data-bs-toggle="modal" data-bs-target="#projectModal" data-project-name="${proj.name}">
                     <div class="project-card h-100">
-                        <div class="project-image-wrapper">
-                            ${hasImage
-                                ? `<img src="${proj.image[0]}" alt="${proj.name}" class="img-fluid project-image ${imageClass}" onerror="this.onerror=null;this.src='https://placehold.co/400x250/1e1e1e/f8f9fa?text=Image';">`
-                                : `<div class="img-fluid project-image bg-light d-flex align-items-center justify-content-center border"><span class='text-muted'>No Image</span></div>`}
-                        </div>
+                        <div class="project-image-wrapper">${hasImage ? `<img src="${proj.image[0]}" alt="${proj.name}" class="img-fluid project-image ${imageClass}" onerror="this.onerror=null;this.src='https://placehold.co/400x250/1e1e1e/f8f9fa?text=Image';">` : `<div class="img-fluid project-image bg-light d-flex align-items-center justify-content-center border"><span class='text-muted'>No Image</span></div>`}</div>
                         <div class="project-title">${proj.name}</div>
-                        <div class="project-overlay">
-                            <h5>${proj.name}</h5>
-                            <p>${proj.description}</p>
-                            <div class="tech-stack">${(proj.tech_stack || []).map(tech => `<span>${tech}</span>`).join('')}</div>
-                        </div>
+                        <div class="project-overlay"><h5>${proj.name}</h5><p>${proj.description}</p><div class="tech-stack">${(proj.tech_stack || []).map(tech => `<span>${tech}</span>`).join('')}</div></div>
                     </div>
                 </div>`;
             projectGrid.appendChild(col);
         });
     }
-
     renderPagination(page, regularProjects, itemsPerPage);
     setTimeout(() => {
         const scrollSpy = bootstrap.ScrollSpy.getInstance(document.body);
@@ -669,12 +602,10 @@ function renderPagination(currentPage, projectsToPaginate, itemsPerPage) {
     if (!pagination) return;
     const totalPages = Math.ceil(projectsToPaginate.length / itemsPerPage);
     pagination.innerHTML = '';
-
     if (totalPages <= 1) {
         pagination.style.display = 'none';
         return;
     }
-
     pagination.style.display = 'flex';
     for (let i = 1; i <= totalPages; i++) {
         const li = document.createElement('li');
@@ -691,40 +622,20 @@ function renderPagination(currentPage, projectsToPaginate, itemsPerPage) {
 function populateGroupedSkills() {
     const skillGroupsContainer = document.getElementById("skill-groups");
     if (!skillGroupsContainer) return;
-
-    const categoryIcons = {
-        tech: "bi bi-wrench-adjustable-circle-fill",
-        design: "bi bi-brush-fill",
-        product: "bi bi-buildings-fill"
-    };
-
-    const categoryColors = {
-        tech: "text-tech",
-        design: "text-design",
-        product: "text-product"
-    };
-
+    skillGroupsContainer.innerHTML = ''; 
+    const categoryIcons = { tech: "bi-wrench-adjustable-circle-fill", design: "bi-brush-fill", product: "bi-buildings-fill" };
+    const categoryColors = { tech: "text-tech", design: "text-design", product: "text-product" };
     for (const [category, skills] of Object.entries(data.skillset)) {
         const icon = categoryIcons[category] || "bi-tags";
         const colorClass = categoryColors[category] || "text-muted";
         const capitalized = category.charAt(0).toUpperCase() + category.slice(1);
-
         const groupCol = document.createElement("div");
         groupCol.className = "col-12 col-sm-10 col-md-6 col-lg-4";
-
         groupCol.innerHTML = `
             <div class="skill-group-box h-100">
-                <h5 class="mb-3 text-center ${colorClass}">
-                    <i class="bi ${icon} me-2"></i>${capitalized}
-                </h5>
-                <div class="skills-grid d-flex flex-wrap justify-content-center">
-                    ${skills.map(skill =>
-                        `<span class="badge ${category}" title="${skill}">${skill}</span>`
-                    ).join('')}
-                </div>
-            </div>
-        `;
-
+                <h5 class="mb-3 text-center ${colorClass}"><i class="bi ${icon} me-2"></i>${capitalized}</h5>
+                <div class="skills-grid d-flex flex-wrap justify-content-center">${(skills || []).map(skill => `<span class="badge ${category}" title="${skill}">${skill}</span>`).join('')}</div>
+            </div>`;
         skillGroupsContainer.appendChild(groupCol);
     }
 }
@@ -733,23 +644,11 @@ function populateAchievements() {
     const achievementGrid = document.getElementById("achievements-grid");
     if (!achievementGrid) return;
     achievementGrid.innerHTML = data.achievements.map(ach => {
-        const verifyButton = ach.verifyLink && ach.verifyLink !== "#" ? `<a href="${ach.verifyLink}" class="btn btn-outline-themed btn-sm" target="_blank" rel="noopener noreferrer">Verify <i class="bi bi-arrow-up-right-square-fill"></i></a>` : '';
+        const verifyButton = ach.verifyLink ? `<a href="${ach.verifyLink}" class="btn btn-outline-themed btn-sm" target="_blank" rel="noopener noreferrer">Verify <i class="bi bi-arrow-up-right-square-fill"></i></a>` : '';
         const winnerBadge = ach.title.includes("Winner") ? '<span class="winner-badge"><i class="bi bi-trophy-fill"></i> Winner</span>' : '';
         return `
             <div class="col-lg-4 col-md-6">
-                <div class="achievement-card h-100 d-flex flex-column">
-                    ${winnerBadge}
-                    <div class="achievement-card-header">
-                        <i class="bi ${ach.icon}"></i>
-                        <span class="issuer">${ach.issuer}</span>
-                    </div>
-                    <div class="achievement-card-body flex-grow-1">
-                        <h5 class="title">${ach.title}</h5>
-                        <p class="date text-muted">${ach.date}</p>
-                        <p class="description">${ach.description}</p>
-                    </div>
-                    <div class="achievement-card-footer mt-auto">${verifyButton}</div>
-                </div>
+                <div class="achievement-card h-100 d-flex flex-column">${winnerBadge}<div class="achievement-card-header"><i class="bi ${ach.icon}"></i><span class="issuer">${ach.issuer}</span></div><div class="achievement-card-body flex-grow-1"><h5 class="title">${ach.title}</h5><p class="date text-muted">${ach.date}</p><p class="description">${ach.description}</p></div><div class="achievement-card-footer mt-auto">${verifyButton}</div></div>
             </div>`;
     }).join('');
 }
@@ -763,8 +662,7 @@ function populateExperience() {
             <h6 class="timeline-company">${exp.company}</h6>
             <p class="timeline-period text-muted">${exp.period}</p>
             <p class="timeline-description">${exp.description}</p>
-        </div>`
-    ).join('');
+        </div>`).join('');
 }
 
 function populateEducation() {
@@ -776,8 +674,7 @@ function populateEducation() {
             <h6 class="timeline-company">${edu.university}</h6>
             <p class="timeline-period text-muted">${edu.period}</p>
             <ul class="timeline-details">${(edu.details || []).map(detail => `<li>${detail}</li>`).join('')}</ul>
-        </div>`
-    ).join('');
+        </div>`).join('');
 }
 
 function setupCV() {
@@ -802,4 +699,109 @@ function setupFooter() {
         const formattedDate = lastUpdatedDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
         footerText.innerHTML = `©${currentYear} Vincent Saranang, All Rights Reserved.<br><span style="font-size: 0.8em; opacity: 0.7;">Last Updated: ${formattedDate}</span>`;
     }
+}
+
+function setupProjectModal() {
+    const projectModal = document.getElementById('projectModal');
+    let projectCarousel = null;
+    if (!projectModal) return;
+
+    projectModal.addEventListener('show.bs.modal', async function(event) {
+        const card = event.relatedTarget;
+        const projectName = card.getAttribute('data-project-name');
+        const projectData = data.projects.find(p => p.name === projectName);
+        if (!projectData) return;
+
+        projectModal.querySelector('#modal-project-title').textContent = projectData.name;
+        projectModal.querySelector('#modal-project-description').textContent = projectData.description;
+        projectModal.querySelector('#modal-project-tech-stack').innerHTML = (projectData.tech_stack || []).map(tech => `<span>${tech}</span>`).join('');
+        projectModal.querySelector('#modal-project-role').textContent = projectData.role || 'N/A';
+        projectModal.querySelector('#modal-project-responsibilities').innerHTML = (projectData.responsibilities || []).map(res => `<li>${res}</li>`).join('');
+
+        const modalLinks = projectModal.querySelector('#modal-project-links');
+        modalLinks.innerHTML = '';
+        if (projectData.links) {
+            if (projectData.links.appstore) { modalLinks.insertAdjacentHTML('beforeend', `<a href="${projectData.links.appstore}" class="btn btn-dark" target="_blank" rel="noopener noreferrer"><i class="bi bi-apple"></i> App Store</a>`); }
+            if (projectData.links.testflight) { modalLinks.insertAdjacentHTML('beforeend', `<a href="${projectData.links.testflight}" class="btn btn-info text-white" target="_blank" rel="noopener noreferrer"><i class="bi bi-box-seam"></i> TestFlight</a>`); }
+            if (projectData.links.github) { modalLinks.insertAdjacentHTML('beforeend', `<a href="${projectData.links.github}" class="btn btn-secondary" target="_blank" rel="noopener noreferrer"><i class="bi bi-github"></i> GitHub</a>`); }
+            if (projectData.links.medium) { modalLinks.insertAdjacentHTML('beforeend', `<a href="${projectData.links.medium}" class="btn btn-light" target="_blank" rel="noopener noreferrer"><i class="bi bi-medium"></i> Read Article</a>`); }
+            if (projectData.links.wwdc) { modalLinks.insertAdjacentHTML('beforeend', `<a href="${projectData.links.wwdc}" class="btn btn-wwdc" target="_blank" rel="noopener noreferrer"><i class="bi bi-trophy-fill"></i> WWDC Profile</a>`); }
+            if (projectData.links.instagram) { modalLinks.insertAdjacentHTML('beforeend', `<a href="${projectData.links.instagram}" class="btn btn-instagram" target="_blank" rel="noopener noreferrer"><i class="bi bi-instagram"></i> Instagram</a>`); }
+            if (projectData.links.web) { modalLinks.insertAdjacentHTML('beforeend', `<a href="${projectData.links.web}" class="btn btn-web" target="_blank" rel="noopener noreferrer"><i class="bi bi-globe"></i> Website</a>`); }
+        }
+        modalLinks.insertAdjacentHTML('beforeend', `<button type="button" class="btn btn-modal-close ms-auto" data-bs-dismiss="modal">Close</button>`);
+
+        const carouselInner = document.getElementById('modal-carousel-inner');
+        const carouselIndicators = document.getElementById('modal-carousel-indicators');
+        const carouselContainer = document.getElementById('projectImageCarousel');
+        const imageContainer = projectModal.querySelector('.modal-image-container');
+
+        carouselInner.innerHTML = '';
+        carouselIndicators.innerHTML = '';
+        imageContainer.style.height = null;
+        imageContainer.style.width = null;
+
+        const images = projectData.image || [];
+        if (images.length === 0) {
+            imageContainer.innerHTML = `<div class="carousel-image-wrapper"><span class="text-muted">No Image Available</span></div>`;
+            return;
+        }
+
+        const loadedImageData = await Promise.all(images.map(src => {
+            return new Promise((resolve) => {
+                const img = new Image();
+                img.onload = () => resolve({ src, width: img.naturalWidth, height: img.naturalHeight, loaded: true });
+                img.onerror = () => resolve({ src: 'https://placehold.co/800x600/2a2a2a/f8f9fa?text=Image+Not+Found', width: 800, height: 600, loaded: false });
+                img.src = src;
+            });
+        }));
+
+        const minHeightPx = window.innerHeight * 0.40;
+        let masterFrame = { width: 0, height: minHeightPx };
+
+        loadedImageData.forEach(imgData => {
+            const aspectRatio = imgData.width / imgData.height;
+            const renderedWidthAtMinHeight = minHeightPx * aspectRatio;
+            if (renderedWidthAtMinHeight > masterFrame.width) {
+                masterFrame.width = renderedWidthAtMinHeight;
+            }
+        });
+
+        const maxAllowedWidth = 700;
+        masterFrame.width = Math.min(masterFrame.width, maxAllowedWidth);
+
+        imageContainer.style.width = `${masterFrame.width}px`;
+        imageContainer.style.height = `${masterFrame.height}px`;
+
+        loadedImageData.forEach((imgData, index) => {
+            const activeClass = index === 0 ? 'active' : '';
+            const carouselItemHTML = `<div class="carousel-item ${activeClass}"><div class="carousel-image-wrapper"><img src="${imgData.src}" class="d-block" alt="Project image ${index + 1}"></div></div>`;
+            carouselInner.insertAdjacentHTML('beforeend', carouselItemHTML);
+            const indicatorHTML = `<button type="button" data-bs-target="#projectImageCarousel" data-bs-slide-to="${index}" class="${activeClass}" aria-current="true" aria-label="Slide ${index + 1}"></button>`;
+            carouselIndicators.insertAdjacentHTML('beforeend', indicatorHTML);
+        });
+
+        if (images.length > 1) {
+            carouselContainer.classList.remove('single-image');
+            if (projectCarousel) projectCarousel.dispose();
+            projectCarousel = new bootstrap.Carousel(carouselContainer, {
+                interval: 5000,
+                pause: 'hover'
+            });
+        } else {
+            carouselContainer.classList.add('single-image');
+        }
+    });
+
+    projectModal.addEventListener('hidden.bs.modal', function() {
+        if (projectCarousel) {
+            projectCarousel.dispose();
+            projectCarousel = null;
+        }
+        const imageContainer = projectModal.querySelector('.modal-image-container');
+        if (imageContainer) {
+            imageContainer.style.height = null;
+            imageContainer.style.width = null;
+        }
+    });
 }
