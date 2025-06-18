@@ -306,7 +306,7 @@ const data = {
             "Prototyping", "Usability Testing"
         ],
         product: [
-            "Notion", "Jira", "App Store Connect", "User Research", "Product Strategy"
+            "Notion", "App Store Connect", "User Research", "Product Strategy"
         ]
     },
     achievements: [
@@ -333,6 +333,14 @@ const data = {
             date: "Nov 2023",
             description: "Validated skills in complex SQL queries and database manipulation.",
             verifyLink: "https://www.hackerrank.com/certificates/d4d9f49e6202"
+        },
+        {
+            icon: "bi-patch-check-fill",
+            title: "GIS for Climate Action",
+            issuer: "Esri",
+            date: "Oct 2023 - Nov 2023",
+            description: "Completed a 6-week Esri MOOC on applying Geographic Information Systems (GIS) to understand and address climate change challenges.",
+            verifyLink: "downloadable/Vincent_GIS for Climate Action Certificate.pdf"
         },
         {
             icon: "bi-cloud-fill",
@@ -380,6 +388,23 @@ document.addEventListener('DOMContentLoaded', () => {
     setupProjectModal();
 });
 
+async function updateVisitCounter() {
+    const counterElement = document.getElementById('visit-counter');
+    if (!counterElement) return;
+
+    const apiUrl = 'https://api.counterapi.dev/v2/workspaces/vcsrngporto/counters/vincent-porto/up';
+
+    try {
+        const response = await fetch(apiUrl);
+        if (!response.ok) throw new Error('Counter API response not OK');
+        const countData = await response.json();
+        counterElement.textContent = countData.value;
+    } catch (error) {
+        console.error('Failed to update visit counter:', error);
+        counterElement.textContent = 'N/A';
+    }
+}
+
 function setupNavigation() {
     const mainNav = document.querySelector('.navbar');
     if (!mainNav) return;
@@ -389,7 +414,6 @@ function setupNavigation() {
             target: '#navbarNav'
         });
         scrollSpy.refresh();
-
         const atBottom = Math.ceil(window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight;
         if (atBottom) {
             const contactLink = document.querySelector('a.nav-link[href="#contact"]');
@@ -662,7 +686,14 @@ function populateAchievements() {
     const achievementGrid = document.getElementById("achievements-grid");
     if (!achievementGrid) return;
     achievementGrid.innerHTML = data.achievements.map(ach => {
-        const verifyButton = ach.verifyLink ? `<a href="${ach.verifyLink}" class="btn btn-outline-themed btn-sm" target="_blank" rel="noopener noreferrer">Verify <i class="bi bi-arrow-up-right-square-fill"></i></a>` : '';
+        let verifyButton = '';
+        if (ach.verifyLink) {
+            if (ach.verifyLink.toLowerCase().endsWith('.pdf')) {
+                verifyButton = `<a href="${ach.verifyLink}" class="btn btn-outline-themed btn-sm" download>Verify <i class="bi bi-file-earmark-arrow-down-fill"></i></a>`;
+            } else {
+                verifyButton = `<a href="${ach.verifyLink}" class="btn btn-outline-themed btn-sm" target="_blank" rel="noopener noreferrer">Verify <i class="bi bi-arrow-up-right-square-fill"></i></a>`;
+            }
+        }
         const winnerBadge = ach.title.includes("Winner") ? '<span class="winner-badge"><i class="bi bi-trophy-fill"></i> Winner</span>' : '';
         return `
             <div class="col-lg-4 col-md-6">
