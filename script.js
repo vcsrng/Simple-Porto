@@ -8,7 +8,7 @@ const data = {
         ]
     },
     about: {
-        textabout: "Hi! I'm an iOS developer passionate about solving problems and pushing boundaries to create meaningful technology. As a student at BINUS University and a recent graduate of Apple Developer Academy's Cohort 7, I thrive on applying my technical skills to create innovative solutions. I believe in continuous learning and innovation, always striving to make an impact—while remembering to enjoy the process!"
+        textabout: `Hi! I'm Vincent\n I'm an iOS developer passionate about solving problems and pushing boundaries to create meaningful technology. As a Computer Science freshgraduate from BINUS University and and a recent graduate of Apple Developer Academy's Cohort 7, I thrive on applying my technical skills to create innovative solutions. I believe in continuous learning and innovation, always striving to make an impact—while remembering to enjoy the process!`
     },
     experience: [
         {
@@ -306,7 +306,7 @@ const data = {
             "Prototyping", "Usability Testing"
         ],
         product: [
-            "Notion", "Jira", "App Store Connect", "User Research", "Product Strategy"
+            "Notion", "App Store Connect", "User Research", "Product Strategy"
         ]
     },
     achievements: [
@@ -335,6 +335,14 @@ const data = {
             verifyLink: "https://www.hackerrank.com/certificates/d4d9f49e6202"
         },
         {
+            icon: "bi-patch-check-fill",
+            title: "GIS for Climate Action",
+            issuer: "Esri",
+            date: "Oct 2023 - Nov 2023",
+            description: "Completed a 6-week Esri MOOC on applying Geographic Information Systems (GIS) to understand and address climate change challenges.",
+            verifyLink: "downloadable/Vincent_GIS for Climate Action Certificate.pdf"
+        },
+        {
             icon: "bi-cloud-fill",
             title: "Introduction to Cloud",
             issuer: "Cognitive Class by IBM",
@@ -360,7 +368,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (heroName) heroName.textContent = data.hero.name;
 
     const aboutText = document.getElementById("about-text");
-    if (aboutText) aboutText.textContent = data.about.textabout;
+    if (aboutText) aboutText.innerHTML = data.about.textabout;
     
     typeAndDeleteLoop();
     renderFilterOptions();
@@ -378,7 +386,38 @@ document.addEventListener('DOMContentLoaded', () => {
     setupFooter();
     setupNavigation();
     setupProjectModal();
+
+    updateVisitCounter();
 });
+
+async function updateVisitCounter() {
+    const counterElement = document.getElementById('visit-counter');
+    if (!counterElement) return;
+
+    const incrementUrl = 'https://api.counterapi.dev/v2/vincent-porto/pageviews/up';
+    const getUrl = 'https://api.counterapi.dev/v2/vincent-porto/pageviews';
+
+    try {
+        await fetch(incrementUrl);
+
+        const response = await fetch(getUrl);
+        if (!response.ok) {
+            throw new Error('Could not retrieve counter value');
+        }
+        
+        const getData = await response.json();
+        
+        if (getData && getData.data && getData.data.up_count !== undefined) {
+            counterElement.textContent = getData.data.up_count;
+        } else {
+            counterElement.textContent = getData.count;
+        }
+
+    } catch (error) {
+        console.error('Failed to update visit counter:', error);
+        counterElement.textContent = 'Error';
+    }
+}
 
 function setupNavigation() {
     const mainNav = document.querySelector('.navbar');
@@ -389,7 +428,6 @@ function setupNavigation() {
             target: '#navbarNav'
         });
         scrollSpy.refresh();
-
         const atBottom = Math.ceil(window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight;
         if (atBottom) {
             const contactLink = document.querySelector('a.nav-link[href="#contact"]');
@@ -662,7 +700,14 @@ function populateAchievements() {
     const achievementGrid = document.getElementById("achievements-grid");
     if (!achievementGrid) return;
     achievementGrid.innerHTML = data.achievements.map(ach => {
-        const verifyButton = ach.verifyLink ? `<a href="${ach.verifyLink}" class="btn btn-outline-themed btn-sm" target="_blank" rel="noopener noreferrer">Verify <i class="bi bi-arrow-up-right-square-fill"></i></a>` : '';
+        let verifyButton = '';
+        if (ach.verifyLink) {
+            if (ach.verifyLink.toLowerCase().endsWith('.pdf')) {
+                verifyButton = `<a href="${ach.verifyLink}" class="btn btn-outline-themed btn-sm" download>Verify <i class="bi bi-file-earmark-arrow-down-fill"></i></a>`;
+            } else {
+                verifyButton = `<a href="${ach.verifyLink}" class="btn btn-outline-themed btn-sm" target="_blank" rel="noopener noreferrer">Verify <i class="bi bi-arrow-up-right-square-fill"></i></a>`;
+            }
+        }
         const winnerBadge = ach.title.includes("Winner") ? '<span class="winner-badge"><i class="bi bi-trophy-fill"></i> Winner</span>' : '';
         return `
             <div class="col-lg-4 col-md-6">
@@ -715,7 +760,8 @@ function setupFooter() {
         const currentYear = new Date().getFullYear();
         const lastUpdatedDate = new Date();
         const formattedDate = lastUpdatedDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
-        footerText.innerHTML = `©${currentYear} Vincent Saranang, All Rights Reserved.<br><span style="font-size: 0.8em; opacity: 0.7;">Last Updated: ${formattedDate}</span>`;
+        footerText.innerHTML = `©${currentYear} Vincent Saranang, All Rights Reserved.
+            <br><span style="font-size: 0.8em; opacity: 0.7; display: none;">Last Updated: ${formattedDate}</span>`;
     }
 }
 

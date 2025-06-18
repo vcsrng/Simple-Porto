@@ -85,6 +85,11 @@ nav.navbar {
     animation: blink 0.7s infinite;
 }
 
+[data-bs-theme="dark"] nav.navbar,
+[data-bs-theme="dark"] nav.navbar.navbar-scrolled {
+    border-bottom: 2.4px solid rgba(255, 255, 255, 0.2);
+}
+
 .theme-switch-wrapper {
     display: flex; align-items: center; gap: 0.5rem;
 }
@@ -157,6 +162,9 @@ nav.navbar {
 
 .profile-picture {
     max-width: 300px; border: 5px solid var(--card-bg-color);
+}
+#about-text {
+    white-space: pre-line;
 }
 .about-me-title {
     margin-bottom: 1rem;
@@ -242,13 +250,13 @@ nav.navbar {
   animation: pulse-border 2.5s ease-out infinite;
 }
 
-.section-bg {
-    background-color: var(--section-bg-color);
+.section-bg-wrapper-clear {
+    padding: 132px 0;
     transition: background-color 0.3s ease;
 }
 
-.section-bg-wrapper-clear {
-    padding: 132px 0;
+#projects {
+    background-color: var(--section-bg-color);
     transition: background-color 0.3s ease;
 }
 
@@ -625,6 +633,10 @@ nav.navbar {
   color: #f7ae34 !important;
 }
 
+#achievements {
+    background-color: var(--section-bg-color);
+    transition: background-color 0.3s ease;
+}
 .achievement-card {
     position: relative; 
     background-color: var(--card-bg-color);
@@ -671,7 +683,7 @@ nav.navbar {
     box-shadow: 0 4px 10px rgba(255, 152, 0, 0.4); }
 
 #contact {
-    padding-bottom: 92px;
+    padding-bottom: 112px;
 }
 .contact-email-btn {
     padding: 0.8rem 2rem;
@@ -693,6 +705,10 @@ footer a {
 }
 footer a:hover {
     color: var(--text-muted-color);
+}
+
+.visit-counter-container {
+    display: none;
 }
 
 .btn-social {
