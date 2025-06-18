@@ -392,7 +392,7 @@ async function updateVisitCounter() {
     const counterElement = document.getElementById('visit-counter');
     if (!counterElement) return;
 
-    const apiUrl = 'https://api.counterapi.dev/v2/workspaces/vcsrngporto/counters/vincent-porto/up';
+    const apiUrl = 'https://api.counterapi.dev/v2/vincent-porto/pageviews/up';
 
     try {
         const response = await fetch(apiUrl, {
