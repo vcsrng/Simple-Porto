@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vincent Saranang | iOS Developer</title>
-    <link id="favicon" rel="icon" type="image/svg+xml" href="assets/icon/icon.svg">
+    <title>Vincent Saranang's Portfolio</title>
+    <link id="favicon" rel="icon" type="image/svg+xml" href="https://vcsrng.github.io/assets/icon/icon.svg">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Space+Mono:wght@700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -46,7 +46,7 @@
             <h1 id="hero-name"></h1>
             <p id="hero-specialities"></p>
             <div data-aos-delay="100">
-                <button id="cv-download" class="btn btn-outline-dark btn-custom">Download CV</button>
+                <button id="cv-download" class="btn btn-outline-dark btn-custom"><i class="bi bi-file-earmark-person-fill"></i> Download CV</button>
                 <a href="https://github.com/vcsrng" class="btn btn-custom btn-social" target="_blank" rel="noopener noreferrer"><i class="bi bi-github"></i> GitHub</a>
                 <a href="https://apps.apple.com/id/developer/vincent/id1748705316" class="btn btn-custom btn-social" target="_blank" rel="noopener noreferrer"><i class="bi bi-apple"></i> App Store</a>
                 <a href="https://www.linkedin.com/in/vincentsaranang/" class="btn btn-custom btn-social" target="_blank" rel="noopener noreferrer"><i class="bi bi-linkedin"></i> LinkedIn</a>
@@ -58,7 +58,7 @@
         <div class="container">
             <div class="row align-items-center justify-content-center">
                 <div class="col-lg-4 col-md-8 mb-5 mb-lg-0 text-center">
-                    <img src="assets/profile.jpg" class="img-fluid rounded-circle shadow-lg profile-picture" alt="A photo of Vincent Saranang">
+                    <img src="https://vcsrng.github.io/assets/profile.jpg" class="img-fluid rounded-circle shadow-lg profile-picture" alt="A photo of Vincent Saranang">
                 </div>
                 <div class="col-lg-8">
                     <h2 class="about-me-title">About Me</h2>
@@ -81,7 +81,7 @@
                         <div class="col-md-6 mb-4">
                             <div class="highlight-item">
                                 <i class="bi bi-code-slash highlight-icon"></i>
-                                <h5 class="highlight-title">8+ Apps Built</h5>
+                                <h5 class="highlight-title">10+ Apps Built</h5>
                                 <p class="highlight-text">Portfolio of Shipped Projects</p>
                             </div>
                         </div>
@@ -113,51 +113,49 @@
         </div>
     </section>
 
-    <section id="projects" data-aos="fade-up">
-        <div class="section-bg-wrapper">
-            <div class="container">
-                <div class="d-flex justify-content-between align-items-center mb-4">
-                    <h2 class="mb-0">Projects</h2>
-                    <button class="btn btn-outline-themed" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasFilters" aria-controls="offcanvasFilters">
-                        <i class="bi bi-filter"></i> Filter
-                    </button>
-                </div>
-                <div id="featured-project-container" class="mb-5"></div>
-                <div id="project-grid" class="row g-4 justify-content-center align-items-start"></div>
-                <nav class="mt-4 d-flex justify-content-center">
-                    <ul class="pagination" id="project-pagination"></ul>
-                </nav>
+    <section id="projects"  data-aos="fade-up">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2 class="mb-0">Projects</h2>
+                <button class="btn btn-outline-themed" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasFilters" aria-controls="offcanvasFilters">
+                    <i class="bi bi-filter"></i> Filter
+                </button>
             </div>
+            <div id="featured-project-container" class="mb-5"></div>
+            <div id="project-grid" class="row g-4 justify-content-center align-items-start"></div>
+            <nav class="mt-4 d-flex justify-content-center">
+                <ul class="pagination" id="project-pagination"></ul>
+            </nav>
         </div>
     </section>
 
     <section id="skills" data-aos="fade-up">
         <div class="container">
-            <h2 class="text-center">Skills</h2>
-            <div id="skills-grid" class="skills-grid mt-4"></div>
+            <h2 class="text-center mb-5">Skills</h2>
+            <div id="skill-groups" class="row justify-content-center g-4 align-items-start"></div>
         </div>
     </section>
 
     <section id="achievements" data-aos="fade-up">
-        <div class="section-bg-wrapper">
-             <div class="container">
-                <h2 class="text-center mb-5">Certificates & Awards</h2>
-                <div id="achievements-grid" class="row g-4 justify-content-center"></div>
-            </div>
+        <div class="container">
+            <h2 class="text-center mb-5">Certificates & Awards</h2>
+            <div id="achievements-grid" class="row g-4 justify-content-center"></div>
         </div>
     </section>
 
     <section id="contact" data-aos="fade-up">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-8 text-center">
-                    <h2>Get In Touch</h2>
-                    <p class="lead mb-4">
-                        My inbox is always open. Whether you have a question, a proposal, or just want to say hello, I'll do my best to get back to you!
-                    </p>
-                    <a href="mailto:vincentsaranang@gmail.com?subject=Reaching%20Out%20From%20Your%20Portfolio" class="btn btn-primary btn-lg contact-email-btn">
-                        <i class="bi bi-envelope-fill me-2"></i> Say Hello
-                    </a>
+        <div class="section-bg-wrapper-clear">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8 text-center">
+                        <h2>Get In Touch</h2>
+                        <p class="lead mb-4">
+                            My inbox is always open. Whether you have a question, a proposal, or just want to say hello, I'll do my best to get back to you!
+                        </p>
+                        <a href="mailto:vincentsaranang@gmail.com?subject=Reaching%20Out%20From%20Your%20Portfolio" class="btn btn-primary btn-lg contact-email-btn">
+                            <i class="bi bi-envelope-fill me-2"></i> Say Hello
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -170,6 +168,9 @@
             <a href="https://www.linkedin.com/in/vincentsaranang/" target="_blank" rel="noopener noreferrer"><i class="bi bi-linkedin"></i></a>
         </div>
         <p class="mt-3" id="footer-text">©2025 Vincent Saranang, All Rights Reserved</p>
+        <p class="visit-counter-container">
+            Page Views: <span id="visit-counter">Loading...</span>
+        </p>
     </footer>
 
     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasFilters" aria-labelledby="offcanvasFiltersLabel">
@@ -194,7 +195,9 @@
                     <h5 class="modal-title" id="projectModalLabel">Project Details</h5>
                 </div>
                 <div class="modal-body">
-                    <div class="modal-top-section row g-3"> <div class="col-md-7"> <div class="modal-image-container">
+                    <div class="modal-top-section row g-3"> 
+                        <div class="col-md-7">
+                            <div class="modal-image-container">
                                 <div id="projectImageCarousel" class="carousel slide w-100 h-100">
                                     <div class="carousel-indicators" id="modal-carousel-indicators"></div>
                                     <div class="carousel-inner" id="modal-carousel-inner"></div>
@@ -209,7 +212,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-5"> <div class="modal-summary-text">
+                        <div class="col-md-5"> 
+                            <div class="modal-summary-text">
                                 <h3 id="modal-project-title"></h3>
                                 <p id="modal-project-description"></p>
                                 <div id="modal-project-tech-stack" class="tech-stack mb-3"></div>
