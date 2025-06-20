@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vincent Saranang's Portfolio</title>
-    <link id="favicon" rel="icon" type="image/svg+xml" href="https://vcsrng.github.io/assets/icon/icon.svg">
+    <link id="favicon" rel="icon" type="image/svg+xml" href="https://vcsrng.github.io/assets/icon/icon.png">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Space+Mono:wght@700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -47,9 +47,9 @@
             <p id="hero-specialities"></p>
             <div data-aos-delay="100">
                 <button id="cv-download" class="btn btn-outline-dark btn-custom"><i class="bi bi-file-earmark-person-fill"></i> Download CV</button>
-                <a href="https://github.com/vcsrng" class="btn btn-custom btn-social" target="_blank" rel="noopener noreferrer"><i class="bi bi-github"></i> GitHub</a>
-                <a href="https://apps.apple.com/id/developer/vincent/id1748705316" class="btn btn-custom btn-social" target="_blank" rel="noopener noreferrer"><i class="bi bi-apple"></i> App Store</a>
-                <a href="https://www.linkedin.com/in/vincentsaranang/" class="btn btn-custom btn-social" target="_blank" rel="noopener noreferrer"><i class="bi bi-linkedin"></i> LinkedIn</a>
+                <a id="github-link" href="https://github.com/vcsrng" class="btn btn-custom btn-social" target="_blank" rel="noopener noreferrer"><i class="bi bi-github"></i> GitHub</a>
+                <a id="appstore-link" href="https://apps.apple.com/id/developer/vincent/id1748705316" class="btn btn-custom btn-social" target="_blank" rel="noopener noreferrer"><i class="bi bi-apple"></i> App Store</a>
+                <a id="linkedin-link" href="https://www.linkedin.com/in/vincentsaranang/" class="btn btn-custom btn-social" target="_blank" rel="noopener noreferrer"><i class="bi bi-linkedin"></i> LinkedIn</a>
             </div>
         </div>
     </section>
@@ -140,6 +140,9 @@
         <div class="container">
             <h2 class="text-center mb-5">Certificates & Awards</h2>
             <div id="achievements-grid" class="row g-4 justify-content-center"></div>
+            <nav class="mt-4 d-flex justify-content-center">
+                <ul class="pagination" id="achievement-pagination"></ul>
+            </nav>
         </div>
     </section>
 
