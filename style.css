@@ -546,6 +546,9 @@ nav.navbar {
     background-color: var(--bs-body-bg);
     color: var(--bs-body-color);
 }
+#project-pagination, #achievement-pagination {
+    display: none;
+}
 
 .skill-group-box {
     border-radius: 1.5rem;
@@ -737,6 +740,7 @@ footer a:hover {
     background-color: #413599;
     color: #fff;
     border-color: #413599;
+    transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out, color 0.2s ease-in-out;
 }
 .btn-wwdc:hover {
     background-color: #372d82;
@@ -748,6 +752,7 @@ footer a:hover {
     background-color: #E1306C;
     color: #fff;
     border-color: #E1306C;
+    transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out, color 0.2s ease-in-out;
 }
 .btn-instagram:hover {
     background-color: #c7295f;
@@ -761,11 +766,22 @@ footer a:hover {
     border: 1px solid #004d99;
     transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out, color 0.2s ease-in-out;
 }
-
 .btn-web:hover {
     background-color: #003366;
     color: #ffffff;
     border-color: #003366;
+}
+
+.btn-figma {
+    background-color: #874FFF;
+    color: #fff;
+    border-color: #874FFF;
+    transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+.btn-figma:hover {
+    background-color: #A980FF;
+    color: #fff;
+    border-color: #A980FF;
 }
 
 .btn-outline-themed {
