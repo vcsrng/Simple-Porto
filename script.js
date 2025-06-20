@@ -8,7 +8,7 @@ const data = {
         ]
     },
     about: {
-        textabout: `Hi! My name is Vincent—just Vincent. But some may know me as Vincent Saranang.\n I'm an iOS developer passionate about solving problems and pushing boundaries to create meaningful technology. As a Computer Science freshgraduate from BINUS University and and a recent graduate of Apple Developer Academy's Cohort 7, I thrive on applying my technical skills to create innovative solutions. I believe in continuous learning and innovation, always striving to make an impact—while remembering to enjoy the process!`
+        textabout: `Hi! My name is Vincent—just Vincent. But some may know me as Vincent Saranang.\n I'm an iOS developer passionate about solving problems and pushing boundaries to create meaningful technology. As a Computer Science Fresh Graduate from BINUS University and and a recent graduate of Apple Developer Academy's Cohort 7, I thrive on applying my technical skills to create innovative solutions. I believe in continuous learning and innovation, always striving to make an impact—while remembering to enjoy the process!`
     },
     experience: [
         {
@@ -414,6 +414,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setupNavbarScrollEffect();
     setupLoopingNavbarLogoAnimation();
     setupCV();
+    setupSocialLinkCounters();
     setupFooter();
     setupNavigation();
     setupProjectModal();
@@ -447,6 +448,42 @@ async function updateVisitCounter() {
     } catch (error) {
         console.error('Failed to update visit counter:', error);
         counterElement.textContent = 'Error';
+    }
+}
+
+async function incrementCvDownloadCounter() {
+    const counterUrl = 'https://api.counterapi.dev/v2/vincent-porto/download-cv/up';
+    try {
+        fetch(counterUrl);
+        console.log('CV download counter incremented.');
+    } catch (error) {
+        console.error('Failed to increment CV download counter:', error);
+    }
+}
+
+async function incrementCounter(counterName) {
+    const counterUrl = `https://api.counterapi.dev/v2/vincent-porto/${counterName}/up`;
+    try {
+        fetch(counterUrl);
+        console.log(`Counter '${counterName}' incremented.`);
+    } catch (error) {
+        console.error(`Failed to increment counter '${counterName}':`, error);
+    }
+}
+function setupSocialLinkCounters() {
+    const linksToTrack = {
+        'github-link': 'github-click',
+        'appstore-link': 'appstore-click',
+        'linkedin-link': 'linkedin-click'
+    };
+
+    for (const [id, counterName] of Object.entries(linksToTrack)) {
+        const linkElement = document.getElementById(id);
+        if (linkElement) {
+            linkElement.addEventListener('click', () => {
+                incrementCounter(counterName);
+            });
+        }
     }
 }
 
@@ -817,6 +854,7 @@ function setupCV() {
     if (!cvBtn) return;
     cvBtn.addEventListener("click", (e) => {
         e.stopPropagation();
+        incrementCvDownloadCounter();
         const link = document.createElement("a");
         link.href = "downloadable/Vincent_CV.pdf";
         link.download = "Vincent Saranang - Resume.pdf";
