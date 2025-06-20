@@ -320,7 +320,7 @@ const data = {
             "Built a fully interactive prototype in Figma and conducted systematic usability testing to validate design choices and refine the user flow."
         ],
         links: {
-            figma: "https://www.figma.com/proto/62mrcbVubsERYnYm1YhMk7/Untitled?page-id=0%3A1&node-id=14-229&p=f&viewport=547%2C396%2C0.07&t=gzA9HDW3EgQtaQV5-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=2%3A2"
+            figma: "https://www.figma.com/proto/62mrcbVubsERYnYm1YhMk7/CenTour?page-id=0%3A1&node-id=2-2&p=f&viewport=547%2C396%2C0.07&t=gzA9HDW3EgQtaQV5-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=2%3A2"
         }
     }
     ],
