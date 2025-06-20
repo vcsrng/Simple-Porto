@@ -8,7 +8,7 @@ const data = {
         ]
     },
     about: {
-        textabout: `Hi! I'm Vincent\n I'm an iOS developer passionate about solving problems and pushing boundaries to create meaningful technology. As a Computer Science freshgraduate from BINUS University and and a recent graduate of Apple Developer Academy's Cohort 7, I thrive on applying my technical skills to create innovative solutions. I believe in continuous learning and innovation, always striving to make an impact—while remembering to enjoy the process!`
+        textabout: `Hi! My name is Vincent—just Vincent. But some may know me as Vincent Saranang.\n I'm an iOS developer passionate about solving problems and pushing boundaries to create meaningful technology. As a Computer Science Fresh Graduate from BINUS University and and a recent graduate of Apple Developer Academy's Cohort 7, I thrive on applying my technical skills to create innovative solutions. I believe in continuous learning and innovation, always striving to make an impact—while remembering to enjoy the process!`
     },
     experience: [
         {
@@ -64,7 +64,7 @@ const data = {
             ],
             description: "Enhances environmental awareness for deaf individuals by converting sound into haptic feedback, offering a new way to experience the world through touch.",
             tech_stack: ["SwiftUI", "CoreHaptics", "SoundAnalysis", "AVFoundation"],
-            role: "iOS Developer (WWDC25 Winning Project)",
+            role: "iOS Developer & Designer (WWDC25 Winning Project)",
             responsibilities: [
                 "Architected the entire application from concept to a functional prototype using SwiftUI.",
                 "Engineered a real-time audio analysis pipeline using the SoundAnalysis framework to identify specific environmental sounds.",
@@ -148,7 +148,7 @@ const data = {
             ],
             scale_image_to_height: true,
             description: "An educational physics app with interactive experiments, structured materials, and exercises to make physics accessible and engaging.",
-            tech_stack: ["SwiftUI", "UIKit", "SpriteKit", "GameplayKit", "UserDefault", "Lottie"],
+            tech_stack: ["SwiftUI", "UIKit", "SpriteKit", "GameplayKit", "UserDefault", "Lottie", "Notion"],
             role: "iOS Developer, UX Designer & Project Manager",
             responsibilities: [
                 "Led project management using Notion to organize tasks and facilitate a parallel development workflow for the team.",
@@ -172,7 +172,7 @@ const data = {
                 "https://vcsrng.github.io/assets/projects/FTG6.png"
             ],
             description: "An AR game blending real-world exploration and virtual guessing, encouraging physical movement and observational skill enhancement.",
-            tech_stack: ["SwiftUI", "UIKit", "ARKit", "RealityKit", "UserDefault", "AVFoundation", "Lottie"],
+            tech_stack: ["SwiftUI", "UIKit", "ARKit", "RealityKit", "UserDefault", "AVFoundation", "Lottie", "Procreate"],
             role: "iOS Developer, Designer & Project Manager",
             responsibilities: [
                 "Led the project from concept to App Store submission, overseeing all aspects of development, design, and project management.",
@@ -196,7 +196,7 @@ const data = {
                 "https://vcsrng.github.io/assets/projects/SCUP6.svg",
             ],
             description: "A sketching app empowering users to transform initial sketches into polished illustrations, promoting creativity and skill improvement.",
-            tech_stack: ["SwiftUI", "UIKit", "SwiftData", "Firebase", "AVKit", "Python Replicate"],
+            tech_stack: ["SwiftUI", "UIKit", "SwiftData", "Firebase", "AVKit", "Python Replicate", "Procreate"],
             role: "iOS Developer & Designer",
             responsibilities: [
                 "Owned the end-to-end design process, creating all UI/UX wireframes, visual assets, and application branding.",
@@ -244,6 +244,7 @@ const data = {
             responsibilities: [
                 "Led cross-functional team efforts to research and define core problems, conceptualize solutions, and establish the product's value proposition.",
                 "Developed the TAM, SAM, and SOM analysis to define market opportunity and formulated the supply chain and sustainable business model to ensure product viability and operational efficiency.",
+                "Established the product's brand identity and authored its design guidelines, setting the standards for the logo and visual style while performing design reviews to ensure consistency.",
                 "Defined and designed essential product features, producing comprehensive prototypes to articulate solutions and ensure alignment with user experience objectives."
             ],
             links: {
@@ -254,8 +255,10 @@ const data = {
             name: "FARbucks",
             image: [
                 "https://vcsrng.github.io/assets/projects/Farbucks.svg",
-                "https://vcsrng.github.io/assets/projects/Farbucks2.png",
-                "https://vcsrng.github.io/assets/projects/Farbucks3.png"
+                "https://vcsrng.github.io/assets/projects/Farbucks2.svg",
+                "https://vcsrng.github.io/assets/projects/Farbucks3.svg",
+                "https://vcsrng.github.io/assets/projects/Farbucks4.svg",
+                "https://vcsrng.github.io/assets/projects/Farbucks5.svg"
             ],
             scale_image_to_height: true,
             description: "A comprehensive cafe website developed as part of an HCI course, designed to enhance user experience for coffee enthusiasts with menu, pricing, and event information.",
@@ -275,9 +278,11 @@ const data = {
             name: "All About Space",
             image: [
                 "https://vcsrng.github.io/assets/projects/AAS.svg",
-                "assets/projects/AAS2.png",
-                "assets/projects/AAS3.png",
-                "assets/projects/AAS4.png"
+                "https://vcsrng.github.io/assets/projects/AAS2.svg",
+                "https://vcsrng.github.io/assets/projects/AAS3.svg",
+                "https://vcsrng.github.io/assets/projects/AAS4.svg",
+                "https://vcsrng.github.io/assets/projects/AAS5.svg",
+                "https://vcsrng.github.io/assets/projects/AAS6.svg"
             ],
             description: "An interactive web platform from HCI coursework providing simplified information about planets and outer space, aimed at broadening public knowledge.",
             tech_stack: ["HTML", "CSS", "JavaScript", "Figma", "UI/UX Style Guides", "Design Patterns", "Usability Testing"],
@@ -291,7 +296,33 @@ const data = {
                 github: "https://github.com/vcsrng/SimplePlanetWebProject",
                 web: "https://vcsrng.github.io/SimplePlanetWebProject/home.html"
             }
+        },
+        {
+        name: "CenTour",
+        image: [
+            "https://vcsrng.github.io/assets/projects/Centour.png",
+            "https://vcsrng.github.io/assets/projects/Centour2.svg",
+            "https://vcsrng.github.io/assets/projects/Centour3.svg",
+            "https://vcsrng.github.io/assets/projects/Centour4.svg",
+            "https://vcsrng.github.io/assets/projects/Centour5.svg",
+            "https://vcsrng.github.io/assets/projects/Centour6.svg",
+            "https://vcsrng.github.io/assets/projects/Centour7.svg"
+        ],
+        scale_image_to_height: true,
+        description: "Developed for a Human-Computer Interaction (HCI) course, CenTour is a comprehensive tourism platform designed to streamline the discovery and booking of travel throughout Indonesia. The app allows users to reserve curated tour packages and directly purchase tickets to major attractions.",
+        tech_stack: ["Figma", "Adobe Illustrator", "Human-Centered Design", "UI/UX Style Guides", "Design Patterns", "Prototyping", "User Research", "Product Strategy"],
+        role: "Product Designer & Researcher",
+        responsibilities: [
+            "Led the project from initial concept to a high-fidelity interactive prototype as the sole designer.",
+            "Conducted comprehensive market research on Indonesian tourism packages, destination details, and competitive pricing to define core product features and content strategy.",
+            "Developed the complete product identity, including the CenTour logo, branding, and a consistent UI/UX style guide for the platform.",
+            "Designed the end-to-end user experience, creating detailed wireframes and mockups for all features, from search and discovery to the final booking process.",
+            "Built a fully interactive prototype in Figma and conducted systematic usability testing to validate design choices and refine the user flow."
+        ],
+        links: {
+            figma: "https://www.figma.com/proto/62mrcbVubsERYnYm1YhMk7/Untitled?page-id=0%3A1&node-id=14-229&p=f&viewport=547%2C396%2C0.07&t=gzA9HDW3EgQtaQV5-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=2%3A2"
         }
+    }
     ],
     skillset: {
         tech: [
@@ -374,7 +405,7 @@ document.addEventListener('DOMContentLoaded', () => {
     renderFilterOptions();
     renderProjects(1);
     populateGroupedSkills();
-    populateAchievements();
+    renderAchievements(1);
     populateExperience();
     populateEducation();
     
@@ -383,6 +414,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setupNavbarScrollEffect();
     setupLoopingNavbarLogoAnimation();
     setupCV();
+    setupSocialLinkCounters();
     setupFooter();
     setupNavigation();
     setupProjectModal();
@@ -416,6 +448,42 @@ async function updateVisitCounter() {
     } catch (error) {
         console.error('Failed to update visit counter:', error);
         counterElement.textContent = 'Error';
+    }
+}
+
+async function incrementCvDownloadCounter() {
+    const counterUrl = 'https://api.counterapi.dev/v2/vincent-porto/download-cv/up';
+    try {
+        fetch(counterUrl);
+        console.log('CV download counter incremented.');
+    } catch (error) {
+        console.error('Failed to increment CV download counter:', error);
+    }
+}
+
+async function incrementCounter(counterName) {
+    const counterUrl = `https://api.counterapi.dev/v2/vincent-porto/${counterName}/up`;
+    try {
+        fetch(counterUrl);
+        console.log(`Counter '${counterName}' incremented.`);
+    } catch (error) {
+        console.error(`Failed to increment counter '${counterName}':`, error);
+    }
+}
+function setupSocialLinkCounters() {
+    const linksToTrack = {
+        'github-link': 'github-click',
+        'appstore-link': 'appstore-click',
+        'linkedin-link': 'linkedin-click'
+    };
+
+    for (const [id, counterName] of Object.entries(linksToTrack)) {
+        const linkElement = document.getElementById(id);
+        if (linkElement) {
+            linkElement.addEventListener('click', () => {
+                incrementCounter(counterName);
+            });
+        }
     }
 }
 
@@ -696,10 +764,18 @@ function populateGroupedSkills() {
     }
 }
 
-function populateAchievements() {
+function renderAchievements(page) {
     const achievementGrid = document.getElementById("achievements-grid");
-    if (!achievementGrid) return;
-    achievementGrid.innerHTML = data.achievements.map(ach => {
+    const paginationContainer = document.getElementById("achievement-pagination");
+    if (!achievementGrid || !paginationContainer) return;
+
+    const itemsPerPage = 6;
+    const totalPages = Math.ceil(data.achievements.length / itemsPerPage);
+    const start = (page - 1) * itemsPerPage;
+    const end = start + itemsPerPage;
+    const paginatedAchievements = data.achievements.slice(start, end);
+
+    achievementGrid.innerHTML = paginatedAchievements.map(ach => {
         let verifyButton = '';
         if (ach.verifyLink) {
             if (ach.verifyLink.toLowerCase().endsWith('.pdf')) {
@@ -709,11 +785,44 @@ function populateAchievements() {
             }
         }
         const winnerBadge = ach.title.includes("Winner") ? '<span class="winner-badge"><i class="bi bi-trophy-fill"></i> Winner</span>' : '';
+        
         return `
             <div class="col-lg-4 col-md-6">
-                <div class="achievement-card h-100 d-flex flex-column">${winnerBadge}<div class="achievement-card-header"><i class="bi ${ach.icon}"></i><span class="issuer">${ach.issuer}</span></div><div class="achievement-card-body flex-grow-1"><h5 class="title">${ach.title}</h5><p class="date text-muted">${ach.date}</p><p class="description">${ach.description}</p></div><div class="achievement-card-footer mt-auto">${verifyButton}</div></div>
+                <div class="achievement-card h-100 d-flex flex-column">
+                    ${winnerBadge}
+                    <div class="achievement-card-header">
+                        <i class="bi ${ach.icon}"></i>
+                        <span class="issuer">${ach.issuer}</span>
+                    </div>
+                    <div class="achievement-card-body flex-grow-1">
+                        <h5 class="title">${ach.title}</h5>
+                        <p class="date text-muted">${ach.date}</p>
+                        <p class="description">${ach.description}</p>
+                    </div>
+                    <div class="achievement-card-footer mt-auto">
+                        ${verifyButton}
+                    </div>
+                </div>
             </div>`;
     }).join('');
+
+    paginationContainer.innerHTML = '';
+    if (totalPages <= 1) {
+        paginationContainer.style.display = 'none';
+        return;
+    }
+
+    paginationContainer.style.display = 'flex';
+    for (let i = 1; i <= totalPages; i++) {
+        const li = document.createElement('li');
+        li.className = `page-item ${i === page ? 'active' : ''}`;
+        const btn = document.createElement('button');
+        btn.className = 'page-link';
+        btn.innerText = i;
+        btn.onclick = () => renderAchievements(i);
+        li.appendChild(btn);
+        paginationContainer.appendChild(li);
+    }
 }
 
 function populateExperience() {
@@ -745,6 +854,7 @@ function setupCV() {
     if (!cvBtn) return;
     cvBtn.addEventListener("click", (e) => {
         e.stopPropagation();
+        incrementCvDownloadCounter();
         const link = document.createElement("a");
         link.href = "downloadable/Vincent_CV.pdf";
         link.download = "Vincent Saranang - Resume.pdf";
@@ -792,6 +902,7 @@ function setupProjectModal() {
             if (projectData.links.wwdc) { modalLinks.insertAdjacentHTML('beforeend', `<a href="${projectData.links.wwdc}" class="btn btn-wwdc" target="_blank" rel="noopener noreferrer"><i class="bi bi-trophy-fill"></i> WWDC Profile</a>`); }
             if (projectData.links.instagram) { modalLinks.insertAdjacentHTML('beforeend', `<a href="${projectData.links.instagram}" class="btn btn-instagram" target="_blank" rel="noopener noreferrer"><i class="bi bi-instagram"></i> Instagram</a>`); }
             if (projectData.links.web) { modalLinks.insertAdjacentHTML('beforeend', `<a href="${projectData.links.web}" class="btn btn-web" target="_blank" rel="noopener noreferrer"><i class="bi bi-globe"></i> Website</a>`); }
+            if (projectData.links.figma) { modalLinks.insertAdjacentHTML('beforeend', `<a href="${projectData.links.figma}" class="btn btn-figma" target="_blank" rel="noopener noreferrer"><i class="bi bi-play-circle-fill"></i> Figma</a>`); }
         }
         modalLinks.insertAdjacentHTML('beforeend', `<button type="button" class="btn btn-modal-close ms-auto" data-bs-dismiss="modal">Close</button>`);
 
